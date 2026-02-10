@@ -3,33 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOKCounterPick</title>
+    <title>HOK Counter Pick</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>🎮 HOK Counter Pick</h1>
-        <p>Website tentang game Counter Pick dan Cara bermain HOK</p>
-    </header>
+<header>
+    <h1>🎮 HOK Counter Pick</h1>
+    <p>Website panduan Counter Pick & Cara Bermain Honor of Kings</p>
+</header>
 
-    <main>
-        <section class="card">
-            <h2>Daftar Hero</h2>
-            <p>Pilih Hero untuk mengetahui Counter dan cara bermainnya</p>
-            <button onclick="showAlert()">Hero</button>
-        </section>
+<main>
+    <section class="card">
+        <h2>Daftar Hero</h2>
+        <img src="hok-hero.jpg" alt="Hero Honor of Kings">
+        <p>Pilih hero untuk melihat counter dan tips bermain.</p>
+        <button onclick="openPanel('hero')">Lihat Hero</button>
+    </section>
 
-        <section class="card">
-            <h2>About</h2>
-            <p>Website ini dibuat untuk pecinta game. Dibangun dengan HTML, CSS, dan JavaScript.</p>
-        </section>
-    </main>
+    <section class="card">
+        <h2>About</h2>
+        <p>
+            Website ini dibuat untuk membantu pemain Honor of Kings
+            memahami counter pick dan strategi bermain.
+        </p>
+        <button onclick="openPanel('about')">Selengkapnya</button>
+    </section>
 
-    <footer>
-        <p>© 2026 HOKCounterPick. All rights reserved.</p>
-    </footer>
+    <section class="card">
+        <h2>Kebijakan & Privasi</h2>
+        <p>Syarat penggunaan dan kebijakan privasi website.</p>
+        <button onclick="openPanel('policy')">Baca</button>
+    </section>
+</main>
 
-    <script src="script.js"></script>
+<footer>
+    <p>© 2026 HOKCounterPick. All rights reserved.</p>
+</footer>
+
+<!-- Slide Panel -->
+<div id="slidePanel">
+    <div class="panel-content">
+        <button class="close-btn" onclick="closePanel()">✖</button>
+        <div id="panelText"></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
