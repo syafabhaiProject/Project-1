@@ -28,7 +28,7 @@ header p {
     color: #cbd5f5;
 }
 
-/* Main Content */
+/* Main */
 main {
     display: flex;
     flex-wrap: wrap;
@@ -44,6 +44,13 @@ main {
     padding: 25px;
     width: 300px;
     box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+    margin: 15px 0;
 }
 
 .card h2 {
@@ -80,6 +87,8 @@ footer {
     font-size: 0.85rem;
     color: #94a3b8;
 }
+
+/* Slide Panel */
 #slidePanel {
     position: fixed;
     bottom: -100%;
@@ -97,11 +106,20 @@ footer {
 
 .panel-content {
     padding: 40px 20px;
-    text-align: center;
+    max-width: 600px;
+    margin: auto;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    float: right;
+    cursor: pointer;
 }
 
 .panel-content h2 {
     color: #38bdf8;
     margin-bottom: 15px;
 }
-
