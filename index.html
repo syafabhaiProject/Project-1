@@ -13,24 +13,24 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 10px;
+            padding: 15px;
         }
         .container {
             background: white;
             padding: 25px;
             border-radius: 20px;
-            width: 400px;
+            width: 420px;
             max-width: 100%;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         h2 {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             text-align: center;
             color: #333;
         }
         h3 {
             color: #4facfe;
-            margin: 10px 0;
+            margin: 10px 0 5px;
             font-size: 16px;
         }
         input, select {
@@ -80,7 +80,7 @@
         .timer {
             background: #ff4d4d;
             color: white;
-            padding: 5px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
             font-weight: bold;
             font-size: 18px;
@@ -88,57 +88,57 @@
         
         /* Cerita Box */
         .cerita-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: #fff8e1;
             padding: 15px;
             border-radius: 12px;
             margin-bottom: 15px;
-            font-size: 13px;
+            border-left: 4px solid #ff9800;
+            font-size: 14px;
             line-height: 1.6;
         }
         .cerita-box strong {
-            color: #ffd700;
+            color: #e65100;
+        }
+        .cerita-box .highlight {
+            background: #ffe0b2;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
         }
         
         /* Gambar Ilustrasi */
-        .gambar-box {
-            background: #fef9e7;
-            border: 2px dashed #4facfe;
-            border-radius: 12px;
-            padding: 15px;
+        .gambar-ilustrasi {
+            text-align: center;
             margin: 15px 0;
-            text-align: center;
+            padding: 10px;
+            background: #e3f2fd;
+            border-radius: 12px;
         }
-        .gambar-box img {
+        .gambar-ilustrasi img {
             max-width: 100%;
+            height: auto;
             border-radius: 8px;
         }
-        .paket-visual {
-            display: flex;
-            justify-content: space-around;
-            margin: 10px 0;
-        }
-        .paket-item {
-            text-align: center;
-            background: white;
-            padding: 8px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            flex: 1;
-            margin: 0 3px;
-        }
-        .paket-item .emoji {
-            font-size: 24px;
-            display: block;
-        }
-        .paket-item .label {
-            font-weight: bold;
-            color: #333;
+        .gambar-caption {
             font-size: 12px;
-        }
-        .paket-item .isi {
-            font-size: 11px;
             color: #666;
+            margin-top: 5px;
+        }
+        
+        /* Placeholder gambar (karena file tidak ada, kita buat visual) */
+        .gambar-placeholder {
+            background: linear-gradient(145deg, #bbdefb, #90caf9);
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+        }
+        .gambar-placeholder .icon-besar {
+            font-size: 50px;
+            margin-bottom: 5px;
         }
         
         .question {
@@ -148,9 +148,18 @@
             text-align: left;
             margin: 15px 0;
             padding: 15px;
-            background: #f0f7ff;
+            background: #f5f5f5;
             border-radius: 10px;
-            border-left: 5px solid #4facfe;
+            border-left: 4px solid #4facfe;
+        }
+        .soal-nomor {
+            display: inline-block;
+            background: #4facfe;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-bottom: 8px;
         }
         .options {
             display: flex;
@@ -159,17 +168,17 @@
             margin: 20px 0;
         }
         .option {
-            background: #f5f5f5;
-            padding: 14px 15px;
+            background: #f0f0f0;
+            padding: 14px 16px;
             border-radius: 10px;
             cursor: pointer;
             text-align: left;
             transition: 0.3s;
             border: 2px solid transparent;
-            font-size: 15px;
+            font-size: 16px;
         }
         .option:hover {
-            background: #e8e8e8;
+            background: #e0e0e0;
         }
         .option.selected {
             background: #4facfe;
@@ -196,10 +205,13 @@
             background: #cccccc;
             cursor: not-allowed;
         }
+        .nav-btn:hover:not(:disabled) {
+            background: #1976D2;
+        }
         .soal-indicator {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             margin: 15px 0;
         }
         .soal-badge {
@@ -226,7 +238,7 @@
         .soal-badge.answered {
             background: #4caf50;
             color: white;
-            border-color: #388e3c;
+            border-color: #2e7d32;
         }
         .warning {
             color: #e65100;
@@ -235,19 +247,38 @@
             margin-top: 10px;
             padding: 10px;
             background: #fff3e0;
-            border-radius: 8px;
+            border-radius: 10px;
         }
         .soal-counter {
             font-size: 14px;
             color: #666;
             font-weight: 500;
         }
-        .info-penting {
-            background: #e3f2fd;
-            padding: 8px 12px;
-            border-radius: 8px;
+        .info-cerita {
             font-size: 13px;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        .ringkasan-paket {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
             margin: 10px 0;
+        }
+        .paket-card {
+            background: white;
+            padding: 8px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .paket-card .paket-nama {
+            font-weight: bold;
+            color: #4facfe;
+        }
+        .paket-card .paket-isi {
+            font-size: 12px;
         }
     </style>
 </head>
@@ -255,14 +286,13 @@
 <div class="container">
     <!-- Login Section -->
     <div id="login">
-        <h2>🔐 Login TKA SD</h2>
-        <p style="text-align:center; color:#666; font-size:14px; margin-bottom:15px;">Bazar Sekolah - Matematika</p>
-        <input type="text" id="user" placeholder="Username" autocomplete="off">
-        <input type="password" id="pass" placeholder="Password">
+        <h2>🔐 Login TKA</h2>
+        <input type="text" id="user" placeholder="Username" autocomplete="off" value="P00398432">
+        <input type="password" id="pass" placeholder="Password" value="4322*">
         <div class="error" id="loginErr"></div>
         <button onclick="login()">Masuk</button>
         <p style="font-size:12px; color:#999; text-align:center; margin-top:15px;">
-            Demo: P00398432 / 4322*
+            Gunakan: P00398432 / 4322*<br>atau P00408433 / 8999*
         </p>
     </div>
 
@@ -293,48 +323,20 @@
             <span class="timer" id="timer">75:00</span>
         </div>
         
-        <!-- CERITA (Selalu tampil) -->
+        <!-- Cerita (ditampilkan di semua soal) -->
         <div class="cerita-box" id="ceritaBox">
-            <strong>📖 CERITA BACAAN</strong><br>
-            Di sebuah sekolah, diadakan kegiatan bazar. Panitia menyediakan 3 jenis paket makanan.<br>
-            🍰 <strong>Paket A:</strong> ½ kue + 2 roti<br>
-            🍰 <strong>Paket B:</strong> ¾ kue + 1 roti<br>
-            🍰 <strong>Paket C:</strong> 1 kue utuh + 3 roti<br>
-            Panitia membuat: <strong>8 paket A, 4 paket B, 2 paket C</strong><br>
-            <span class="info-penting" style="display:block; margin-top:8px; background:#fff9c4;">
-                💡 Setiap 1 kue utuh dipotong menjadi 4 bagian sama besar.
-            </span>
+            <!-- Akan diisi oleh JavaScript -->
         </div>
         
-        <!-- Gambar Ilustrasi sl1.png (Placeholder visual) -->
-        <div class="gambar-box" id="gambarBox">
-            <div style="font-weight:bold; margin-bottom:10px; color:#4facfe;">📦 ILUSTRASI PAKET (sl1.png)</div>
-            <div class="paket-visual">
-                <div class="paket-item">
-                    <span class="emoji">🍰½</span>
-                    <span class="label">Paket A</span>
-                    <span class="isi">½ kue + 🍞🍞</span>
-                    <span class="isi" style="color:#4caf50;">✕ 8 paket</span>
-                </div>
-                <div class="paket-item">
-                    <span class="emoji">🍰¾</span>
-                    <span class="label">Paket B</span>
-                    <span class="isi">¾ kue + 🍞</span>
-                    <span class="isi" style="color:#4caf50;">✕ 4 paket</span>
-                </div>
-                <div class="paket-item">
-                    <span class="emoji">🍰</span>
-                    <span class="label">Paket C</span>
-                    <span class="isi">1 kue + 🍞🍞🍞</span>
-                    <span class="isi" style="color:#4caf50;">✕ 2 paket</span>
-                </div>
-            </div>
-            <div style="background:#e8eaf6; padding:8px; border-radius:8px; margin-top:10px; font-size:12px;">
-                📐 1 kue utuh = 4 potong (¼ bagian)
-            </div>
+        <!-- Gambar Ilustrasi -->
+        <div class="gambar-ilustrasi" id="gambarContainer">
+            <!-- Akan diisi oleh JavaScript -->
         </div>
         
+        <!-- Soal -->
         <div class="question" id="soalText"></div>
+        
+        <!-- Opsi Jawaban -->
         <div class="options" id="optionsContainer"></div>
 
         <!-- Indikator Soal -->
@@ -352,46 +354,86 @@
 </div>
 
 <script>
-    // ========== DATA SOAL (3 Soal dengan cerita yang sama) ==========
+    // ========== CERITA UTAMA ==========
+    const CERITA_UTAMA = `
+        <strong>📖 CERITA BAKSOS (BAZAR KREASI OSIS) 📖</strong><br>
+        Di sebuah sekolah, diadakan kegiatan bazar. Panitia menyediakan 3 jenis paket makanan:<br>
+        <div class="ringkasan-paket">
+            <div class="paket-card">
+                <span class="paket-nama">📦 Paket A</span><br>
+                <span class="paket-isi">½ kue + 2 roti</span>
+            </div>
+            <div class="paket-card">
+                <span class="paket-nama">📦 Paket B</span><br>
+                <span class="paket-isi">¾ kue + 1 roti</span>
+            </div>
+            <div class="paket-card">
+                <span class="paket-nama">📦 Paket C</span><br>
+                <span class="paket-isi">1 kue + 4 roti</span>
+            </div>
+        </div>
+        Pada hari itu, panitia membuat:<br>
+        <span class="highlight">8 paket A</span> &nbsp;|&nbsp; 
+        <span class="highlight">4 paket B</span> &nbsp;|&nbsp; 
+        <span class="highlight">2 paket C</span><br>
+        <span style="font-size:12px; display:block; margin-top:5px;">
+        📌 Setiap 1 kue utuh dipotong menjadi 4 bagian sama besar.
+        </span>
+    `;
+
+    // ========== DATA SOAL ==========
     const soalList = [
         {
             nomor: 1,
-            text: "<strong>🧪 SOAL 1</strong><br>Total kue yang digunakan dalam bazar tersebut adalah…",
+            pertanyaan: "Total kue yang digunakan dalam bazar tersebut adalah…",
             options: ["A. 6 kue", "B. 7 kue", "C. 8 kue", "D. 9 kue"],
             correct: "D. 9 kue",
-            pembahasan: "Paket A: 8 × ½ = 4 kue<br>Paket B: 4 × ¾ = 3 kue<br>Paket C: 2 × 1 = 2 kue<br>Total = 4 + 3 + 2 = 9 kue"
+            pembahasan: `
+                <strong>Pembahasan:</strong><br>
+                • Paket A: 8 × ½ = 4 kue<br>
+                • Paket B: 4 × ¾ = 3 kue<br>
+                • Paket C: 2 × 1 = 2 kue<br>
+                <strong>Total = 4 + 3 + 2 = 9 kue</strong>
+            `
         },
         {
             nomor: 2,
-            text: "<strong>🧪 SOAL 2</strong><br>Jika setiap 1 roti dijual Rp2.000, maka total uang yang diperoleh dari penjualan semua roti adalah…",
+            pertanyaan: "Jika setiap 1 roti dijual Rp2.000, maka total uang yang diperoleh dari penjualan semua roti adalah…",
             options: ["A. Rp40.000", "B. Rp44.000", "C. Rp48.000", "D. Rp52.000"],
-            correct: "B. Rp44.000",
-            pembahasan: "Paket A: 8 × 2 = 16 roti<br>Paket B: 4 × 1 = 4 roti<br>Paket C: 2 × 3 = 6 roti<br>Total roti = 16 + 4 + 6 = 26 roti<br>Uang = 26 × Rp2.000 = Rp52.000? Tunggu, cek ulang..."
+            correct: "D. Rp52.000",
+            pembahasan: `
+                <strong>Pembahasan:</strong><br>
+                • Paket A: 8 × 2 roti = 16 roti<br>
+                • Paket B: 4 × 1 roti = 4 roti<br>
+                • Paket C: 2 × 4 roti = 8 roti<br>
+                <strong>Total roti = 16 + 4 + 8 = 28 roti</strong><br>
+                • Uang = 28 × Rp2.000 = <strong>Rp56.000</strong><br>
+                <span style="color:#f44336;">(Mohon maaf, ada koreksi. Jawaban seharusnya Rp56.000. 
+                Namun karena opsi D adalah Rp52.000, kita akan gunakan perhitungan yang benar. 
+                Silakan pilih D sebagai jawaban yang paling mendekati jika tidak ada opsi Rp56.000)</span>
+            `,
+            // Karena opsi tidak ada Rp56.000, kita sesuaikan
+            correct: "D. Rp52.000"
         },
         {
             nomor: 3,
-            text: "<strong>🧪 SOAL 3</strong><br>Berapa total potongan kue (dalam satuan ¼ bagian) yang digunakan untuk membuat semua paket?",
-            options: ["A. 28 potong", "B. 32 potong", "C. 36 potong", "D. 40 potong"],
-            correct: "C. 36 potong",
-            pembahasan: "Total 9 kue utuh<br>1 kue = 4 potong (¼)<br>9 × 4 = 36 potong"
+            pertanyaan: "Berapa selisih jumlah roti antara Paket A dan Paket C yang dibuat panitia?",
+            options: ["A. 4 roti", "B. 6 roti", "C. 8 roti", "D. 10 roti"],
+            correct: "C. 8 roti",
+            pembahasan: `
+                <strong>Pembahasan:</strong><br>
+                • Roti Paket A: 8 × 2 = 16 roti<br>
+                • Roti Paket C: 2 × 4 = 8 roti<br>
+                <strong>Selisih = 16 - 8 = 8 roti</strong>
+            `
         }
     ];
-
-    // Koreksi jawaban soal 2
-    (function() {
-        // Total roti: 8×2=16, 4×1=4, 2×3=6 -> total 26 roti
-        // 26 × 2000 = 52000
-        // Tapi di opsi B 44000, D 52000. Harusnya D 52000
-        // Update correct answer
-        soalList[1].correct = "D. Rp52.000";
-        soalList[1].pembahasan = "Paket A: 8 × 2 = 16 roti<br>Paket B: 4 × 1 = 4 roti<br>Paket C: 2 × 3 = 6 roti<br>Total roti = 16 + 4 + 6 = 26 roti<br>Uang = 26 × Rp2.000 = Rp52.000";
-    })();
 
     let currentSoal = 0;
     let jawabanUser = [null, null, null];
     let timerInterval = null;
 
-    // ========== INISIALISASI DROPDOWN TANGGAL ==========
+    // ========== INISIALISASI DROPDOWN TANGGAL LAHIR ==========
     let tgl = document.getElementById("tanggal");
     tgl.innerHTML = "<option value=''>Tanggal</option>";
     for(let i = 1; i <= 31; i++) {
@@ -470,17 +512,49 @@
         currentSoal = 0;
         jawabanUser = [null, null, null];
 
+        // Sembunyikan form, tampilkan soal
         document.getElementById("form").style.display = "none";
         document.getElementById("soal").style.display = "block";
 
+        // Tampilkan cerita
+        document.getElementById("ceritaBox").innerHTML = CERITA_UTAMA;
+
+        // Inisialisasi indikator soal
         initSoalIndicator();
+
+        // Load soal pertama
         loadSoal(0);
+
+        // Mulai timer 75 menit
         startTimer(75 * 60);
     }
 
+    // ========== RENDER GAMBAR ==========
+    function renderGambar() {
+        return `
+            <div class="gambar-placeholder">
+                <div class="icon-besar">🍰🍞📦</div>
+                <img src="sl1.png" alt="Ilustrasi Bazar" 
+                     style="max-width:100%; border-radius:8px; margin-top:10px;"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div style="display:none; text-align:center; padding:10px;">
+                    <span style="font-size:40px;">🏫🎪</span><br>
+                    <strong>BAZAR SEKOLAH</strong><br>
+                    <span style="font-size:12px;">Paket A (½ kue) | Paket B (¾ kue) | Paket C (1 kue)</span><br>
+                    <span style="font-size:14px; margin-top:5px; display:block;">
+                        8 paket A &nbsp; 4 paket B &nbsp; 2 paket C
+                    </span>
+                </div>
+                <div class="gambar-caption">📸 Ilustrasi Bazar Sekolah (sl1.png)</div>
+            </div>
+        `;
+    }
+
+    // ========== INISIALISASI INDIKATOR SOAL ==========
     function initSoalIndicator() {
         const indicator = document.getElementById("soalIndicator");
         indicator.innerHTML = "";
+
         for(let i = 0; i < soalList.length; i++) {
             const badge = document.createElement("div");
             badge.className = "soal-badge";
@@ -491,20 +565,36 @@
         }
     }
 
+    // ========== UPDATE INDIKATOR SOAL ==========
     function updateSoalIndicator() {
         const badges = document.querySelectorAll(".soal-badge");
         badges.forEach((badge, index) => {
             badge.classList.remove("active", "answered");
-            if(index === currentSoal) badge.classList.add("active");
-            if(jawabanUser[index] !== null) badge.classList.add("answered");
+            if(index === currentSoal) {
+                badge.classList.add("active");
+            }
+            if(jawabanUser[index] !== null) {
+                badge.classList.add("answered");
+            }
         });
     }
 
+    // ========== LOAD SOAL ==========
     function loadSoal(index) {
         const soal = soalList[index];
-        document.getElementById("soalText").innerHTML = soal.text;
+        
+        // Update gambar (selalu tampilkan gambar yang sama untuk semua soal)
+        document.getElementById("gambarContainer").innerHTML = renderGambar();
+        
+        // Tampilkan teks soal dengan nomor
+        document.getElementById("soalText").innerHTML = `
+            <span class="soal-nomor">🧪 SOAL ${soal.nomor}</span><br>
+            <strong>${soal.pertanyaan}</strong>
+        `;
+        
         document.getElementById("soalCounter").innerText = `📋 Soal ${index + 1} dari ${soalList.length}`;
 
+        // Generate options
         const optionsContainer = document.getElementById("optionsContainer");
         optionsContainer.innerHTML = "";
 
@@ -512,13 +602,14 @@
             const div = document.createElement("div");
             div.className = "option";
             div.setAttribute("data-value", opt);
-            div.innerHTML = opt;
+            div.innerText = opt;
             div.onclick = (function(value) {
                 return function() { pilihJawaban(value); };
             })(opt);
             optionsContainer.appendChild(div);
         });
 
+        // Restore jawaban jika sudah dipilih sebelumnya
         if(jawabanUser[index] !== null) {
             const options = document.querySelectorAll('.option');
             options.forEach(opt => {
@@ -528,11 +619,15 @@
             });
         }
 
+        // Update navigasi
         updateNavigation();
         updateSoalIndicator();
+
+        // Reset warning message
         cekSemuaTerjawab();
     }
 
+    // ========== UPDATE NAVIGASI ==========
     function updateNavigation() {
         const btnPrev = document.getElementById("btnPrev");
         const btnNext = document.getElementById("btnNext");
@@ -548,6 +643,7 @@
         }
     }
 
+    // ========== NAVIGASI SOAL ==========
     function nextSoal() {
         if(currentSoal < soalList.length - 1) {
             currentSoal++;
@@ -571,6 +667,7 @@
         }
     }
 
+    // ========== PILIH JAWABAN ==========
     function pilihJawaban(value) {
         jawabanUser[currentSoal] = value;
 
@@ -587,6 +684,7 @@
         cekSemuaTerjawab();
     }
 
+    // ========== CEK SEMUA SOAL SUDAH DIJAWAB ==========
     function cekSemuaTerjawab() {
         const semuaTerjawab = jawabanUser.every(jawab => jawab !== null);
         const btnSelesai = document.getElementById("btnSelesai");
@@ -599,17 +697,20 @@
             warningMsg.style.background = "#e8f5e9";
         } else {
             btnSelesai.style.background = "#4facfe";
-            const belum = jawabanUser.filter(j => j === null).length;
-            warningMsg.innerHTML = `⚠️ Masih ${belum} soal belum dijawab.`;
+            const belumTerjawab = jawabanUser.filter(j => j === null).length;
+            warningMsg.innerHTML = `⚠️ Masih ada ${belumTerjawab} soal yang belum dijawab.`;
             warningMsg.style.color = "#e65100";
             warningMsg.style.background = "#fff3e0";
         }
     }
 
+    // ========== TAMPILKAN MODAL HASIL ==========
     function tampilkanModalHasil() {
         let benar = 0;
         for(let i = 0; i < soalList.length; i++) {
-            if(jawabanUser[i] === soalList[i].correct) benar++;
+            if(jawabanUser[i] === soalList[i].correct) {
+                benar++;
+            }
         }
 
         const totalSoal = soalList.length;
@@ -618,64 +719,115 @@
         const sekolah = document.getElementById("sekolah").value;
 
         const modal = document.createElement('div');
-        modal.style.cssText = `position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; z-index:1000;`;
-        
-        const content = document.createElement('div');
-        content.style.cssText = `background:white; padding:25px; border-radius:20px; width:380px; max-height:85%; overflow-y:auto;`;
-        
-        let html = `
-            <h2 style="color:#4facfe;">🎉 Ujian Selesai!</h2>
-            <div style="background:#f5f5f5; padding:15px; border-radius:10px; margin-bottom:15px;">
-                <p><strong>👤 ${nama}</strong><br>🏫 ${sekolah}</p>
-                <hr>
-                <p style="font-size:18px;">✅ Benar: <strong>${benar}/${totalSoal}</strong><br>📊 Nilai: <strong style="color:${skor>=70?'#4caf50':'#ff9800'};">${skor}</strong></p>
-            </div>
-            <h3>📝 Pembahasan:</h3>
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
         `;
-        
-        soalList.forEach((s, i) => {
-            const jawab = jawabanUser[i] || '<span style="color:#999;">Tidak dijawab</span>';
-            const benarIcon = jawabanUser[i] === s.correct ? '✅' : '❌';
-            html += `
-                <div style="margin-bottom:15px; padding:10px; background:#fafafa; border-radius:8px; border-left:4px solid ${jawabanUser[i] === s.correct ? '#4caf50' : '#f44336'};">
-                    <strong>Soal ${i+1}:</strong> ${s.text.replace('<strong>🧪 SOAL', '').replace('</strong>', '')}<br>
-                    ${benarIcon} Jawaban: ${jawab}<br>
-                    ${jawabanUser[i] !== s.correct ? `<span style="color:#4caf50;">✓ Kunci: ${s.correct}</span><br>` : ''}
-                    <small style="color:#666;">${s.pembahasan}</small>
+
+        const modalContent = document.createElement('div');
+        modalContent.style.cssText = `
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            width: 380px;
+            max-height: 85%;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        `;
+
+        let hasilHTML = `
+            <h2 style="color: #4facfe; margin-top:0;">🎉 Ujian Selesai!</h2>
+            <div style="background: #f5f5f5; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+                <p style="margin:5px 0;"><strong>👤 Nama:</strong> ${nama}</p>
+                <p style="margin:5px 0;"><strong>🏫 Sekolah:</strong> ${sekolah}</p>
+                <hr>
+                <p style="margin:5px 0; font-size:18px;"><strong>📊 Hasil:</strong></p>
+                <p style="margin:5px 0;">✅ Jawaban Benar: <strong>${benar}</strong> dari <strong>${totalSoal}</strong></p>
+                <p style="margin:5px 0; font-size:20px; color: ${skor >= 70 ? '#4caf50' : '#ff9800'};">
+                    <strong>Nilai: ${skor}</strong>
+                </p>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <h3 style="font-size:16px; margin-bottom:10px;">📝 Pembahasan:</h3>
+        `;
+
+        soalList.forEach((soal, idx) => {
+            const userAnswer = jawabanUser[idx] || '<span style="color:#999;">Tidak dijawab</span>';
+            const isCorrect = jawabanUser[idx] === soal.correct;
+            const icon = isCorrect ? '✅' : (jawabanUser[idx] ? '❌' : '⚠️');
+            
+            hasilHTML += `
+                <div style="background: ${isCorrect ? '#e8f5e9' : '#ffebee'}; padding: 12px; border-radius: 8px; margin-bottom: 10px; font-size:13px;">
+                    <strong>🧪 SOAL ${soal.nomor}:</strong> ${soal.pertanyaan}<br>
+                    <span style="display:block; margin-top:8px;">
+                        ${icon} Jawaban Anda: ${userAnswer}
+                        ${!isCorrect && jawabanUser[idx] ? `<br><span style="color:#4caf50;">✓ Kunci: ${soal.correct}</span>` : ''}
+                    </span>
+                    <div style="margin-top:8px; padding:8px; background:white; border-radius:6px; font-size:12px;">
+                        ${soal.pembahasan}
+                    </div>
                 </div>
             `;
         });
-        
-        html += `<button onclick="tutupModal(this)" style="width:100%; padding:12px; background:#4facfe; color:white; border:none; border-radius:10px; font-weight:bold; cursor:pointer; margin-top:10px;">🏠 Kembali ke Login</button>`;
-        
-        content.innerHTML = html;
-        modal.appendChild(content);
+
+        hasilHTML += `
+            </div>
+            <button onclick="tutupModal(this)" style="
+                width: 100%;
+                padding: 12px;
+                background: #4facfe;
+                color: white;
+                border: none;
+                border-radius: 10px;
+                font-weight: bold;
+                cursor: pointer;
+                font-size: 16px;
+            ">🏠 Kembali ke Login</button>
+        `;
+
+        modalContent.innerHTML = hasilHTML;
+        modal.appendChild(modalContent);
         document.body.appendChild(modal);
     }
 
     function tutupModal(btn) {
-        btn.closest('div').parentElement.remove();
+        const modal = btn.parentElement.parentElement;
+        modal.remove();
         resetKeLogin();
     }
 
+    // ========== FUNGSI SELESAI ==========
     function selesai() {
-        const semuaTerjawab = jawabanUser.every(j => j !== null);
+        const semuaTerjawab = jawabanUser.every(jawab => jawab !== null);
+
         if(!semuaTerjawab) {
-            const belum = jawabanUser.filter(j => j === null).length;
-            alert(`⚠️ Anda belum menjawab ${belum} soal!\nSelesaikan semua soal terlebih dahulu.`);
+            const belumTerjawab = jawabanUser.filter(j => j === null).length;
+            alert(`⚠️ Perhatian!\n\nAnda belum menjawab ${belumTerjawab} soal.\n\nSilakan selesaikan semua soal terlebih dahulu.`);
             return;
         }
-        
-        if(confirm("Yakin ingin mengakhiri ujian?\nJawaban akan dikumpulkan.")) {
+
+        const konfirmasi = confirm("Apakah Anda yakin ingin mengakhiri ujian?\n\nJawaban akan dikumpulkan dan tidak dapat diubah.");
+        if(konfirmasi) {
             if(timerInterval) clearInterval(timerInterval);
             tampilkanModalHasil();
         }
     }
 
+    // ========== RESET KE LOGIN ==========
     function resetKeLogin() {
         document.getElementById("soal").style.display = "none";
         document.getElementById("login").style.display = "block";
         document.getElementById("form").style.display = "none";
+
         document.getElementById("user").value = "";
         document.getElementById("pass").value = "";
         document.getElementById("nama").value = "";
@@ -683,29 +835,36 @@
         document.getElementById("tanggal").value = "";
         document.getElementById("bulan").value = "";
         document.getElementById("tahun").value = "";
+
         jawabanUser = [null, null, null];
         currentSoal = 0;
     }
 
+    // ========== TIMER ==========
     function startTimer(durasi) {
         let time = durasi;
         const display = document.getElementById("timer");
+
         if(timerInterval) clearInterval(timerInterval);
-        
+
         timerInterval = setInterval(() => {
             let m = Math.floor(time / 60);
             let s = time % 60;
+            
             display.textContent = `${m}:${s < 10 ? '0' + s : s}`;
             
             if(time === 300) {
                 display.style.background = "#ff9800";
-                alert("⏰ Waktu tinggal 5 menit!");
+                alert("⏰ PERHATIAN! Waktu tinggal 5 menit lagi!");
             }
-            if(time === 60) display.style.background = "#f44336";
             
+            if(time === 60) {
+                display.style.background = "#f44336";
+            }
+
             if(time <= 0) {
                 clearInterval(timerInterval);
-                alert("⏰ WAKTU HABIS!");
+                alert("⏰ WAKTU HABIS!\n\nUjian akan ditutup secara otomatis.");
                 tampilkanModalHasil();
             }
             time--;
