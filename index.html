@@ -524,13 +524,24 @@ Biaya pembuatan pagar adalah Rp50.000 per meter.:<br>
             konten: `
                 Bacalah soal dengan teliti dan pilih jawaban yang paling tepat!
             `
-        }
+        }, 
+kebun: {
+    judul: "🌱 CERITA KEBUN SAYUR",
+    class: "kebun",
+    konten: `
+        Di sebuah desa, terdapat sebuah kebun berbentuk persegi panjang dengan panjang 20 meter dan lebar 10 meter.<br>
+        Kebun tersebut akan dibagi menjadi beberapa bagian sama besar untuk ditanami sayuran.<br>
+        Setiap bagian berbentuk persegi dengan sisi 2 meter.<br>
+        Selain itu, pemilik kebun ingin membuat pagar di sekeliling kebun.<br>
+        <span class="highlight">Biaya pembuatan pagar adalah Rp50.000 per meter.</span>
+    `
+}
     };
 
 // ========== DATA SOAL (30 SOAL LENGKAP) ==========
 const soalList = [
     // ======================================================
-    // SOAL 1-3 : CERITA BAZAR (SUDAH ADA)
+    // SOAL 1-3 : CERITA BAZAR
     // ======================================================
     {
         nomor: 1,
@@ -540,13 +551,7 @@ const soalList = [
         pertanyaan: "Total kue yang digunakan dalam bazar tersebut adalah…",
         options: ["A. 6 kue", "B. 7 kue", "C. 8 kue", "D. 9 kue"],
         correct: "D. 9 kue",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Paket A: 8 × ½ = 4 kue<br>
-            • Paket B: 4 × ¾ = 3 kue<br>
-            • Paket C: 2 × 1 = 2 kue<br>
-            <strong>Total = 4 + 3 + 2 = 9 kue</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• Paket A: 8 × ½ = 4 kue<br>• Paket B: 4 × ¾ = 3 kue<br>• Paket C: 2 × 1 = 2 kue<br><strong>Total = 4 + 3 + 2 = 9 kue</strong>`
     },
     {
         nomor: 2,
@@ -556,14 +561,7 @@ const soalList = [
         pertanyaan: "Jika setiap 1 roti dijual Rp2.000, maka total uang yang diperoleh dari penjualan semua roti adalah…",
         options: ["A. Rp52.000", "B. Rp44.000", "C. Rp48.000", "D. Rp56.000"],
         correct: "D. Rp56.000",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Paket A: 8 × 2 = 16 roti<br>
-            • Paket B: 4 × 1 = 4 roti<br>
-            • Paket C: 2 × 4 = 8 roti<br>
-            <strong>Total roti = 28 roti</strong><br>
-            • Uang = 28 × Rp2.000 = Rp56.000
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• Paket A: 8 × 2 = 16 roti<br>• Paket B: 4 × 1 = 4 roti<br>• Paket C: 2 × 4 = 8 roti<br><strong>Total roti = 28 roti</strong><br>• Uang = 28 × Rp2.000 = Rp56.000`
     },
     {
         nomor: 3,
@@ -573,16 +571,11 @@ const soalList = [
         pertanyaan: "Berapa selisih jumlah roti antara Paket A dan Paket C yang dibuat panitia?",
         options: ["A. 4 roti", "B. 6 roti", "C. 8 roti", "D. 10 roti"],
         correct: "C. 8 roti",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Roti Paket A: 8 × 2 = 16 roti<br>
-            • Roti Paket C: 2 × 4 = 8 roti<br>
-            <strong>Selisih = 16 - 8 = 8 roti</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• Roti Paket A: 8 × 2 = 16 roti<br>• Roti Paket C: 2 × 4 = 8 roti<br><strong>Selisih = 16 - 8 = 8 roti</strong>`
     },
 
     // ======================================================
-    // SOAL 4 : TABUNG (SUDAH ADA)
+    // SOAL 4 : TABUNG
     // ======================================================
     {
         nomor: 4,
@@ -592,21 +585,11 @@ const soalList = [
         pertanyaan: "Perhatikan gambar tabung di atas! Sebuah tabung memiliki jari-jari alas 7 cm dan tinggi 10 cm. Volume tabung tersebut adalah… (π = 22/7)",
         options: ["A. 1.440 cm³", "B. 1.540 cm³", "C. 1.640 cm³", "D. 1.740 cm³"],
         correct: "B. 1.540 cm³",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            Diketahui:<br>
-            • r = 7 cm<br>
-            • t = 10 cm<br>
-            • π = 22/7<br><br>
-            <strong>Volume Tabung = π × r² × t</strong><br>
-            = 22/7 × 7 × 7 × 10<br>
-            = 22 × 7 × 10<br>
-            = 1.540 cm³
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• r = 7 cm, t = 10 cm, π = 22/7<br>• Volume = π × r² × t = 22/7 × 7 × 7 × 10 = 22 × 7 × 10 = <strong>1.540 cm³</strong>`
     },
 
     // ======================================================
-    // SOAL 5 : LINGKARAN - PILIHAN KOMPLEKS (SUDAH ADA)
+    // SOAL 5 : LINGKARAN (KOMPLEKS)
     // ======================================================
     {
         nomor: 5,
@@ -614,120 +597,79 @@ const soalList = [
         cerita: null,
         gambar: "Lingkaran1.png",
         pertanyaan: "Perhatikan gambar lingkaran di atas! Sebuah lingkaran memiliki Diameter 28 cm. Pernyataan yang BENAR berdasarkan informasi tersebut adalah... (π = 22/7)",
-        options: [
-            "A. Luas lingkaran = 616 cm²",
-            "B. Keliling lingkaran = 88 cm",
-            "C. Luas lingkaran = 618 cm²",
-            "D. Keliling lingkaran = 86 cm"
-        ],
+        options: ["A. Luas lingkaran = 616 cm²", "B. Keliling lingkaran = 88 cm", "C. Luas lingkaran = 618 cm²", "D. Keliling lingkaran = 86 cm"],
         correct: ["A. Luas lingkaran = 616 cm²", "B. Keliling lingkaran = 88 cm"],
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            Diketahui: D = 28 cm → r = 14 cm, π = 22/7<br><br>
-            <strong>✓ Luas = π × r²</strong> = 22/7 × 14 × 14 = 616 cm² → (A BENAR)<br>
-            <strong>✓ Keliling = 2 × π × r</strong> = 2 × 22/7 × 14 = 88 cm → (B BENAR)<br>
-            ✗ C dan D SALAH (menjebak)
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• D = 28 cm → r = 14 cm<br>• Luas = π × r² = 22/7 × 14 × 14 = 616 cm² (A BENAR)<br>• Keliling = 2 × π × r = 2 × 22/7 × 14 = 88 cm (B BENAR)<br>✗ C dan D SALAH (menjebak)`
     },
 
     // ======================================================
-    // SOAL 6-8 : CERITA KEBUN PERSEGI PANJANG (BARU)
+    // SOAL 6 : KEBUN - BAGIAN PERSEGI
     // ======================================================
     {
         nomor: 6,
         tipe: "cerita",
         cerita: "kebun",
-        gambar: "kebun.png",
+        gambar: "sl7.png",
         pertanyaan: "Banyak bagian persegi kecil yang dapat dibuat dari kebun tersebut adalah…",
         options: ["A. 40", "B. 50", "C. 60", "D. 100"],
         correct: "B. 50",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Luas kebun = p × l = 20 × 10 = 200 m²<br>
-            • Luas persegi kecil = s × s = 2 × 2 = 4 m²<br>
-            • Banyak bagian = 200 ÷ 4 = <strong>50 bagian</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• Luas kebun = 20 × 10 = 200 m²<br>• Luas persegi kecil = 2 × 2 = 4 m²<br>• Banyak bagian = 200 ÷ 4 = <strong>50 bagian</strong>`
     },
+
+    // ======================================================
+    // SOAL 7 : KEBUN - BIAYA PAGAR
+    // ======================================================
     {
         nomor: 7,
         tipe: "cerita",
         cerita: "kebun",
-        gambar: "kebun.png",
+        gambar: "sl7.png",
         pertanyaan: "Biaya yang diperlukan untuk membuat pagar di sekeliling kebun adalah…",
         options: ["A. Rp2.000.000", "B. Rp3.000.000", "C. Rp4.000.000", "D. Rp5.000.000"],
         correct: "B. Rp3.000.000",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Keliling kebun = 2 × (p + l) = 2 × (20 + 10) = 2 × 30 = 60 meter<br>
-            • Biaya pagar = 60 × Rp50.000 = <strong>Rp3.000.000</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• Keliling = 2 × (20 + 10) = 60 meter<br>• Biaya = 60 × Rp50.000 = <strong>Rp3.000.000</strong>`
     },
+
+    // ======================================================
+    // SOAL 8 : KEBUN - KOMPLEKS
+    // ======================================================
     {
         nomor: 8,
         tipe: "kompleks",
         cerita: "kebun",
-        gambar: "kebun.png",
+        gambar: "sl7.png",
         pertanyaan: "Pilih semua pernyataan yang benar!",
-        options: [
-            "A. Luas kebun adalah 200 m²",
-            "B. Keliling kebun adalah 60 meter",
-            "C. Jumlah bagian persegi kecil adalah 100",
-            "D. Jika sisi persegi kecil diperbesar, jumlah bagian akan bertambah"
-        ],
+        options: ["A. Luas kebun adalah 200 m²", "B. Keliling kebun adalah 60 meter", "C. Jumlah bagian persegi kecil adalah 100", "D. Jika sisi persegi kecil diperbesar, jumlah bagian akan bertambah"],
         correct: ["A. Luas kebun adalah 200 m²", "B. Keliling kebun adalah 60 meter"],
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            ✓ A. Luas = 20 × 10 = 200 m² (BENAR)<br>
-            ✓ B. Keliling = 2 × (20+10) = 60 m (BENAR)<br>
-            ✗ C. Jumlah bagian = 50, bukan 100 (SALAH)<br>
-            ✗ D. Jika sisi diperbesar, jumlah bagian justru BERKURANG (SALAH)
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>✓ A. Luas = 20×10 = 200 m² (BENAR)<br>✓ B. Keliling = 2×(20+10) = 60 m (BENAR)<br>✗ C. Jumlah = 50, bukan 100 (SALAH)<br>✗ D. Sisi diperbesar → jumlah BERKURANG (SALAH)`
     },
 
     // ======================================================
-    // SOAL 9 : PERBANDINGAN TINGGI BUDI (BARU - KOMPLEKS)
+    // SOAL 9 : PERBANDINGAN TINGGI (KOMPLEKS)
     // ======================================================
     {
         nomor: 9,
         tipe: "kompleks",
         cerita: "umum",
         gambar: "tembok.png",
-        pertanyaan: "Budi sedang bersandar di sebuah tembok. Ia mengamati bahwa tinggi tembok berbanding 5 : 1 terhadap tinggi tubuhnya. Jika tinggi tubuh Budi adalah 171 cm, maka tentukan pernyataan yang benar!",
-        options: [
-            "A. Tinggi tembok adalah 855 cm",
-            "B. Tinggi tembok adalah 8,55 meter",
-            "C. Jika tinggi Budi 170 cm, maka tinggi tembok menjadi 850 cm",
-            "D. Perbandingan tinggi Budi terhadap tembok adalah 1 : 5",
-            "E. Tinggi tembok kurang dari 8 meter"
-        ],
-        correct: ["A. Tinggi tembok adalah 855 cm", "B. Tinggi tembok adalah 8,55 meter", "C. Jika tinggi Budi 170 cm, maka tinggi tembok menjadi 850 cm", "D. Perbandingan tinggi Budi terhadap tembok adalah 1 : 5"],
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Tinggi tembok = 5 × 171 = 855 cm (A BENAR)<br>
-            • 855 cm = 8,55 meter (B BENAR)<br>
-            • Jika Budi 170 cm → tembok = 5 × 170 = 850 cm (C BENAR)<br>
-            • Budi : Tembok = 1 : 5 (D BENAR)<br>
-            ✗ E. 8,55 m > 8 m, jadi SALAH
-        `
+        pertanyaan: "Budi mengamati tinggi tembok berbanding 5 : 1 terhadap tinggi tubuhnya. Jika tinggi Budi 171 cm, pernyataan yang BENAR adalah…",
+        options: ["A. Tinggi tembok = 855 cm", "B. Tinggi tembok = 8,55 m", "C. Jika Budi 170 cm, tembok = 850 cm", "D. Perbandingan Budi : Tembok = 1 : 5", "E. Tinggi tembok < 8 meter"],
+        correct: ["A. Tinggi tembok = 855 cm", "B. Tinggi tembok = 8,55 m", "C. Jika Budi 170 cm, tembok = 850 cm", "D. Perbandingan Budi : Tembok = 1 : 5"],
+        pembahasan: `<strong>Pembahasan:</strong><br>• Tembok = 5 × 171 = 855 cm (A BENAR)<br>• 855 cm = 8,55 m (B BENAR)<br>• 5 × 170 = 850 cm (C BENAR)<br>• Budi : Tembok = 1 : 5 (D BENAR)<br>✗ E. 8,55 m > 8 m (SALAH)`
     },
 
     // ======================================================
-    // SOAL 10 : BANGUN RUANG GABUNGAN (KUBUS & BALOK)
+    // SOAL 10 : VOLUME GABUNGAN (KUBUS & BALOK)
     // ======================================================
     {
         nomor: 10,
         tipe: "bangun-ruang",
         cerita: null,
         gambar: "gabungan.png",
-        pertanyaan: "Sebuah bangun gabungan terdiri dari kubus (sisi 5 cm) dan balok (p=10 cm, l=5 cm, t=5 cm) yang ditumpuk. Volume total bangun tersebut adalah…",
+        pertanyaan: "Bangun gabungan terdiri dari kubus (s=5 cm) dan balok (p=10, l=5, t=5 cm). Volume totalnya adalah…",
         options: ["A. 275 cm³", "B. 325 cm³", "C. 375 cm³", "D. 425 cm³"],
         correct: "C. 375 cm³",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Volume kubus = s³ = 5 × 5 × 5 = 125 cm³<br>
-            • Volume balok = p × l × t = 10 × 5 × 5 = 250 cm³<br>
-            • Volume total = 125 + 250 = <strong>375 cm³</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• V kubus = 5³ = 125 cm³<br>• V balok = 10×5×5 = 250 cm³<br>• Total = 125 + 250 = <strong>375 cm³</strong>`
     },
 
     // ======================================================
@@ -738,15 +680,10 @@ const soalList = [
         tipe: "bangun-ruang",
         cerita: null,
         gambar: "pecahan.png",
-        pertanyaan: "Ibu memiliki 2½ kg tepung. Ia membeli lagi 1¾ kg. Tepung tersebut digunakan untuk membuat kue sebanyak 3⅓ kg. Sisa tepung Ibu sekarang adalah…",
+        pertanyaan: "Ibu memiliki 2½ kg tepung, membeli 1¾ kg, lalu menggunakan 3⅓ kg. Sisa tepung Ibu adalah…",
         options: ["A. 11/12 kg", "B. 1 kg", "C. 1 1/12 kg", "D. 1 1/6 kg"],
         correct: "A. 11/12 kg",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Total tepung = 2½ + 1¾ = 5/2 + 7/4 = 10/4 + 7/4 = 17/4 kg<br>
-            • Digunakan = 3⅓ = 10/3 kg<br>
-            • Sisa = 17/4 - 10/3 = 51/12 - 40/12 = <strong>11/12 kg</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• Total = 2½ + 1¾ = 5/2 + 7/4 = 10/4 + 7/4 = 17/4 kg<br>• Digunakan = 3⅓ = 10/3 kg<br>• Sisa = 17/4 - 10/3 = 51/12 - 40/12 = <strong>11/12 kg</strong>`
     },
 
     // ======================================================
@@ -757,16 +694,10 @@ const soalList = [
         tipe: "bangun-ruang",
         cerita: null,
         gambar: "kpk.png",
-        pertanyaan: "Lampu A menyala setiap 8 detik, lampu B setiap 12 detik, dan lampu C setiap 15 detik. Jika ketiga lampu menyala bersama pada pukul 10:00, pukul berapa ketiganya akan menyala bersama lagi?",
+        pertanyaan: "Lampu A menyala tiap 8 detik, B tiap 12 detik, C tiap 15 detik. Jika menyala bersama pukul 10:00, kapan menyala bersama lagi?",
         options: ["A. 10:01", "B. 10:02", "C. 10:03", "D. 10:04"],
         correct: "B. 10:02",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • KPK dari 8, 12, dan 15:<br>
-            8 = 2³, 12 = 2² × 3, 15 = 3 × 5<br>
-            • KPK = 2³ × 3 × 5 = 8 × 3 × 5 = 120 detik = 2 menit<br>
-            • Menyala bersama lagi pukul <strong>10:02</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• KPK 8, 12, 15:<br>8=2³, 12=2²×3, 15=3×5<br>• KPK = 2³×3×5 = 120 detik = 2 menit<br>• Menyala bersama lagi <strong>10:02</strong>`
     },
 
     // ======================================================
@@ -777,17 +708,10 @@ const soalList = [
         tipe: "bangun-ruang",
         cerita: null,
         gambar: "fpb.png",
-        pertanyaan: "Ibu memiliki 24 apel, 36 jeruk, dan 60 mangga. Buah-buahan tersebut akan dimasukkan ke dalam keranjang dengan jumlah dan jenis yang sama. Banyak keranjang maksimal yang dibutuhkan adalah…",
-        options: ["A. 6 keranjang", "B. 8 keranjang", "C. 10 keranjang", "D. 12 keranjang"],
-        correct: "D. 12 keranjang",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • FPB dari 24, 36, dan 60:<br>
-            24 = 2³ × 3<br>
-            36 = 2² × 3²<br>
-            60 = 2² × 3 × 5<br>
-            • FPB = 2² × 3 = 4 × 3 = <strong>12 keranjang</strong>
-        `
+        pertanyaan: "Ibu memiliki 24 apel, 36 jeruk, 60 mangga. Banyak keranjang maksimal dengan isi sama adalah…",
+        options: ["A. 6", "B. 8", "C. 10", "D. 12"],
+        correct: "D. 12",
+        pembahasan: `<strong>Pembahasan:</strong><br>• FPB 24, 36, 60:<br>24=2³×3, 36=2²×3², 60=2²×3×5<br>• FPB = 2²×3 = 12 keranjang`
     },
 
     // ======================================================
@@ -798,40 +722,24 @@ const soalList = [
         tipe: "bangun-ruang",
         cerita: null,
         gambar: "peta.png",
-        pertanyaan: "Jarak kota A dan B pada peta adalah 5 cm. Jika skala peta 1 : 2.000.000, maka jarak sebenarnya kedua kota tersebut adalah…",
+        pertanyaan: "Jarak pada peta 5 cm, skala 1 : 2.000.000. Jarak sebenarnya adalah…",
         options: ["A. 10 km", "B. 50 km", "C. 100 km", "D. 200 km"],
         correct: "C. 100 km",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Jarak sebenarnya = Jarak peta × Skala<br>
-            = 5 cm × 2.000.000 = 10.000.000 cm<br>
-            = 100.000 m = <strong>100 km</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• Jarak sebenarnya = 5 cm × 2.000.000 = 10.000.000 cm<br>• 10.000.000 cm = 100.000 m = <strong>100 km</strong>`
     },
 
     // ======================================================
-    // SOAL 15 : KECEPATAN (PILIHAN KOMPLEKS)
+    // SOAL 15 : KECEPATAN (KOMPLEKS)
     // ======================================================
     {
         nomor: 15,
         tipe: "kompleks",
         cerita: null,
         gambar: "mobil.png",
-        pertanyaan: "Sebuah mobil menempuh jarak 180 km dalam waktu 3 jam. Pernyataan yang BENAR adalah…",
-        options: [
-            "A. Kecepatan mobil = 60 km/jam",
-            "B. Waktu untuk menempuh 300 km = 5 jam",
-            "C. Jarak yang ditempuh dalam 2 jam = 120 km",
-            "D. Kecepatan mobil = 50 km/jam"
-        ],
-        correct: ["A. Kecepatan mobil = 60 km/jam", "B. Waktu untuk menempuh 300 km = 5 jam", "C. Jarak yang ditempuh dalam 2 jam = 120 km"],
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Kecepatan = Jarak ÷ Waktu = 180 ÷ 3 = 60 km/jam (A BENAR)<br>
-            • Waktu 300 km = 300 ÷ 60 = 5 jam (B BENAR)<br>
-            • Jarak 2 jam = 60 × 2 = 120 km (C BENAR)<br>
-            ✗ D. 50 km/jam SALAH
-        `
+        pertanyaan: "Mobil menempuh 180 km dalam 3 jam. Pernyataan yang BENAR adalah…",
+        options: ["A. Kecepatan = 60 km/jam", "B. Waktu 300 km = 5 jam", "C. Jarak 2 jam = 120 km", "D. Kecepatan = 50 km/jam"],
+        correct: ["A. Kecepatan = 60 km/jam", "B. Waktu 300 km = 5 jam", "C. Jarak 2 jam = 120 km"],
+        pembahasan: `<strong>Pembahasan:</strong><br>• K = 180÷3 = 60 km/jam (A BENAR)<br>• W = 300÷60 = 5 jam (B BENAR)<br>• J = 60×2 = 120 km (C BENAR)<br>✗ D SALAH`
     },
 
     // ======================================================
@@ -842,16 +750,10 @@ const soalList = [
         tipe: "bangun-ruang",
         cerita: null,
         gambar: "penggaris.png",
-        pertanyaan: "Hasil dari 2,5 km + 350 m + 4.500 cm = … meter",
+        pertanyaan: "2,5 km + 350 m + 4.500 cm = … meter",
         options: ["A. 2.895 m", "B. 2.985 m", "C. 3.195 m", "D. 3.295 m"],
         correct: "A. 2.895 m",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • 2,5 km = 2.500 m<br>
-            • 350 m = 350 m<br>
-            • 4.500 cm = 45 m<br>
-            • Total = 2.500 + 350 + 45 = <strong>2.895 m</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• 2,5 km = 2.500 m<br>• 350 m = 350 m<br>• 4.500 cm = 45 m<br>• Total = 2.500 + 350 + 45 = <strong>2.895 m</strong>`
     },
 
     // ======================================================
@@ -865,13 +767,7 @@ const soalList = [
         pertanyaan: "2,5 ton + 3,5 kuintal + 750 kg = … kg",
         options: ["A. 3.500 kg", "B. 3.600 kg", "C. 3.700 kg", "D. 3.750 kg"],
         correct: "B. 3.600 kg",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • 2,5 ton = 2.500 kg<br>
-            • 3,5 kuintal = 350 kg<br>
-            • 750 kg = 750 kg<br>
-            • Total = 2.500 + 350 + 750 = <strong>3.600 kg</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• 2,5 ton = 2.500 kg<br>• 3,5 kuintal = 350 kg<br>• 750 kg = 750 kg<br>• Total = 2.500 + 350 + 750 = <strong>3.600 kg</strong>`
     },
 
     // ======================================================
@@ -882,15 +778,10 @@ const soalList = [
         tipe: "bangun-ruang",
         cerita: null,
         gambar: "keran.png",
-        pertanyaan: "Sebuah keran mengalirkan air dengan debit 2 liter/detik. Volume air yang mengalir selama 2,5 menit adalah…",
+        pertanyaan: "Keran mengalirkan air 2 liter/detik. Volume air selama 2,5 menit adalah…",
         options: ["A. 150 liter", "B. 200 liter", "C. 250 liter", "D. 300 liter"],
         correct: "D. 300 liter",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Waktu = 2,5 menit = 150 detik<br>
-            • Volume = Debit × Waktu = 2 liter/detik × 150 detik<br>
-            = <strong>300 liter</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• Waktu = 2,5 menit = 150 detik<br>• Volume = 2 × 150 = <strong>300 liter</strong>`
     },
 
     // ======================================================
@@ -901,15 +792,10 @@ const soalList = [
         tipe: "bangun-ruang",
         cerita: null,
         gambar: "gabungan_datar.png",
-        pertanyaan: "Sebuah bangun datar terdiri dari persegi panjang (p=12 cm, l=8 cm) dan segitiga (alas=12 cm, tinggi=6 cm). Luas total bangun tersebut adalah…",
+        pertanyaan: "Bangun terdiri dari persegi panjang (12×8 cm) dan segitiga (a=12, t=6 cm). Luas totalnya…",
         options: ["A. 96 cm²", "B. 120 cm²", "C. 132 cm²", "D. 144 cm²"],
         correct: "C. 132 cm²",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Luas persegi panjang = p × l = 12 × 8 = 96 cm²<br>
-            • Luas segitiga = ½ × a × t = ½ × 12 × 6 = 36 cm²<br>
-            • Luas total = 96 + 36 = <strong>132 cm²</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• L persegi = 12×8 = 96 cm²<br>• L segitiga = ½×12×6 = 36 cm²<br>• Total = 96 + 36 = <strong>132 cm²</strong>`
     },
 
     // ======================================================
@@ -920,42 +806,24 @@ const soalList = [
         tipe: "kompleks",
         cerita: null,
         gambar: "uang.png",
-        pertanyaan: "Perbandingan uang Andi : Budi : Caca = 3 : 5 : 7. Jika selisih uang Caca dan Andi adalah Rp80.000, pernyataan yang BENAR adalah…",
-        options: [
-            "A. Uang Andi = Rp60.000",
-            "B. Uang Budi = Rp100.000",
-            "C. Jumlah uang mereka = Rp300.000",
-            "D. Selisih uang Budi dan Andi = Rp40.000"
-        ],
-        correct: ["A. Uang Andi = Rp60.000", "B. Uang Budi = Rp100.000", "C. Jumlah uang mereka = Rp300.000", "D. Selisih uang Budi dan Andi = Rp40.000"],
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Selisih Caca dan Andi = 7-3 = 4 bagian = Rp80.000<br>
-            • 1 bagian = Rp20.000<br>
-            • Andi = 3 × 20.000 = Rp60.000 (A BENAR)<br>
-            • Budi = 5 × 20.000 = Rp100.000 (B BENAR)<br>
-            • Total = 15 × 20.000 = Rp300.000 (C BENAR)<br>
-            • Selisih Budi-Andi = 2 × 20.000 = Rp40.000 (D BENAR)<br>
-            <strong>Semua jawaban BENAR!</strong>
-        `
+        pertanyaan: "Uang Andi : Budi : Caca = 3 : 5 : 7. Selisih Caca dan Andi Rp80.000. Pernyataan BENAR…",
+        options: ["A. Uang Andi = Rp60.000", "B. Uang Budi = Rp100.000", "C. Total = Rp300.000", "D. Selisih Budi-Andi = Rp40.000"],
+        correct: ["A. Uang Andi = Rp60.000", "B. Uang Budi = Rp100.000", "C. Total = Rp300.000", "D. Selisih Budi-Andi = Rp40.000"],
+        pembahasan: `<strong>Pembahasan:</strong><br>• Selisih = 7-3 = 4 bagian = 80.000 → 1 bagian = 20.000<br>• Andi = 3×20k = 60k (A BENAR)<br>• Budi = 5×20k = 100k (B BENAR)<br>• Total = 15×20k = 300k (C BENAR)<br>• Selisih = 2×20k = 40k (D BENAR)<br><strong>Semua BENAR!</strong>`
     },
 
     // ======================================================
-    // SOAL 21 : VOLUME PRISMA SEGITIGA
+    // SOAL 21 : VOLUME PRISMA
     // ======================================================
     {
         nomor: 21,
         tipe: "bangun-ruang",
         cerita: null,
         gambar: "prisma.png",
-        pertanyaan: "Sebuah prisma segitiga memiliki luas alas 24 cm² dan tinggi 15 cm. Volume prisma tersebut adalah…",
+        pertanyaan: "Prisma segitiga dengan luas alas 24 cm² dan tinggi 15 cm. Volumenya adalah…",
         options: ["A. 180 cm³", "B. 240 cm³", "C. 300 cm³", "D. 360 cm³"],
         correct: "D. 360 cm³",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Volume prisma = Luas alas × tinggi<br>
-            = 24 × 15 = <strong>360 cm³</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• V prisma = Luas alas × tinggi<br>• V = 24 × 15 = <strong>360 cm³</strong>`
     },
 
     // ======================================================
@@ -966,19 +834,14 @@ const soalList = [
         tipe: "bangun-ruang",
         cerita: null,
         gambar: "kerucut.png",
-        pertanyaan: "Sebuah kerucut memiliki jari-jari alas 7 cm dan tinggi 12 cm. Volume kerucut tersebut adalah… (π = 22/7)",
+        pertanyaan: "Kerucut dengan r=7 cm, t=12 cm. Volumenya adalah… (π=22/7)",
         options: ["A. 516 cm³", "B. 616 cm³", "C. 716 cm³", "D. 816 cm³"],
         correct: "B. 616 cm³",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Volume kerucut = ⅓ × π × r² × t<br>
-            = ⅓ × 22/7 × 7 × 7 × 12<br>
-            = ⅓ × 22 × 7 × 12 = 22 × 7 × 4 = <strong>616 cm³</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• V = ⅓ × π × r² × t<br>• V = ⅓ × 22/7 × 7 × 7 × 12<br>• V = 22 × 7 × 4 = <strong>616 cm³</strong>`
     },
 
     // ======================================================
-    // SOAL 23 : BILANGAN PANGKAT DAN AKAR
+    // SOAL 23 : PANGKAT & AKAR
     // ======================================================
     {
         nomor: 23,
@@ -988,13 +851,7 @@ const soalList = [
         pertanyaan: "Hasil dari 12² + √625 - 5² adalah…",
         options: ["A. 134", "B. 144", "C. 154", "D. 164"],
         correct: "B. 144",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • 12² = 144<br>
-            • √625 = 25<br>
-            • 5² = 25<br>
-            • Hasil = 144 + 25 - 25 = <strong>144</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• 12² = 144<br>• √625 = 25<br>• 5² = 25<br>• Hasil = 144 + 25 - 25 = <strong>144</strong>`
     },
 
     // ======================================================
@@ -1005,22 +862,10 @@ const soalList = [
         tipe: "kompleks",
         cerita: null,
         gambar: "diagram.png",
-        pertanyaan: "Dari 40 siswa, 25% suka Matematika, 35% suka IPA, 20% suka Bahasa, dan sisanya suka IPS. Pernyataan yang BENAR adalah…",
-        options: [
-            "A. Siswa yang suka Matematika = 10 anak",
-            "B. Siswa yang suka IPA = 14 anak",
-            "C. Siswa yang suka Bahasa = 8 anak",
-            "D. Siswa yang suka IPS = 8 anak"
-        ],
-        correct: ["A. Siswa yang suka Matematika = 10 anak", "B. Siswa yang suka IPA = 14 anak", "C. Siswa yang suka Bahasa = 8 anak", "D. Siswa yang suka IPS = 8 anak"],
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Matematika = 25% × 40 = 10 anak (A BENAR)<br>
-            • IPA = 35% × 40 = 14 anak (B BENAR)<br>
-            • Bahasa = 20% × 40 = 8 anak (C BENAR)<br>
-            • IPS = 20% × 40 = 8 anak (D BENAR)<br>
-            <strong>Semua jawaban BENAR!</strong>
-        `
+        pertanyaan: "Dari 40 siswa: 25% suka MTK, 35% IPA, 20% BHS, sisanya IPS. Pernyataan BENAR…",
+        options: ["A. Suka MTK = 10 anak", "B. Suka IPA = 14 anak", "C. Suka BHS = 8 anak", "D. Suka IPS = 8 anak"],
+        correct: ["A. Suka MTK = 10 anak", "B. Suka IPA = 14 anak", "C. Suka BHS = 8 anak", "D. Suka IPS = 8 anak"],
+        pembahasan: `<strong>Pembahasan:</strong><br>• MTK = 25%×40 = 10 (A BENAR)<br>• IPA = 35%×40 = 14 (B BENAR)<br>• BHS = 20%×40 = 8 (C BENAR)<br>• IPS = 20%×40 = 8 (D BENAR)<br><strong>Semua BENAR!</strong>`
     },
 
     // ======================================================
@@ -1031,14 +876,10 @@ const soalList = [
         tipe: "bangun-ruang",
         cerita: null,
         gambar: "bus.png",
-        pertanyaan: "Sebuah bus berangkat pukul 07:30 dengan kecepatan 60 km/jam. Jika jarak yang ditempuh 150 km, bus akan tiba pukul…",
+        pertanyaan: "Bus berangkat 07:30, kecepatan 60 km/jam, jarak 150 km. Tiba pukul…",
         options: ["A. 09:30", "B. 09:45", "C. 10:00", "D. 10:15"],
         correct: "C. 10:00",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Waktu = Jarak ÷ Kecepatan = 150 ÷ 60 = 2,5 jam = 2 jam 30 menit<br>
-            • Tiba = 07:30 + 2 jam 30 menit = <strong>10:00</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• Waktu = 150 ÷ 60 = 2,5 jam = 2 jam 30 menit<br>• Tiba = 07:30 + 2:30 = <strong>10:00</strong>`
     },
 
     // ======================================================
@@ -1049,14 +890,10 @@ const soalList = [
         tipe: "bangun-ruang",
         cerita: null,
         gambar: "nilai.png",
-        pertanyaan: "Nilai ulangan Andi: 85, 90, 75, 80, 95. Rata-rata nilai Andi adalah…",
+        pertanyaan: "Nilai: 85, 90, 75, 80, 95. Rata-ratanya adalah…",
         options: ["A. 83", "B. 84", "C. 85", "D. 86"],
         correct: "C. 85",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Jumlah nilai = 85 + 90 + 75 + 80 + 95 = 425<br>
-            • Rata-rata = 425 ÷ 5 = <strong>85</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• Jumlah = 85+90+75+80+95 = 425<br>• Rata-rata = 425 ÷ 5 = <strong>85</strong>`
     },
 
     // ======================================================
@@ -1067,15 +904,10 @@ const soalList = [
         tipe: "bangun-ruang",
         cerita: null,
         gambar: "data.png",
-        pertanyaan: "Data tinggi badan (cm): 145, 150, 148, 152, 149, 147. Median dari data tersebut adalah…",
+        pertanyaan: "Tinggi badan: 145, 150, 148, 152, 149, 147. Mediannya adalah…",
         options: ["A. 147 cm", "B. 148 cm", "C. 148,5 cm", "D. 149 cm"],
         correct: "C. 148,5 cm",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Urutan: 145, 147, 148, 149, 150, 152<br>
-            • Median (data genap) = (data ke-3 + data ke-4) ÷ 2<br>
-            = (148 + 149) ÷ 2 = <strong>148,5 cm</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• Urut: 145, 147, 148, 149, 150, 152<br>• Median = (148+149)÷2 = <strong>148,5 cm</strong>`
     },
 
     // ======================================================
@@ -1086,62 +918,38 @@ const soalList = [
         tipe: "bangun-ruang",
         cerita: null,
         gambar: "modus.png",
-        pertanyaan: "Data nilai: 7, 8, 9, 7, 8, 10, 9, 7, 8, 9. Modus dari data tersebut adalah…",
+        pertanyaan: "Nilai: 7, 8, 9, 7, 8, 10, 9, 7, 8, 9. Modusnya adalah…",
         options: ["A. 7 dan 8", "B. 7 dan 9", "C. 8 dan 9", "D. 7, 8, dan 9"],
         correct: "D. 7, 8, dan 9",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • 7 muncul 3 kali<br>
-            • 8 muncul 3 kali<br>
-            • 9 muncul 3 kali<br>
-            • 10 muncul 1 kali<br>
-            • Modus = <strong>7, 8, dan 9</strong> (semua muncul 3 kali)
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• 7 muncul 3×, 8 muncul 3×, 9 muncul 3×, 10 muncul 1×<br>• Modus = <strong>7, 8, dan 9</strong>`
     },
 
     // ======================================================
-    // SOAL 29 : BANGUN RUANG SISI LENGKUNG (BOLA)
+    // SOAL 29 : LUAS PERMUKAAN BOLA
     // ======================================================
     {
         nomor: 29,
         tipe: "bangun-ruang",
         cerita: null,
         gambar: "bola.png",
-        pertanyaan: "Sebuah bola memiliki jari-jari 7 cm. Luas permukaan bola tersebut adalah… (π = 22/7)",
+        pertanyaan: "Bola dengan jari-jari 7 cm. Luas permukaannya adalah… (π=22/7)",
         options: ["A. 308 cm²", "B. 462 cm²", "C. 616 cm²", "D. 770 cm²"],
         correct: "C. 616 cm²",
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Luas permukaan bola = 4 × π × r²<br>
-            = 4 × 22/7 × 7 × 7<br>
-            = 4 × 22 × 7 = <strong>616 cm²</strong>
-        `
+        pembahasan: `<strong>Pembahasan:</strong><br>• L = 4 × π × r²<br>• L = 4 × 22/7 × 7 × 7<br>• L = 4 × 22 × 7 = <strong>616 cm²</strong>`
     },
 
     // ======================================================
-    // SOAL 30 : PERBANDINGAN & SKALA (KOMPLEKS)
+    // SOAL 30 : SKALA DENAH (KOMPLEKS)
     // ======================================================
     {
         nomor: 30,
         tipe: "kompleks",
         cerita: null,
         gambar: "denah.png",
-        pertanyaan: "Denah rumah digambar dengan skala 1 : 200. Jika panjang rumah pada denah 6 cm dan lebar 4 cm, pernyataan yang BENAR adalah…",
-        options: [
-            "A. Panjang sebenarnya = 12 meter",
-            "B. Lebar sebenarnya = 8 meter",
-            "C. Luas sebenarnya = 96 m²",
-            "D. Keliling sebenarnya = 40 meter"
-        ],
-        correct: ["A. Panjang sebenarnya = 12 meter", "B. Lebar sebenarnya = 8 meter", "C. Luas sebenarnya = 96 m²", "D. Keliling sebenarnya = 40 meter"],
-        pembahasan: `
-            <strong>Pembahasan:</strong><br>
-            • Panjang sebenarnya = 6 cm × 200 = 1.200 cm = 12 m (A BENAR)<br>
-            • Lebar sebenarnya = 4 cm × 200 = 800 cm = 8 m (B BENAR)<br>
-            • Luas = 12 × 8 = 96 m² (C BENAR)<br>
-            • Keliling = 2 × (12+8) = 40 m (D BENAR)<br>
-            <strong>Semua jawaban BENAR!</strong>
-        `
+        pertanyaan: "Denah skala 1:200, panjang denah 6 cm, lebar 4 cm. Pernyataan BENAR…",
+        options: ["A. Panjang sebenarnya = 12 m", "B. Lebar sebenarnya = 8 m", "C. Luas sebenarnya = 96 m²", "D. Keliling sebenarnya = 40 m"],
+        correct: ["A. Panjang sebenarnya = 12 m", "B. Lebar sebenarnya = 8 m", "C. Luas sebenarnya = 96 m²", "D. Keliling sebenarnya = 40 m"],
+        pembahasan: `<strong>Pembahasan:</strong><br>• P = 6×200 = 1200 cm = 12 m (A BENAR)<br>• L = 4×200 = 800 cm = 8 m (B BENAR)<br>• Luas = 12×8 = 96 m² (C BENAR)<br>• Keliling = 2×(12+8) = 40 m (D BENAR)<br><strong>Semua BENAR!</strong>`
     }
 ];
 
