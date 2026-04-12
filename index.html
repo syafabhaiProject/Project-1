@@ -3,52 +3,630 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOK Counter Pick</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Simulasi TKA SD</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            width: 350px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        h2 {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4facfe;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #3a8be0;
+        }
+        button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+        .error {
+            color: red;
+            font-size: 13px;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+        #form, #soal {
+            display: none;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .timer {
+            background: #ff4d4d;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .question {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .option {
+            background: #f0f0f0;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .option:hover {
+            background: #e0e0e0;
+        }
+        .option.selected {
+            background: #4facfe;
+            color: white;
+        }
+        .navigation {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .nav-btn {
+            flex: 1;
+            padding: 10px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 0;
+        }
+        .nav-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+        .nav-btn:hover:not(:disabled) {
+            background: #1976D2;
+        }
+        .soal-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .soal-badge {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .soal-badge:hover {
+            background: #e0e0e0;
+        }
+        .soal-badge.active {
+            background: #4facfe;
+            color: white;
+        }
+        .soal-badge.answered {
+            background: #4caf50;
+            color: white;
+        }
+        hr {
+            margin: 15px 0;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .warning {
+            color: #ff9800;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .soal-counter {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
+<div class="container">
+    <!-- Login Section -->
+    <div id="login">
+        <h2>Login TKA</h2>
+        <input type="text" id="user" placeholder="Username" autocomplete="off">
+        <input type="password" id="pass" placeholder="Password">
+        <div class="error" id="loginErr"></div>
+        <button onclick="login()">Masuk</button>
+    </div>
 
-<header>
-    <h1>🎮 HOK Counter Pick</h1>
-    <p>Website panduan Counter Pick & Cara Bermain Honor of Kings</p>
-</header>
+    <!-- Form Data Peserta -->
+    <div id="form">
+        <h2>Isi Data Peserta</h2>
+        <input type="text" id="nama" placeholder="Nama Lengkap" autocomplete="off">
+        <div class="error" id="errNama"></div>
+        
+        <input type="text" id="sekolah" placeholder="Asal Sekolah" autocomplete="off">
+        <div class="error" id="errSekolah"></div>
+        
+        <div style="display: flex; gap: 5px;">
+            <select id="tanggal" style="width: 33%;"></select>
+            <select id="bulan" style="width: 33%;"></select>
+            <select id="tahun" style="width: 34%;"></select>
+        </div>
+        <div class="error" id="errTanggal"></div>
+        
+        <button onclick="mulai()">Mulai Ujian</button>
+    </div>
 
-<main>
-    <section class="card">
-        <h2>Daftar Hero</h2>
-        <img src="hok-hero.jpg" alt="Hero Honor of Kings">
-        <p>Pilih hero untuk melihat counter dan tips bermain.</p>
-        <button onclick="openPanel('hero')">Lihat Hero</button>
-    </section>
-
-    <section class="card">
-        <h2>About</h2>
-        <p>
-            Website ini dibuat untuk membantu pemain Honor of Kings
-            memahami counter pick dan strategi bermain.
-        </p>
-        <button onclick="openPanel('about')">Selengkapnya</button>
-    </section>
-
-    <section class="card">
-        <h2>Kebijakan & Privasi</h2>
-        <p>Syarat penggunaan dan kebijakan privasi website.</p>
-        <button onclick="openPanel('policy')">Baca</button>
-    </section>
-</main>
-
-<footer>
-    <p>© 2026 HOKCounterPick. All rights reserved.</p>
-</footer>
-
-<!-- Slide Panel -->
-<div id="slidePanel">
-    <div class="panel-content">
-        <button class="close-btn" onclick="closePanel()">✖</button>
-        <div id="panelText"></div>
+    <!-- Soal Ujian -->
+    <div id="soal">
+        <div class="header">
+            <span class="soal-counter" id="soalCounter">Soal 1 dari 3</span>
+            <span class="timer" id="timer">75:00</span>
+        </div>
+        <div class="question" id="soalText">25 + 37 = ?</div>
+        <div class="options" id="optionsContainer">
+            <div class="option" data-value="52">52</div>
+            <div class="option" data-value="62">62</div>
+            <div class="option" data-value="72">72</div>
+        </div>
+        
+        <!-- Indikator Soal -->
+        <div class="soal-indicator" id="soalIndicator"></div>
+        
+        <!-- Navigasi -->
+        <div class="navigation">
+            <button class="nav-btn" id="btnPrev" onclick="prevSoal()" disabled>← Sebelumnya</button>
+            <button class="nav-btn" id="btnNext" onclick="nextSoal()">Selanjutnya →</button>
+        </div>
+        
+        <div class="warning" id="warningMsg"></div>
+        <button id="btnSelesai" onclick="selesai()">Selesai Ujian</button>
     </div>
 </div>
 
-<script src="script.js"></script>
+<script>
+    // ========== DATA SOAL ==========
+    const soalList = [
+        {
+            text: "25 + 37 = ?",
+            options: ["52", "62", "72"],
+            correct: "62"
+        },
+        {
+            text: "45 - 18 = ?",
+            options: ["27", "37", "23"],
+            correct: "27"
+        },
+        {
+            text: "8 × 7 = ?",
+            options: ["48", "56", "64"],
+            correct: "56"
+        }
+    ];
+    
+    let currentSoal = 0;
+    let jawabanUser = [null, null, null]; // menyimpan jawaban untuk setiap soal
+    let timerInterval = null;
+    
+    // ========== INISIALISASI DROPDOWN TANGGAL LAHIR ==========
+    let tgl = document.getElementById("tanggal");
+    tgl.innerHTML = "<option value=''>Tanggal</option>";
+    for(let i = 1; i <= 31; i++) {
+        tgl.innerHTML += `<option value='${i}'>${i}</option>`;
+    }
+    
+    let bln = document.getElementById("bulan");
+    let bulanArr = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
+    bln.innerHTML = "<option value=''>Bulan</option>";
+    bulanArr.forEach(b => {
+        bln.innerHTML += `<option value='${b}'>${b}</option>`;
+    });
+    
+    let thn = document.getElementById("tahun");
+    thn.innerHTML = "<option value=''>Tahun</option>";
+    for(let i = 2008; i <= 2020; i++) {
+        thn.innerHTML += `<option value='${i}'>${i}</option>`;
+    }
+    
+    // ========== FUNGSI LOGIN ==========
+    function login() {
+        const u = document.getElementById("user").value.trim();
+        const p = document.getElementById("pass").value.trim();
+        const loginBox = document.getElementById("login");
+        const formBox = document.getElementById("form");
+        const err = document.getElementById("loginErr");
+        
+        err.innerText = "";
+        
+        if((u === "P00398432" && p === "4322*") || (u === "P00408433" && p === "8999*")) {
+            loginBox.style.display = "none";
+            formBox.style.display = "block";
+        } else {
+            err.innerText = "Username atau Password salah";
+        }
+    }
+    
+    // ========== FUNGSI MULAI UJIAN ==========
+    function mulai() {
+        const nama = document.getElementById("nama");
+        const sekolah = document.getElementById("sekolah");
+        const tanggal = document.getElementById("tanggal");
+        const bulan = document.getElementById("bulan");
+        const tahun = document.getElementById("tahun");
+        
+        const errNama = document.getElementById("errNama");
+        const errSekolah = document.getElementById("errSekolah");
+        const errTanggal = document.getElementById("errTanggal");
+        
+        let valid = true;
+        
+        if(nama.value.trim() === "") {
+            errNama.innerText = "Wajib diisi";
+            valid = false;
+        } else {
+            errNama.innerText = "";
+        }
+        
+        if(sekolah.value.trim() === "") {
+            errSekolah.innerText = "Wajib diisi";
+            valid = false;
+        } else {
+            errSekolah.innerText = "";
+        }
+        
+        if(tanggal.value === "" || bulan.value === "" || tahun.value === "") {
+            errTanggal.innerText = "Tanggal lahir wajib diisi";
+            valid = false;
+        } else {
+            errTanggal.innerText = "";
+        }
+        
+        if(!valid) return;
+        
+        // Reset state ujian
+        currentSoal = 0;
+        jawabanUser = [null, null, null];
+        
+        // Sembunyikan form, tampilkan soal
+        document.getElementById("form").style.display = "none";
+        document.getElementById("soal").style.display = "block";
+        
+        // Inisialisasi indikator soal
+        initSoalIndicator();
+        
+        // Load soal pertama
+        loadSoal(0);
+        
+        // Mulai timer 75 menit
+        startTimer(75 * 60);
+    }
+    
+    // ========== INISIALISASI INDIKATOR SOAL ==========
+    function initSoalIndicator() {
+        const indicator = document.getElementById("soalIndicator");
+        indicator.innerHTML = "";
+        
+        for(let i = 0; i < soalList.length; i++) {
+            const badge = document.createElement("div");
+            badge.className = "soal-badge";
+            if(i === currentSoal) badge.classList.add("active");
+            badge.innerText = i + 1;
+            badge.onclick = () => goToSoal(i);
+            indicator.appendChild(badge);
+        }
+    }
+    
+    // ========== UPDATE INDIKATOR SOAL ==========
+    function updateSoalIndicator() {
+        const badges = document.querySelectorAll(".soal-badge");
+        badges.forEach((badge, index) => {
+            badge.classList.remove("active", "answered");
+            if(index === currentSoal) {
+                badge.classList.add("active");
+            }
+            if(jawabanUser[index] !== null) {
+                badge.classList.add("answered");
+            }
+        });
+    }
+    
+    // ========== LOAD SOAL ==========
+    function loadSoal(index) {
+        const soal = soalList[index];
+        document.getElementById("soalText").innerText = soal.text;
+        document.getElementById("soalCounter").innerText = `Soal ${index + 1} dari ${soalList.length}`;
+        
+        // Generate options
+        const optionsContainer = document.getElementById("optionsContainer");
+        optionsContainer.innerHTML = "";
+        
+        soal.options.forEach(opt => {
+            const div = document.createElement("div");
+            div.className = "option";
+            div.setAttribute("data-value", opt);
+            div.innerText = opt;
+            div.onclick = (function(value) {
+                return function() { pilihJawaban(value); };
+            })(opt);
+            optionsContainer.appendChild(div);
+        });
+        
+        // Restore jawaban jika sudah dipilih sebelumnya
+        if(jawabanUser[index] !== null) {
+            const options = document.querySelectorAll('.option');
+            options.forEach(opt => {
+                if(opt.getAttribute('data-value') === jawabanUser[index]) {
+                    opt.classList.add('selected');
+                }
+            });
+        }
+        
+        // Update navigasi
+        updateNavigation();
+        updateSoalIndicator();
+        
+        // Reset warning message
+        cekSemuaTerjawab();
+    }
+    
+    // ========== UPDATE NAVIGASI ==========
+    function updateNavigation() {
+        const btnPrev = document.getElementById("btnPrev");
+        const btnNext = document.getElementById("btnNext");
+        
+        btnPrev.disabled = (currentSoal === 0);
+        
+        if(currentSoal === soalList.length - 1) {
+            btnNext.innerText = "Selesai ✓";
+            btnNext.style.background = "#4caf50";
+        } else {
+            btnNext.innerText = "Selanjutnya →";
+            btnNext.style.background = "#2196F3";
+        }
+    }
+    
+    // ========== NAVIGASI SOAL ==========
+    function nextSoal() {
+        if(currentSoal < soalList.length - 1) {
+            currentSoal++;
+            loadSoal(currentSoal);
+        } else {
+            // Jika di soal terakhir, trigger selesai
+            selesai();
+        }
+    }
+    
+    function prevSoal() {
+        if(currentSoal > 0) {
+            currentSoal--;
+            loadSoal(currentSoal);
+        }
+    }
+    
+    function goToSoal(index) {
+        if(index >= 0 && index < soalList.length) {
+            currentSoal = index;
+            loadSoal(currentSoal);
+        }
+    }
+    
+    // ========== PILIH JAWABAN ==========
+    function pilihJawaban(value) {
+        // Simpan jawaban
+        jawabanUser[currentSoal] = value;
+        
+        // Update UI
+        const options = document.querySelectorAll('.option');
+        options.forEach(opt => {
+            if(opt.getAttribute('data-value') === value) {
+                opt.classList.add('selected');
+            } else {
+                opt.classList.remove('selected');
+            }
+        });
+        
+        // Update indikator
+        updateSoalIndicator();
+        
+        // Cek apakah semua soal sudah terjawab
+        cekSemuaTerjawab();
+    }
+    
+    // ========== CEK SEMUA SOAL SUDAH DIJAWAB ==========
+    function cekSemuaTerjawab() {
+        const semuaTerjawab = jawabanUser.every(jawab => jawab !== null);
+        const btnSelesai = document.getElementById("btnSelesai");
+        const warningMsg = document.getElementById("warningMsg");
+        
+        if(semuaTerjawab) {
+            btnSelesai.style.background = "#4caf50";
+            warningMsg.innerText = "✓ Semua soal sudah terjawab! Silakan klik Selesai.";
+            warningMsg.style.color = "#4caf50";
+        } else {
+            btnSelesai.style.background = "#4facfe";
+            const belumTerjawab = jawabanUser.filter(j => j === null).length;
+            warningMsg.innerText = `⚠️ Masih ${belumTerjawab} soal belum dijawab. Selesaikan semua soal terlebih dahulu.`;
+            warningMsg.style.color = "#ff9800";
+        }
+    }
+    
+    // ========== TAMPILKAN MODAL KONFIRMASI ==========
+    function tampilkanModalHasil() {
+        // Hitung skor
+        let benar = 0;
+        for(let i = 0; i < soalList.length; i++) {
+            if(jawabanUser[i] === soalList[i].correct) {
+                benar++;
+            }
+        }
+        
+        const totalSoal = soalList.length;
+        const skor = (benar / totalSoal) * 100;
+        
+        // Buat modal sederhana
+        const modal = document.createElement('div');
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100%';
+        modal.style.height = '100%';
+        modal.style.backgroundColor = 'rgba(0,0,0,0.7)';
+        modal.style.display = 'flex';
+        modal.style.justifyContent = 'center';
+        modal.style.alignItems = 'center';
+        modal.style.zIndex = '1000';
+        
+        const modalContent = document.createElement('div');
+        modalContent.style.backgroundColor = 'white';
+        modalContent.style.padding = '30px';
+        modalContent.style.borderRadius = '15px';
+        modalContent.style.width = '300px';
+        modalContent.style.maxHeight = '80%';
+        modalContent.style.overflowY = 'auto';
+        modalContent.style.textAlign = 'center';
+        modalContent.style.boxShadow = '0 5px 20px rgba(0,0,0,0.3)';
+        
+        modalContent.innerHTML = `
+            <h2>🎉 Ujian Selesai!</h2>
+            <p>Jawaban Benar: ${benar} dari ${totalSoal}</p>
+            <p>Skor: ${skor}%</p>
+            <hr>
+            <div style="text-align: left; font-size: 14px;">
+                ${soalList.map((soal, idx) => `
+                    <p><strong>Soal ${idx+1}:</strong> ${soal.text}<br>
+                    Jawaban Anda: ${jawabanUser[idx] || 'Tidak dijawab'} ${jawabanUser[idx] === soal.correct ? '✓' : '✗'}<br>
+                    <span style="color: ${jawabanUser[idx] === soal.correct ? 'green' : 'red'}">
+                        ${jawabanUser[idx] === soal.correct ? 'Benar' : jawabanUser[idx] ? `Salah (Jawaban: ${soal.correct})` : 'Tidak dijawab'}
+                    </span></p>
+                `).join('')}
+            </div>
+            <button onclick="tutupModal(this)" style="margin-top: 20px; padding: 10px 20px; background: #4facfe; color: white; border: none; border-radius: 8px; cursor: pointer;">Tutup</button>
+        `;
+        
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+    }
+    
+    function tutupModal(btn) {
+        const modal = btn.parentElement.parentElement;
+        modal.remove();
+        resetKeLogin();
+    }
+    
+    // ========== FUNGSI SELESAI DENGAN VALIDASI ==========
+    function selesai() {
+        // Validasi: cek apakah semua soal sudah dijawab
+        const semuaTerjawab = jawabanUser.every(jawab => jawab !== null);
+        
+        if(!semuaTerjawab) {
+            const belumTerjawab = jawabanUser.filter(j => j === null).length;
+            alert(`⚠️ Perhatian! Anda belum menjawab ${belumTerjawab} soal. Selesaikan semua soal terlebih dahulu sebelum mengakhiri ujian.`);
+            return;
+        }
+        
+        // Konfirmasi
+        const konfirmasi = confirm("Apakah Anda yakin ingin mengakhiri ujian? Semua jawaban akan dikumpulkan.");
+        
+        if(konfirmasi) {
+            // Hentikan timer
+            if(timerInterval) clearInterval(timerInterval);
+            
+            // Tampilkan hasil
+            tampilkanModalHasil();
+        }
+    }
+    
+    // ========== RESET KE LOGIN ==========
+    function resetKeLogin() {
+        document.getElementById("soal").style.display = "none";
+        document.getElementById("login").style.display = "block";
+        document.getElementById("form").style.display = "none";
+        
+        // Reset form input
+        document.getElementById("user").value = "";
+        document.getElementById("pass").value = "";
+        document.getElementById("nama").value = "";
+        document.getElementById("sekolah").value = "";
+        document.getElementById("tanggal").value = "";
+        document.getElementById("bulan").value = "";
+        document.getElementById("tahun").value = "";
+        
+        // Reset jawaban user
+        jawabanUser = [null, null, null];
+        currentSoal = 0;
+    }
+    
+    // ========== TIMER ==========
+    function startTimer(durasi) {
+        let time = durasi;
+        const display = document.getElementById("timer");
+        
+        if(timerInterval) clearInterval(timerInterval);
+        
+        timerInterval = setInterval(() => {
+            let m = Math.floor(time / 60);
+            let s = time % 60;
+            s = s < 10 ? "0" + s : s;
+            display.textContent = m + ":" + s;
+            
+            if(time <= 0) {
+                clearInterval(timerInterval);
+                alert("⏰ Waktu habis! Ujian akan ditutup.");
+                
+                // Cek jawaban yang sudah diisi
+                const semuaTerjawab = jawabanUser.every(jawab => jawab !== null);
+                if(!semuaTerjawab) {
+                    alert("Maaf, waktu habis sebelum semua soal terjawab.");
+                }
+                tampilkanModalHasil();
+            }
+            time--;
+        }, 1000);
+    }
+</script>
 </body>
 </html>
