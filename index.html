@@ -88,23 +88,55 @@
             background: #f44336;
         }
         
-        /* Cerita Box */
+        /* Cerita Box - dengan variasi warna */
         .cerita-box {
-            background: #fff8e1;
             padding: 15px;
             border-radius: 12px;
             margin-bottom: 15px;
-            border-left: 4px solid #ff9800;
+            border-left: 4px solid;
             font-size: 13px;
             line-height: 1.6;
             max-height: 200px;
             overflow-y: auto;
         }
-        .cerita-box strong {
+        .cerita-box.bazar {
+            background: #fff8e1;
+            border-left-color: #ff9800;
+        }
+        .cerita-box.bazar strong {
             color: #e65100;
         }
+        .cerita-box.perjalanan {
+            background: #e3f2fd;
+            border-left-color: #2196F3;
+        }
+        .cerita-box.perjalanan strong {
+            color: #1565c0;
+        }
+        .cerita-box.toko {
+            background: #e8f5e9;
+            border-left-color: #4caf50;
+        }
+        .cerita-box.toko strong {
+            color: #2e7d32;
+        }
+        .cerita-box.kebun {
+            background: #fce4ec;
+            border-left-color: #e91e63;
+        }
+        .cerita-box.kebun strong {
+            color: #c2185b;
+        }
+        .cerita-box.umum {
+            background: #f3e5f5;
+            border-left-color: #9c27b0;
+        }
+        .cerita-box.umum strong {
+            color: #6a1b9a;
+        }
+        
         .highlight {
-            background: #ffe0b2;
+            background: rgba(0,0,0,0.08);
             padding: 2px 6px;
             border-radius: 4px;
             font-weight: bold;
@@ -169,6 +201,15 @@
         .soal-type-badge.kompleks {
             background: #9c27b0;
         }
+        .cerita-badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 10px;
+            margin-left: 5px;
+        }
         
         .options {
             display: flex;
@@ -198,7 +239,6 @@
             border-color: #2196F3;
         }
         
-        /* Checkbox style untuk pilihan kompleks */
         .option input[type="checkbox"] {
             width: 20px;
             height: 20px;
@@ -243,7 +283,6 @@
             background: #1976D2;
         }
         
-        /* Indikator Soal */
         .soal-indicator {
             display: flex;
             justify-content: center;
@@ -328,15 +367,6 @@
             text-align: center;
             margin-bottom: 10px;
         }
-        
-        /* Info rumus */
-        .rumus-info {
-            background: #e8eaf6;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
@@ -384,7 +414,7 @@
             ⏱️ Waktu: 75 menit | 📝 Total: <span id="totalSoalDisplay">5</span> soal
         </div>
         
-        <!-- Cerita (hanya untuk soal 1-3) -->
+        <!-- Cerita Box -->
         <div class="cerita-box" id="ceritaBox"></div>
         
         <!-- Gambar Ilustrasi -->
@@ -419,33 +449,85 @@
     // ========== KONFIGURASI UJIAN ==========
     const WAKTU_UJIAN_MENIT = 75;
     
-    // ========== CERITA UTAMA (untuk soal 1-3) ==========
-    const CERITA_UTAMA = `
-        <strong>📖 CERITA BAKSOS (BAZAR KREASI OSIS) 📖</strong><br>
-        Di sebuah sekolah, diadakan kegiatan bazar. Panitia menyediakan 3 jenis paket makanan:<br>
-        <div class="ringkasan-paket">
-            <div class="paket-card">
-                <span class="paket-nama">📦 Paket A</span><br>
-                <span class="paket-isi">½ kue + 2 roti</span>
-            </div>
-            <div class="paket-card">
-                <span class="paket-nama">📦 Paket B</span><br>
-                <span class="paket-isi">¾ kue + 1 roti</span>
-            </div>
-            <div class="paket-card">
-                <span class="paket-nama">📦 Paket C</span><br>
-                <span class="paket-isi">1 kue + 4 roti</span>
-            </div>
-        </div>
-        Pada hari itu, panitia membuat:<br>
-        <span class="highlight">8 paket A</span> &nbsp;|&nbsp; 
-        <span class="highlight">4 paket B</span> &nbsp;|&nbsp; 
-        <span class="highlight">2 paket C</span><br>
-        <span style="font-size:12px; display:block; margin-top:5px;">
-        📌 Setiap 1 kue utuh dipotong menjadi 4 bagian sama besar.<br>
-        💰 Harga 1 roti = Rp2.000
-        </span>
-    `;
+    // ========== KUMPULAN CERITA ==========
+    const CERITA = {
+        bazar: {
+            judul: "📖 CERITA BAKSOS (BAZAR KREASI OSIS)",
+            class: "bazar",
+            konten: `
+                Di sebuah sekolah, diadakan kegiatan bazar. Panitia menyediakan 3 jenis paket makanan:<br>
+                <div class="ringkasan-paket">
+                    <div class="paket-card">
+                        <span class="paket-nama">📦 Paket A</span><br>
+                        <span class="paket-isi">½ kue + 2 roti</span>
+                    </div>
+                    <div class="paket-card">
+                        <span class="paket-nama">📦 Paket B</span><br>
+                        <span class="paket-isi">¾ kue + 1 roti</span>
+                    </div>
+                    <div class="paket-card">
+                        <span class="paket-nama">📦 Paket C</span><br>
+                        <span class="paket-isi">1 kue + 4 roti</span>
+                    </div>
+                </div>
+                Pada hari itu, panitia membuat:<br>
+                <span class="highlight">8 paket A</span> &nbsp;|&nbsp; 
+                <span class="highlight">4 paket B</span> &nbsp;|&nbsp; 
+                <span class="highlight">2 paket C</span><br>
+                <span style="font-size:12px; display:block; margin-top:5px;">
+                📌 Setiap 1 kue utuh dipotong menjadi 4 bagian sama besar.<br>
+                💰 Harga 1 roti = Rp2.000
+                </span>
+            `
+        },
+        perjalanan: {
+            judul: "🚗 CERITA PERJALANAN LIBURAN",
+            class: "perjalanan",
+            konten: `
+                Keluarga Pak Budi pergi berlibur ke pantai.<br>
+                <div style="background:white; padding:10px; border-radius:8px; margin:10px 0;">
+                    <span class="highlight">📍 Jarak rumah ke pantai = 120 km</span><br>
+                    <span class="highlight">🏃 Kecepatan rata-rata = 60 km/jam</span><br>
+                    <span class="highlight">🕐 Berangkat pukul 06:30 WIB</span><br>
+                    <span class="highlight">☕ Istirahat 30 menit di tengah jalan</span>
+                </div>
+                <span style="font-size:12px;">Gunakan informasi di atas untuk menjawab soal!</span>
+            `
+        },
+        toko: {
+            judul: "🍎 CERITA TOKO BUAH PAK AMAT",
+            class: "toko",
+            konten: `
+                Pak Amat memiliki toko buah. Hari ini ia menjual:<br>
+                <div style="background:white; padding:10px; border-radius:8px; margin:10px 0;">
+                    🍎 Apel: 15 kg @ Rp25.000<br>
+                    🍊 Jeruk: 20 kg @ Rp15.000<br>
+                    🥭 Mangga: 10 kg @ Rp20.000
+                </div>
+                <span class="highlight">Diskon 10% untuk pembelian di atas Rp100.000!</span>
+            `
+        },
+        kebun: {
+            judul: "🌳 CERITA KEBUN BINATANG",
+            class: "kebun",
+            konten: `
+                SD Ceria mengadakan karyawisata ke kebun binatang.<br>
+                <div style="background:white; padding:10px; border-radius:8px; margin:10px 0;">
+                    👥 Jumlah siswa = 120 anak<br>
+                    🚌 1 bus muat 30 anak<br>
+                    🎫 Tiket masuk = Rp15.000/anak<br>
+                    🍱 Biaya makan = Rp20.000/anak
+                </div>
+            `
+        },
+        umum: {
+            judul: "📚 INFORMASI SOAL",
+            class: "umum",
+            konten: `
+                Bacalah soal dengan teliti dan pilih jawaban yang paling tepat!
+            `
+        }
+    };
 
     // ========== DATA SOAL ==========
     const soalList = [
@@ -453,6 +535,7 @@
         {
             nomor: 1,
             tipe: "cerita",
+            cerita: "bazar",
             gambar: "sl1.png",
             pertanyaan: "Total kue yang digunakan dalam bazar tersebut adalah…",
             options: ["A. 6 kue", "B. 7 kue", "C. 8 kue", "D. 9 kue"],
@@ -469,6 +552,7 @@
         {
             nomor: 2,
             tipe: "cerita",
+            cerita: "bazar",
             gambar: "sl1.png",
             pertanyaan: "Jika setiap 1 roti dijual Rp2.000, maka total uang yang diperoleh dari penjualan semua roti adalah…",
             options: ["A. Rp52.000", "B. Rp44.000", "C. Rp48.000", "D. Rp56.000"],
@@ -479,14 +563,14 @@
                 • Paket B: 4 × 1 = 4 roti<br>
                 • Paket C: 2 × 4 = 8 roti<br>
                 <strong>Total roti = 28 roti</strong><br>
-                • Uang = 28 × Rp2.000 = Rp56.000<br>
-                <span style="color:#f44336;">(Catatan: )</span>
+                • Uang = 28 × Rp2.000 = Rp56.000
             `
         },
         // SOAL 3 - Cerita Bazar
         {
             nomor: 3,
             tipe: "cerita",
+            cerita: "bazar",
             gambar: "sl1.png",
             pertanyaan: "Berapa selisih jumlah roti antara Paket A dan Paket C yang dibuat panitia?",
             options: ["A. 4 roti", "B. 6 roti", "C. 8 roti", "D. 10 roti"],
@@ -498,10 +582,11 @@
                 <strong>Selisih = 16 - 8 = 8 roti</strong>
             `
         },
-        // SOAL 4 - TABUNG (Pilihan Ganda Biasa)
+        // SOAL 4 - TABUNG (Bangun Ruang - Tanpa Cerita)
         {
             nomor: 4,
             tipe: "bangun-ruang",
+            cerita: null,  // Tidak pakai cerita
             gambar: "tabung1.png",
             pertanyaan: "Perhatikan gambar tabung di atas! Sebuah tabung memiliki jari-jari alas 7 cm dan tinggi 10 cm. Volume tabung tersebut adalah… (π = 22/7)",
             options: ["A. 1.440 cm³", "B. 1.540 cm³", "C. 1.640 cm³", "D. 1.740 cm³"],
@@ -515,18 +600,16 @@
                 <strong>Volume Tabung = π × r² × t</strong><br>
                 = 22/7 × 7 × 7 × 10<br>
                 = 22 × 7 × 10<br>
-                = 1.540 cm³<br><br>
-                <span style="color:#f44336;">✗ 1.440 = 22/7 × 7 × 7 × 9,3 (salah tinggi)<br>
-                ✗ 1.640 = 22/7 × 7,2 × 7,2 × 10 (salah jari-jari)<br>
-                ✗ 1.740 = 3,14 × 7 × 7 × 11,3 (salah π dan tinggi)</span>
+                = 1.540 cm³
             `
         },
-        // SOAL 5 - LINGKARAN (Pilihan Kompleks - Menjebak)
+        // SOAL 5 - LINGKARAN (Pilihan Kompleks - Tanpa Cerita)
         {
             nomor: 5,
             tipe: "kompleks",
+            cerita: null,
             gambar: "Lingkaran1.png",
-            pertanyaan: "Perhatikan gambar lingkaran di atas! Sebuah lingkaran memiliki Diameter 28cm. Pernyataan yang BENAR berdasarkan informasi tersebut adalah... (π = 22/7)",
+            pertanyaan: "Perhatikan gambar lingkaran di atas! Sebuah lingkaran memiliki Diameter 28 cm. Pernyataan yang BENAR berdasarkan informasi tersebut adalah... (π = 22/7)",
             options: [
                 "A. Luas lingkaran = 616 cm²",
                 "B. Keliling lingkaran = 88 cm",
@@ -536,17 +619,13 @@
             correct: ["A. Luas lingkaran = 616 cm²", "B. Keliling lingkaran = 88 cm"],
             pembahasan: `
                 <strong>Pembahasan:</strong><br>
-                Diketahui: D = 28 cm, π = 22/7<br><br>
+                Diketahui: D = 28 cm → r = 14 cm, π = 22/7<br><br>
                 
                 <strong>✓ Luas = π × r²</strong><br>
-                = 22/7 × 14 × 14<br>
-                = 22 × 2 × 14<br>
-                = <strong>616 cm²</strong> → (A BENAR)<br><br>
+                = 22/7 × 14 × 14 = 22 × 2 × 14 = <strong>616 cm²</strong> → (A BENAR)<br><br>
                 
                 <strong>✓ Keliling = 2 × π × r</strong><br>
-                = 2 × 22/7 × 14<br>
-                = 2 × 22 × 2<br>
-                = <strong>88 cm</strong> → (B BENAR)<br><br>
+                = 2 × 22/7 × 14 = 2 × 22 × 2 = <strong>88 cm</strong> → (B BENAR)<br><br>
                 
                 <span style="color:#f44336;">
                 ✗ C. 618 cm² → SALAH (menjebak, mirip 616)<br>
@@ -557,12 +636,12 @@
         }
     ];
 
-    // ========== FUNGSI RENDER GAMBAR UMUM ==========
+    // ========== FUNGSI RENDER GAMBAR ==========
     function renderGambar(soal) {
         const namaGambar = soal.gambar;
         const isCerita = soal.tipe === "cerita";
-        const isTabung = soal.gambar === "tabung.png";
-        const isLingkaran = soal.gambar === "lingkaran.png";
+        const isTabung = soal.gambar && soal.gambar.includes("tabung");
+        const isLingkaran = soal.gambar && soal.gambar.includes("Lingkaran");
         
         let placeholderContent = '';
         
@@ -591,7 +670,16 @@
                     <div style="font-size:45px;">⚪🔵</div>
                     <div style="font-size:13px; margin-top:5px;">
                         <strong>LINGKARAN</strong><br>
-                        r = 14 cm | π = 22/7
+                        D = 28 cm | r = 14 cm | π = 22/7
+                    </div>
+                </div>
+            `;
+        } else {
+            placeholderContent = `
+                <div style="padding:10px;">
+                    <div style="font-size:45px;">📐📏</div>
+                    <div style="font-size:13px; margin-top:5px;">
+                        <strong>GAMBAR SOAL</strong>
                     </div>
                 </div>
             `;
@@ -750,11 +838,18 @@
         
         const soal = soalList[index];
         
-        // Tampilkan cerita hanya untuk soal cerita
+        // ========== TAMPILKAN CERITA ==========
         const ceritaBox = document.getElementById("ceritaBox");
-        if (soal.tipe === "cerita") {
+        const jenisCerita = soal.cerita;
+        
+        if (jenisCerita && CERITA[jenisCerita]) {
+            const dataCerita = CERITA[jenisCerita];
             ceritaBox.style.display = "block";
-            ceritaBox.innerHTML = CERITA_UTAMA;
+            ceritaBox.className = `cerita-box ${dataCerita.class}`;
+            ceritaBox.innerHTML = `
+                <strong>${dataCerita.judul}</strong><br>
+                ${dataCerita.konten}
+            `;
         } else {
             ceritaBox.style.display = "none";
         }
@@ -762,16 +857,23 @@
         // Render gambar
         document.getElementById("gambarContainer").innerHTML = renderGambar(soal);
         
-        // Tampilkan teks soal dengan badge tipe
+        // Tampilkan teks soal dengan badge
         let tipeBadge = '';
+        let ceritaBadge = '';
+        
         if (soal.tipe === "kompleks") {
             tipeBadge = '<span class="soal-type-badge kompleks">PILIHAN KOMPLEKS</span>';
         } else if (soal.tipe === "bangun-ruang") {
             tipeBadge = '<span class="soal-type-badge">BANGUN RUANG</span>';
         }
         
+        if (soal.cerita) {
+            const namaCerita = CERITA[soal.cerita]?.judul.replace(/[^a-zA-Z]/g, '').substring(0, 10) || soal.cerita;
+            ceritaBadge = `<span class="cerita-badge">📖 ${soal.cerita}</span>`;
+        }
+        
         document.getElementById("soalText").innerHTML = `
-            <span class="soal-nomor">🧪 SOAL ${soal.nomor}</span>${tipeBadge}<br>
+            <span class="soal-nomor">🧪 SOAL ${soal.nomor}</span>${tipeBadge}${ceritaBadge}<br>
             <strong>${soal.pertanyaan}</strong>
         `;
         
@@ -796,12 +898,10 @@
             }
             
             if (isKompleks) {
-                // Pilihan kompleks dengan checkbox
                 const checkbox = document.createElement("input");
                 checkbox.type = "checkbox";
                 checkbox.value = opt;
                 
-                // Cek apakah opsi ini dipilih sebelumnya
                 if (Array.isArray(jawabanSaatIni) && jawabanSaatIni.includes(opt)) {
                     checkbox.checked = true;
                     div.classList.add("selected");
@@ -823,14 +923,12 @@
                     pilihJawabanKompleks();
                 };
             } else {
-                // Pilihan ganda biasa
                 div.setAttribute("data-value", opt);
                 div.innerText = opt;
                 div.onclick = (function(value) {
                     return function() { pilihJawabanBiasa(value); };
                 })(opt);
                 
-                // Restore jawaban sebelumnya
                 if(jawabanSaatIni === opt) {
                     div.classList.add("selected");
                 }
@@ -976,7 +1074,6 @@
             if(jawaban === null || (Array.isArray(jawaban) && jawaban.length === 0)) {
                 tidakDijawab++;
             } else if(Array.isArray(kunci)) {
-                // Soal kompleks: cek apakah jawaban sama persis dengan kunci
                 const sortedJawaban = [...jawaban].sort();
                 const sortedKunci = [...kunci].sort();
                 if(JSON.stringify(sortedJawaban) === JSON.stringify(sortedKunci)) {
@@ -985,7 +1082,6 @@
                     salah++;
                 }
             } else {
-                // Soal biasa
                 if(jawaban === kunci) {
                     benar++;
                 } else {
