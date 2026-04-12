@@ -529,112 +529,365 @@
         }
     };
 
-    // ========== DATA SOAL ==========
-    const soalList = [
-        // SOAL 1 - Cerita Bazar
-        {
-            nomor: 1,
-            tipe: "cerita",
-            cerita: "bazar",
-            gambar: "sl1.png",
-            pertanyaan: "Total kue yang digunakan dalam bazar tersebut adalah…",
-            options: ["A. 6 kue", "B. 7 kue", "C. 8 kue", "D. 9 kue"],
-            correct: "D. 9 kue",
-            pembahasan: `
-                <strong>Pembahasan:</strong><br>
-                • Paket A: 8 × ½ = 4 kue<br>
-                • Paket B: 4 × ¾ = 3 kue<br>
-                • Paket C: 2 × 1 = 2 kue<br>
-                <strong>Total = 4 + 3 + 2 = 9 kue</strong>
-            `
-        },
-        // SOAL 2 - Cerita Bazar
-        {
-            nomor: 2,
-            tipe: "cerita",
-            cerita: "bazar",
-            gambar: "sl1.png",
-            pertanyaan: "Jika setiap 1 roti dijual Rp2.000, maka total uang yang diperoleh dari penjualan semua roti adalah…",
-            options: ["A. Rp52.000", "B. Rp44.000", "C. Rp48.000", "D. Rp56.000"],
-            correct: "D. Rp56.000",
-            pembahasan: `
-                <strong>Pembahasan:</strong><br>
-                • Paket A: 8 × 2 = 16 roti<br>
-                • Paket B: 4 × 1 = 4 roti<br>
-                • Paket C: 2 × 4 = 8 roti<br>
-                <strong>Total roti = 28 roti</strong><br>
-                • Uang = 28 × Rp2.000 = Rp56.000
-            `
-        },
-        // SOAL 3 - Cerita Bazar
-        {
-            nomor: 3,
-            tipe: "cerita",
-            cerita: "bazar",
-            gambar: "sl1.png",
-            pertanyaan: "Berapa selisih jumlah roti antara Paket A dan Paket C yang dibuat panitia?",
-            options: ["A. 4 roti", "B. 6 roti", "C. 8 roti", "D. 10 roti"],
-            correct: "C. 8 roti",
-            pembahasan: `
-                <strong>Pembahasan:</strong><br>
-                • Roti Paket A: 8 × 2 = 16 roti<br>
-                • Roti Paket C: 2 × 4 = 8 roti<br>
-                <strong>Selisih = 16 - 8 = 8 roti</strong>
-            `
-        },
-        // SOAL 4 - TABUNG (Bangun Ruang - Tanpa Cerita)
-        {
-            nomor: 4,
-            tipe: "bangun-ruang",
-            cerita: null,  // Tidak pakai cerita
-            gambar: "tabung1.png",
-            pertanyaan: "Perhatikan gambar tabung di atas! Sebuah tabung memiliki jari-jari alas 7 cm dan tinggi 10 cm. Volume tabung tersebut adalah… (π = 22/7)",
-            options: ["A. 1.440 cm³", "B. 1.540 cm³", "C. 1.640 cm³", "D. 1.740 cm³"],
-            correct: "B. 1.540 cm³",
-            pembahasan: `
-                <strong>Pembahasan:</strong><br>
-                Diketahui:<br>
-                • r = 7 cm<br>
-                • t = 10 cm<br>
-                • π = 22/7<br><br>
-                <strong>Volume Tabung = π × r² × t</strong><br>
-                = 22/7 × 7 × 7 × 10<br>
-                = 22 × 7 × 10<br>
-                = 1.540 cm³
-            `
-        },
-        // SOAL 5 - LINGKARAN (Pilihan Kompleks - Tanpa Cerita)
-        {
-            nomor: 5,
-            tipe: "kompleks",
-            cerita: null,
-            gambar: "Lingkaran1.png",
-            pertanyaan: "Perhatikan gambar lingkaran di atas! Sebuah lingkaran memiliki Diameter 28 cm. Pernyataan yang BENAR berdasarkan informasi tersebut adalah... (π = 22/7)",
-            options: [
-                "A. Luas lingkaran = 616 cm²",
-                "B. Keliling lingkaran = 88 cm",
-                "C. Luas lingkaran = 618 cm²",
-                "D. Keliling lingkaran = 86 cm"
-            ],
-            correct: ["A. Luas lingkaran = 616 cm²", "B. Keliling lingkaran = 88 cm"],
-            pembahasan: `
-                <strong>Pembahasan:</strong><br>
-                Diketahui: D = 28 cm → r = 14 cm, π = 22/7<br><br>
-                
-                <strong>✓ Luas = π × r²</strong><br>
-                = 22/7 × 14 × 14 = 22 × 2 × 14 = <strong>616 cm²</strong> → (A BENAR)<br><br>
-                
-                <strong>✓ Keliling = 2 × π × r</strong><br>
-                = 2 × 22/7 × 14 = 2 × 22 × 2 = <strong>88 cm</strong> → (B BENAR)<br><br>
-                
-                <span style="color:#f44336;">
-                ✗ C. 618 cm² → SALAH (menjebak, mirip 616)<br>
-                ✗ D. 86 cm → SALAH (menjebak, mirip 88)
-                </span><br><br>
-                <strong>Jadi jawaban yang benar adalah A dan B!</strong>
-            `
-        }
-    ];
+   // ========== DATA SOAL (30 SOAL) ==========
+const soalList = [
+    // ======================================================
+    // SOAL 1-3 : CERITA BAZAR
+    // ======================================================
+    {
+        nomor: 1,
+        tipe: "cerita",
+        cerita: "bazar",
+        gambar: "sl1.png",
+        pertanyaan: "Total kue yang digunakan dalam bazar tersebut adalah…",
+        options: ["A. 6 kue", "B. 7 kue", "C. 8 kue", "D. 9 kue"],
+        correct: "D. 9 kue",
+        pembahasan: `...`
+    },
+    {
+        nomor: 2,
+        tipe: "cerita",
+        cerita: "bazar",
+        gambar: "sl1.png",
+        pertanyaan: "Jika setiap 1 roti dijual Rp2.000, maka total uang yang diperoleh dari penjualan semua roti adalah…",
+        options: ["A. Rp52.000", "B. Rp44.000", "C. Rp48.000", "D. Rp56.000"],
+        correct: "D. Rp56.000",
+        pembahasan: `...`
+    },
+    {
+        nomor: 3,
+        tipe: "cerita",
+        cerita: "bazar",
+        gambar: "sl1.png",
+        pertanyaan: "Berapa selisih jumlah roti antara Paket A dan Paket C yang dibuat panitia?",
+        options: ["A. 4 roti", "B. 6 roti", "C. 8 roti", "D. 10 roti"],
+        correct: "C. 8 roti",
+        pembahasan: `...`
+    },
+
+    // ======================================================
+    // SOAL 4 : BANGUN RUANG (TABUNG)
+    // ======================================================
+    {
+        nomor: 4,
+        tipe: "bangun-ruang",
+        cerita: null,
+        gambar: "tabung1.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 4 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "B. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+
+    // ======================================================
+    // SOAL 5 : PILIHAN KOMPLEKS (LINGKARAN)
+    // ======================================================
+    {
+        nomor: 5,
+        tipe: "kompleks",
+        cerita: null,
+        gambar: "Lingkaran1.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 5 DI SINI (Pilihan Kompleks)",
+        options: [
+            "A. ...",
+            "B. ...",
+            "C. ...",
+            "D. ..."
+        ],
+        correct: ["A. ...", "B. ..."], // Array untuk jawaban benar
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+
+    // ======================================================
+    // SOAL 6-8 : CERITA PERJALANAN
+    // ======================================================
+    {
+        nomor: 6,
+        tipe: "cerita",
+        cerita: "perjalanan",
+        gambar: "perjalanan.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 6 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "A. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+    {
+        nomor: 7,
+        tipe: "cerita",
+        cerita: "perjalanan",
+        gambar: "perjalanan.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 7 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "B. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+    {
+        nomor: 8,
+        tipe: "cerita",
+        cerita: "perjalanan",
+        gambar: "perjalanan.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 8 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "C. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+
+    // ======================================================
+    // SOAL 9-10 : BANGUN RUANG (KUBUS/BALOK)
+    // ======================================================
+    {
+        nomor: 9,
+        tipe: "bangun-ruang",
+        cerita: null,
+        gambar: "kubus.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 9 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "D. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+    {
+        nomor: 10,
+        tipe: "kompleks",
+        cerita: null,
+        gambar: "balok.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 10 DI SINI (Pilihan Kompleks)",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: ["A. ...", "C. ..."],
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+
+    // ======================================================
+    // SOAL 11-13 : CERITA TOKO BUAH
+    // ======================================================
+    {
+        nomor: 11,
+        tipe: "cerita",
+        cerita: "toko",
+        gambar: "toko.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 11 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "A. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+    {
+        nomor: 12,
+        tipe: "cerita",
+        cerita: "toko",
+        gambar: "toko.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 12 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "B. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+    {
+        nomor: 13,
+        tipe: "kompleks",
+        cerita: "toko",
+        gambar: "toko.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 13 DI SINI (Pilihan Kompleks)",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: ["A. ...", "B. ...", "D. ..."],
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+
+    // ======================================================
+    // SOAL 14-15 : BANGUN DATAR
+    // ======================================================
+    {
+        nomor: 14,
+        tipe: "bangun-ruang",
+        cerita: null,
+        gambar: "segitiga.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 14 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "C. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+    {
+        nomor: 15,
+        tipe: "kompleks",
+        cerita: null,
+        gambar: "persegi.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 15 DI SINI (Pilihan Kompleks)",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: ["A. ...", "B. ...", "C. ..."],
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+
+    // ======================================================
+    // SOAL 16-18 : CERITA KEBUN BINATANG
+    // ======================================================
+    {
+        nomor: 16,
+        tipe: "cerita",
+        cerita: "kebun",
+        gambar: "kebun.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 16 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "D. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+    {
+        nomor: 17,
+        tipe: "cerita",
+        cerita: "kebun",
+        gambar: "kebun.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 17 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "A. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+    {
+        nomor: 18,
+        tipe: "cerita",
+        cerita: "kebun",
+        gambar: "kebun.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 18 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "B. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+
+    // ======================================================
+    // SOAL 19-20 : PECAHAN & DESIMAL
+    // ======================================================
+    {
+        nomor: 19,
+        tipe: "bangun-ruang",
+        cerita: null,
+        gambar: "pecahan.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 19 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "C. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+    {
+        nomor: 20,
+        tipe: "kompleks",
+        cerita: null,
+        gambar: "desimal.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 20 DI SINI (Pilihan Kompleks)",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: ["B. ...", "D. ..."],
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+
+    // ======================================================
+    // SOAL 21-23 : CERITA UMUM (Bisa untuk tema apa saja)
+    // ======================================================
+    {
+        nomor: 21,
+        tipe: "cerita",
+        cerita: "umum",
+        gambar: "gambar21.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 21 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "A. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+    {
+        nomor: 22,
+        tipe: "cerita",
+        cerita: "umum",
+        gambar: "gambar22.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 22 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "B. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+    {
+        nomor: 23,
+        tipe: "kompleks",
+        cerita: "umum",
+        gambar: "gambar23.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 23 DI SINI (Pilihan Kompleks)",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: ["A. ...", "C. ..."],
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+
+    // ======================================================
+    // SOAL 24-25 : PENGUKURAN (Waktu, Berat, Panjang)
+    // ======================================================
+    {
+        nomor: 24,
+        tipe: "bangun-ruang",
+        cerita: null,
+        gambar: "jam.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 24 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "D. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+    {
+        nomor: 25,
+        tipe: "kompleks",
+        cerita: null,
+        gambar: "timbangan.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 25 DI SINI (Pilihan Kompleks)",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: ["A. ...", "B. ..."],
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+
+    // ======================================================
+    // SOAL 26-28 : CERITA TAMBAHAN (Bisa custom)
+    // ======================================================
+    {
+        nomor: 26,
+        tipe: "cerita",
+        cerita: "bazar", // Bisa pakai cerita yang sudah ada atau buat baru
+        gambar: "gambar26.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 26 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "C. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+    {
+        nomor: 27,
+        tipe: "cerita",
+        cerita: "perjalanan",
+        gambar: "gambar27.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 27 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "A. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+    {
+        nomor: 28,
+        tipe: "cerita",
+        cerita: "toko",
+        gambar: "gambar28.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 28 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "B. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+
+    // ======================================================
+    // SOAL 29-30 : CAMPURAN
+    // ======================================================
+    {
+        nomor: 29,
+        tipe: "bangun-ruang",
+        cerita: null,
+        gambar: "gambar29.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 29 DI SINI",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: "D. ...",
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    },
+    {
+        nomor: 30,
+        tipe: "kompleks",
+        cerita: null,
+        gambar: "gambar30.png",
+        pertanyaan: "ISI PERTANYAAN SOAL 30 DI SINI (Pilihan Kompleks)",
+        options: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        correct: ["A. ...", "B. ...", "C. ...", "D. ..."],
+        pembahasan: `ISI PEMBAHASAN DI SINI`
+    }
+];
 
     // ========== FUNGSI RENDER GAMBAR ==========
     function renderGambar(soal) {
