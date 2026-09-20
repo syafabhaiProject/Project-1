@@ -1,171 +1,115 @@
-/* =====================================================
+/* =========================================================
+   SMAN 5 BOGOR
+   MAIN JAVASCRIPT
+   ========================================================= */
+
+
+/* =========================================================
    MOBILE NAVIGATION
-===================================================== */
+   ========================================================= */
 
-const menuToggle =
-    document.getElementById("menuToggle");
+const menuToggle = document.getElementById("menuToggle");
+const mainNavigation = document.getElementById("mainNavigation");
 
-const navMenu =
-    document.getElementById("navMenu");
+if (menuToggle && mainNavigation) {
 
+    menuToggle.addEventListener("click", () => {
 
-if (menuToggle && navMenu) {
+        mainNavigation.classList.toggle("open");
 
-    menuToggle.addEventListener(
-        "click",
-        function () {
+        const isOpen =
+            mainNavigation.classList.contains("open");
 
-            navMenu.classList.toggle("show");
+        menuToggle.textContent = isOpen ? "✕" : "☰";
 
-            const isOpen =
-                navMenu.classList.contains("show");
-
-            menuToggle.textContent =
-                isOpen ? "✕" : "☰";
-
-            menuToggle.setAttribute(
-                "aria-label",
-                isOpen
-                    ? "Tutup menu"
-                    : "Buka menu"
-            );
-
-        }
-    );
+    });
 
 
-    const navLinks =
-        navMenu.querySelectorAll("a");
+    // Tutup menu ketika link diklik
+    const navigationLinks =
+        mainNavigation.querySelectorAll("a");
 
+    navigationLinks.forEach((link) => {
 
-    navLinks.forEach(
-        function (link) {
+        link.addEventListener("click", () => {
 
-            link.addEventListener(
-                "click",
-                function () {
+            mainNavigation.classList.remove("open");
 
-                    navMenu.classList.remove(
-                        "show"
-                    );
+            menuToggle.textContent = "☰";
 
-                    menuToggle.textContent =
-                        "☰";
+        });
 
-                    menuToggle.setAttribute(
-                        "aria-label",
-                        "Buka menu"
-                    );
-
-                }
-            );
-
-        }
-    );
+    });
 
 }
 
 
-/* =====================================================
-   CURRENT YEAR
-===================================================== */
+/* =========================================================
+   TICKER
+   =========================================================
+   
+   Kita hanya menulis teks ticker SATU KALI di HTML.
+   JavaScript akan membuat salinannya agar animasi
+   dapat looping tanpa terlihat putus.
+   ========================================================= */
 
-const yearElement =
-    document.getElementById("year");
+const tickerTrack =
+    document.querySelector(".ticker-track");
 
+const tickerContent =
+    document.querySelector(".ticker-content");
 
-if (yearElement) {
+if (tickerTrack && tickerContent) {
 
-    yearElement.textContent =
-        new Date().getFullYear();
+    // Hindari membuat clone berkali-kali
+    if (!tickerTrack.querySelector(".ticker-content.clone")) {
 
-}
+        const tickerClone =
+            tickerContent.cloneNode(true);
 
+        tickerClone.classList.add("clone");
 
-/* =====================================================
-   NAVBAR SHADOW
-===================================================== */
-
-const navbar =
-    document.querySelector(".navbar");
-
-
-function updateNavbar() {
-
-    if (!navbar) {
-        return;
-    }
-
-
-    if (window.scrollY > 20) {
-
-        navbar.style.boxShadow =
-            "0 8px 25px rgba(15, 23, 42, 0.08)";
-
-    } else {
-
-        navbar.style.boxShadow =
-            "none";
+        tickerTrack.appendChild(tickerClone);
 
     }
 
 }
 
 
-window.addEventListener(
-    "scroll",
-    updateNavbar
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+
+const animatedElements = document.querySelectorAll(
+    ".quick-card, " +
+    ".principal-card, " +
+    ".about-grid, " +
+    ".achievement-card, " +
+    ".news-card, " +
+    ".video-wrapper, " +
+    ".service-card, " +
+    ".cta-content"
 );
 
-updateNavbar();
-
-
-/* =====================================================
-   SCROLL REVEAL
-===================================================== */
-
-const revealElements =
-    document.querySelectorAll(
-        ".quick-card, " +
-        ".principal-photo, " +
-        ".principal-info, " +
-        ".gallery-card, " +
-        ".stat-item, " +
-        ".video-container, " +
-        ".achievement-card, " +
-        ".news-card, " +
-        ".service-card"
-    );
-
-
-if (
-    "IntersectionObserver"
-    in window
-) {
+if ("IntersectionObserver" in window) {
 
     const observer =
         new IntersectionObserver(
-            function (entries) {
+            (entries, observer) => {
 
-                entries.forEach(
-                    function (entry) {
+                entries.forEach((entry) => {
 
-                        if (
-                            entry.isIntersecting
-                        ) {
+                    if (entry.isIntersecting) {
 
-                            entry.target.classList.add(
-                                "reveal-show"
-                            );
+                        entry.target.classList.add("show");
 
-                            observer.unobserve(
-                                entry.target
-                            );
-
-                        }
+                        observer.unobserve(
+                            entry.target
+                        );
 
                     }
-                );
+
+                });
 
             },
             {
@@ -174,28 +118,75 @@ if (
         );
 
 
-    revealElements.forEach(
-        function (element) {
+    animatedElements.forEach((element, index) => {
 
-            element.classList.add(
-                "reveal"
-            );
+        // Sedikit delay antar card
+        if (
+            element.classList.contains("quick-card") ||
+            element.classList.contains("achievement-card") ||
+            element.classList.contains("news-card") ||
+            element.classList.contains("service-card")
+        ) {
 
-            observer.observe(
-                element
-            );
+            element.style.transitionDelay =
+                `${(index % 4) * 0.08}s`;
 
         }
-    );
+
+        observer.observe(element);
+
+    });
 
 } else {
 
-    revealElements.forEach(
-        function (element) {
+    // Fallback kalau browser tidak mendukung
+    animatedElements.forEach((element) => {
 
-            element.classList.add(
-                "reveal-show"
-            );
+        element.classList.add("show");
+
+    });
+
+}
+
+
+/* =========================================================
+   SCROLL TO TOP
+   ========================================================= */
+
+const scrollTopButton =
+    document.getElementById("scrollTop");
+
+if (scrollTopButton) {
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            if (window.scrollY > 500) {
+
+                scrollTopButton.classList.add("show");
+
+            } else {
+
+                scrollTopButton.classList.remove("show");
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    scrollTopButton.addEventListener(
+        "click",
+        () => {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
 
         }
     );
@@ -203,126 +194,347 @@ if (
 }
 
 
-/* =====================================================
-   IMAGE FALLBACK
-===================================================== */
+/* =========================================================
+   CHATBOT BUTTON
+   ========================================================= */
+
+const chatbotButton =
+    document.getElementById("chatbotButton");
+
+if (chatbotButton) {
+
+    chatbotButton.addEventListener(
+        "click",
+        () => {
+
+            /*
+             * Untuk sekarang chatbot belum dibuat.
+             *
+             * Nanti ketika folder chatbot sudah siap,
+             * bagian ini bisa diarahkan ke:
+             *
+             * window.location.href =
+             * "chatbot/index.html";
+             */
+
+            const chatbotPage =
+                "chatbot/index.html";
+
+            /*
+             * Cek apakah halaman chatbot tersedia.
+             * Kalau belum ada, jangan langsung mengarahkan
+             * pengguna ke halaman 404.
+             */
+
+            fetch(chatbotPage, {
+                method: "HEAD"
+            })
+            .then((response) => {
+
+                if (response.ok) {
+
+                    window.location.href =
+                        chatbotPage;
+
+                } else {
+
+                    showChatbotNotice();
+
+                }
+
+            })
+            .catch(() => {
+
+                showChatbotNotice();
+
+            });
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CHATBOT NOTICE
+   ========================================================= */
+
+function showChatbotNotice() {
+
+    const existingNotice =
+        document.querySelector(".chatbot-notice");
+
+    if (existingNotice) {
+        return;
+    }
+
+
+    const notice =
+        document.createElement("div");
+
+    notice.className =
+        "chatbot-notice";
+
+
+    notice.innerHTML = `
+        <strong>🤖 Chatbot SMAN 5</strong>
+        <p>Fitur chatbot sedang dalam tahap pengembangan.</p>
+        <button type="button">Tutup</button>
+    `;
+
+
+    /*
+     * Styling langsung supaya fitur ini tetap
+     * bekerja walaupun belum ada CSS khusus.
+     */
+
+    Object.assign(
+        notice.style,
+        {
+            position: "fixed",
+            right: "25px",
+            bottom: "85px",
+            zIndex: "2000",
+            width: "280px",
+            padding: "18px",
+            borderRadius: "16px",
+            background: "#ffffff",
+            color: "#172033",
+            boxShadow:
+                "0 15px 40px rgba(15,23,42,.18)",
+            border:
+                "1px solid #e2e8f0"
+        }
+    );
+
+
+    const paragraph =
+        notice.querySelector("p");
+
+    Object.assign(
+        paragraph.style,
+        {
+            margin: "8px 0 12px",
+            color: "#64748b",
+            fontSize: "13px"
+        }
+    );
+
+
+    const closeButton =
+        notice.querySelector("button");
+
+    Object.assign(
+        closeButton.style,
+        {
+            border: "none",
+            background: "#16a34a",
+            color: "#ffffff",
+            padding: "8px 14px",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: "700"
+        }
+    );
+
+
+    closeButton.addEventListener(
+        "click",
+        () => {
+
+            notice.remove();
+
+        }
+    );
+
+
+    document.body.appendChild(notice);
+
+
+    /*
+     * Hilangkan otomatis setelah beberapa detik.
+     */
+
+    setTimeout(() => {
+
+        if (notice.isConnected) {
+            notice.remove();
+        }
+
+    }, 5000);
+
+}
+
+
+/* =========================================================
+   IMAGE ERROR HANDLING
+   =========================================================
+   
+   Kalau gambar tidak ditemukan, kita tambahkan
+   class placeholder supaya layout tetap rapi.
+   ========================================================= */
 
 const images =
     document.querySelectorAll("img");
 
+images.forEach((image) => {
 
-images.forEach(
-    function (image) {
+    image.addEventListener(
+        "error",
+        () => {
 
-        image.addEventListener(
-            "error",
-            function () {
+            const parent =
+                image.parentElement;
 
-                image.style.display =
-                    "none";
-
-                const parent =
-                    image.parentElement;
-
-
-                if (parent) {
-
-                    parent.classList.add(
-                        "image-missing"
-                    );
-
-                }
-
+            if (!parent) {
+                return;
             }
-        );
 
-    }
-);
+            parent.classList.add(
+                "image-placeholder"
+            );
 
+            image.style.display =
+                "none";
 
-/* =====================================================
-   SMOOTH SCROLL
-===================================================== */
-
-const internalLinks =
-    document.querySelectorAll(
-        'a[href^="#"]'
+        }
     );
 
-
-internalLinks.forEach(
-    function (link) {
-
-        link.addEventListener(
-            "click",
-            function (event) {
-
-                const targetId =
-                    link.getAttribute("href");
+});
 
 
-                if (
-                    !targetId ||
-                    targetId === "#"
-                ) {
-                    return;
-                }
+/* =========================================================
+   CURRENT PAGE NAVIGATION
+   ========================================================= */
+
+const currentPage =
+    window.location.pathname
+        .split("/")
+        .pop()
+        .toLowerCase();
 
 
-                const target =
-                    document.querySelector(
-                        targetId
-                    );
+if (currentPage) {
+
+    const navLinks =
+        document.querySelectorAll(
+            ".main-navigation a"
+        );
 
 
-                if (target) {
+    navLinks.forEach((link) => {
 
-                    event.preventDefault();
+        const linkPage =
+            link.getAttribute("href")
+                ?.split("/")
+                .pop()
+                .toLowerCase();
 
 
-                    target.scrollIntoView({
-                        behavior:
-                            "smooth",
-                        block:
-                            "start"
-                    });
+        /*
+         * Jangan mengubah active secara otomatis
+         * untuk halaman index karena HTML sudah
+         * menentukan active.
+         */
 
-                }
+        if (
+            currentPage !== "index.html" &&
+            currentPage !== ""
+        ) {
+
+            link.classList.remove("active");
+
+            if (
+                linkPage === currentPage
+            ) {
+
+                link.classList.add("active");
 
             }
-        );
 
-    }
-);
+        }
 
-
-/* =====================================================
-   VIDEO PLACEHOLDER CHECK
-===================================================== */
-
-const videoFrame =
-    document.querySelector(
-        ".video-container iframe"
-    );
-
-
-if (videoFrame) {
-
-    const videoURL =
-        videoFrame.getAttribute("src");
-
-
-    if (
-        videoURL &&
-        videoURL.includes("VIDEO_ID")
-    ) {
-
-        console.info(
-            "Video YouTube belum diatur. " +
-            "Ganti VIDEO_ID pada index.html " +
-            "dengan ID video YouTube."
-        );
-
-    }
+    });
 
 }
+
+
+/* =========================================================
+   CLOSE MOBILE MENU WHEN CLICKING OUTSIDE
+   ========================================================= */
+
+document.addEventListener(
+    "click",
+    (event) => {
+
+        if (
+            !mainNavigation ||
+            !menuToggle
+        ) {
+            return;
+        }
+
+
+        const clickedInsideMenu =
+            mainNavigation.contains(
+                event.target
+            );
+
+        const clickedToggle =
+            menuToggle.contains(
+                event.target
+            );
+
+
+        if (
+            !clickedInsideMenu &&
+            !clickedToggle &&
+            mainNavigation.classList.contains("open")
+        ) {
+
+            mainNavigation.classList.remove(
+                "open"
+            );
+
+            menuToggle.textContent = "☰";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   YEAR AUTO UPDATE
+   ========================================================= */
+
+const footerYear =
+    document.querySelector(
+        ".footer-bottom p"
+    );
+
+if (footerYear) {
+
+    const currentYear =
+        new Date().getFullYear();
+
+    footerYear.innerHTML =
+        footerYear.innerHTML.replace(
+            /©\s*\d{4}/,
+            `© ${currentYear}`
+        );
+
+}
+
+
+/* =========================================================
+   PAGE READY
+   ========================================================= */
+
+document.documentElement.classList.add(
+    "js-ready"
+);
+
+console.log(
+    "SMAN 5 Bogor website loaded successfully."
+);
