@@ -4,1562 +4,1235 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="description"
-        content="Website profil SMAN 5 Bogor - Juara, Jaya, Bermartabat."
-    >
-
     <title>SMAN 5 Bogor | Juara, Jaya, Bermartabat</title>
 
-    <link rel="stylesheet" href="style.css">
+    <meta
+        name="description"
+        content="Website resmi SMA Negeri 5 Kota Bogor - Juara, Jaya, Bermartabat."
+    >
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<!-- =====================================================
-     TOP MOVING BAR
-===================================================== -->
+    <!-- =====================================================
+         TOP BAR
+    ====================================================== -->
+    <div class="top-bar">
+        <div class="container top-bar-inner">
 
-<div class="top-bar">
+            <div class="top-contact">
+                <span>📞 0251-8325688</span>
+                <span>✉️ sman5@sman5kotabogor.sch.id</span>
+            </div>
 
-    <div class="ticker">
+            <div class="top-social">
+                <a href="#" aria-label="Instagram">Instagram</a>
+                <a href="#" aria-label="YouTube">YouTube</a>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- =====================================================
+         SCHOOL IDENTITY
+    ====================================================== -->
+    <section class="school-identity">
+
+        <div class="container identity-content">
+
+            <div class="identity-logo">
+                <img
+                    src="image/logoSMAN5.png"
+                    alt="Logo SMAN 5 Bogor"
+                    onerror="this.parentElement.classList.add('image-placeholder'); this.style.display='none';"
+                >
+
+                <div class="placeholder-content">
+                    <span>LOGO</span>
+                </div>
+            </div>
+
+            <div class="identity-text">
+                <h1>SMAN 5 BOGOR</h1>
+                <p>JUARA, JAYA, BERMARTABAT</p>
+                <span>SMA Negeri 5 Kota Bogor</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MOVING TICKER
+    ====================================================== -->
+    <div class="identity-ticker">
+
         <div class="ticker-track">
 
-            <span>
-                SMAN 5 BOGOR
-                <b>•</b>
-                JUARA, JAYA, BERMARTABAT
-                <b>•</b>
-                SMANLI LUAR BIASA
-                <b>•</b>
-            </span>
+            <div class="ticker-content">
 
-            <span>
-                SMAN 5 BOGOR
-                <b>•</b>
-                JUARA, JAYA, BERMARTABAT
-                <b>•</b>
-                SMANLI LUAR BIASA
-                <b>•</b>
-            </span>
+                <span>SMAN 5 BOGOR</span>
+                <i>•</i>
 
-            <span>
-                SMAN 5 BOGOR
-                <b>•</b>
-                JUARA, JAYA, BERMARTABAT
-                <b>•</b>
-                SMANLI LUAR BIASA
-                <b>•</b>
-            </span>
+                <span>JUARA, JAYA, BERMARTABAT</span>
+                <i>•</i>
 
-            <span>
-                SMAN 5 BOGOR
-                <b>•</b>
-                JUARA, JAYA, BERMARTABAT
-                <b>•</b>
-                SMANLI LUAR BIASA
-                <b>•</b>
-            </span>
+                <span>SMANLI LUAR BIASA</span>
+                <i>•</i>
 
-        </div>
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     SCHOOL HEADER
-===================================================== -->
-
-<header class="header">
-
-    <div class="school-brand">
-
-        <div class="logo-wrapper">
-
-            <img
-                src="image/logoSMAN5.png"
-                alt="Logo SMAN 5 Bogor"
-                class="school-logo"
-            >
-
-        </div>
-
-        <span class="school-small-title">
-            SMA NEGERI 5 KOTA BOGOR
-        </span>
-
-        <h1>
-            SMAN 5 BOGOR
-        </h1>
-
-        <p class="motto">
-            JUARA • JAYA • BERMARTABAT
-        </p>
-
-        <p class="welcome">
-            Wilujeng Sumping di SMA Negeri 5 Kota Bogor
-        </p>
-
-    </div>
-
-</header>
-
-
-<!-- =====================================================
-     NAVIGATION
-===================================================== -->
-
-<nav class="navbar">
-
-    <div class="container nav-container">
-
-        <a
-            href="index.html"
-            class="nav-logo"
-        >
-            SMAN 5
-        </a>
-
-
-        <button
-            class="menu-toggle"
-            id="menuToggle"
-            aria-label="Buka menu"
-        >
-            ☰
-        </button>
-
-
-        <div
-            class="nav-menu"
-            id="navMenu"
-        >
-
-            <a
-                href="index.html"
-                class="active"
-            >
-                Beranda
-            </a>
-
-            <a href="isi/profil.html">
-                Profil
-            </a>
-
-            <a href="isi/akademik.html">
-                Akademik
-            </a>
-
-            <a href="isi/prestasi.html">
-                Prestasi
-            </a>
-
-            <a href="isi/kesiswaan.html">
-                Kesiswaan
-            </a>
-
-            <a href="isi/fasilitas.html">
-                Fasilitas
-            </a>
-
-            <a href="isi/berita.html">
-                Berita
-            </a>
-
-            <a href="isi/kontak.html">
-                Kontak
-            </a>
-
-        </div>
-
-    </div>
-
-</nav>
-
-
-<main>
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section class="hero">
-
-    <div class="hero-decoration hero-decoration-one"></div>
-    <div class="hero-decoration hero-decoration-two"></div>
-
-    <div class="container hero-content">
-
-
-        <div class="hero-text">
-
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-
-                SMA NEGERI 5 KOTA BOGOR
             </div>
 
+        </div>
 
-            <h2>
-                Tumbuh.
-                <span>Berkarya.</span>
-                Berprestasi.
-            </h2>
+    </div>
 
 
-            <p>
-                Jelajahi informasi SMAN 5 Bogor mulai dari
-                profil sekolah, akademik, prestasi, kegiatan
-                siswa, fasilitas, hingga berbagai berita terbaru.
-            </p>
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+    <header class="main-header">
 
+        <div class="container navigation-wrapper">
 
-            <div class="hero-buttons">
+            <a href="index.html" class="nav-brand">
+                <span>SMAN 5</span>
+                <small>BOGOR</small>
+            </a>
 
-                <a
-                    href="isi/profil.html"
-                    class="btn btn-primary"
-                >
-                    Jelajahi Sekolah
-                    <span>→</span>
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Buka menu"
+            >
+                ☰
+            </button>
+
+            <nav class="main-navigation" id="mainNavigation">
+
+                <a href="index.html" class="active">
+                    Beranda
                 </a>
 
-
-                <a
-                    href="#video"
-                    class="btn btn-outline"
-                >
-                    <span class="play-icon">▶</span>
-                    Video Profil
+                <a href="isi/profil.html">
+                    Profil
                 </a>
 
-            </div>
+                <a href="isi/sejarah.html">
+                    Sejarah
+                </a>
 
+                <a href="isi/visi-misi.html">
+                    Visi & Misi
+                </a>
 
-            <div class="hero-mini-info">
-
-                <div>
-                    <strong>1981</strong>
-                    <span>Berdiri</span>
-                </div>
-
-                <div class="mini-line"></div>
-
-                <div>
-                    <strong>SMAN 5</strong>
-                    <span>Kota Bogor</span>
-                </div>
-
-                <div class="mini-line"></div>
-
-                <div>
-                    <strong>Juara</strong>
-                    <span>Jaya • Bermartabat</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- HERO IMAGE -->
-
-        <div class="hero-image-wrapper">
-
-            <div class="hero-image">
-
-                <img
-                    src="image/sekolah.jpg"
-                    alt="Lingkungan SMAN 5 Bogor"
-                >
-
-
-                <div class="hero-image-gradient"></div>
-
-
-                <div class="hero-image-caption">
-
-                    <span class="caption-label">
-                        SMANLI LUAR BIASA
-                    </span>
-
-                    <strong>
-                        Ruang untuk belajar,
-                        tumbuh, dan berkarya.
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <div class="floating-card floating-card-top">
-
-                <div class="floating-icon green">
-                    ✓
-                </div>
-
-                <div>
-                    <strong>
-                        Pendidikan
-                    </strong>
-
-                    <span>
-                        Akademik & karakter
-                    </span>
-                </div>
-
-            </div>
-
-
-            <div class="floating-card floating-card-bottom">
-
-                <div class="floating-icon yellow">
-                    ★
-                </div>
-
-                <div>
-                    <strong>
-                        Prestasi
-                    </strong>
-
-                    <span>
-                        Akademik & nonakademik
-                    </span>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     QUICK ACCESS
-===================================================== -->
-
-<section class="quick-access">
-
-    <div class="container">
-
-
-        <div class="section-heading center">
-
-            <span>
-                AKSES CEPAT
-            </span>
-
-            <h2>
-                Informasi dalam satu tempat.
-            </h2>
-
-            <p>
-                Temukan layanan dan informasi penting
-                tanpa harus mencari terlalu jauh.
-            </p>
-
-        </div>
-
-
-        <div class="quick-grid">
-
-
-            <a
-                href="isi/ppdb.html"
-                class="quick-card"
-            >
-
-                <div class="quick-icon">
-                    📝
-                </div>
-
-                <div class="quick-number">
-                    01
-                </div>
-
-                <h3>
-                    PPDB
-                </h3>
-
-                <p>
-                    Informasi penerimaan peserta didik baru.
-                </p>
-
-                <span class="quick-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <a
-                href="isi/prestasi.html"
-                class="quick-card"
-            >
-
-                <div class="quick-icon">
-                    🏆
-                </div>
-
-                <div class="quick-number">
-                    02
-                </div>
-
-                <h3>
+                <a href="isi/prestasi.html">
                     Prestasi
-                </h3>
+                </a>
 
-                <p>
-                    Dokumentasi pencapaian siswa dan sekolah.
-                </p>
+                <a href="isi/fasilitas.html">
+                    Fasilitas
+                </a>
 
-                <span class="quick-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <a
-                href="isi/ekstrakurikuler.html"
-                class="quick-card"
-            >
-
-                <div class="quick-icon">
-                    ⚡
-                </div>
-
-                <div class="quick-number">
-                    03
-                </div>
-
-                <h3>
+                <a href="isi/ekstrakurikuler.html">
                     Ekstrakurikuler
-                </h3>
+                </a>
 
-                <p>
-                    Ruang pengembangan minat dan bakat siswa.
-                </p>
-
-                <span class="quick-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <a
-                href="isi/perpustakaan.html"
-                class="quick-card"
-            >
-
-                <div class="quick-icon">
-                    📚
-                </div>
-
-                <div class="quick-number">
-                    04
-                </div>
-
-                <h3>
+                <a href="isi/perpustakaan.html">
                     E-Library
-                </h3>
+                </a>
 
-                <p>
-                    Akses informasi dan layanan perpustakaan.
-                </p>
+                <a href="isi/berita.html">
+                    Berita
+                </a>
 
-                <span class="quick-arrow">
-                    →
-                </span>
+                <a href="isi/ppdb.html">
+                    PPDB
+                </a>
 
-            </a>
+                <a href="isi/kontak.html">
+                    Kontak
+                </a>
 
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     PRINCIPAL
-===================================================== -->
-
-<section class="principal-section">
-
-    <div class="principal-decoration"></div>
-
-    <div class="container">
-
-
-        <div class="section-heading">
-
-            <span>
-                PROFIL SEKOLAH
-            </span>
-
-            <h2>
-                Mengenal SMAN 5 Bogor
-            </h2>
-
-            <p>
-                Mengenal lebih dekat sosok pemimpin dan
-                lingkungan pendidikan SMAN 5 Bogor.
-            </p>
+            </nav>
 
         </div>
 
+    </header>
 
-        <div class="principal-layout">
 
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+    <main>
 
-            <!-- PHOTO -->
+        <section class="hero">
 
-            <div class="principal-photo">
+            <div class="container hero-grid">
 
-                <div class="photo-frame">
+                <div class="hero-content">
 
-                    <div class="photo-number">
-                        01
+                    <span class="hero-label">
+                        WILUJENG SUMPING
+                    </span>
+
+                    <h2>
+                        SMA Negeri 5
+                        <span>Kota Bogor</span>
+                    </h2>
+
+                    <p>
+                        Membangun generasi yang berprestasi,
+                        berkarakter, berwawasan luas, dan siap
+                        menghadapi masa depan.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="isi/profil.html"
+                            class="btn btn-primary"
+                        >
+                            Jelajahi Profil
+                        </a>
+
+                        <a
+                            href="isi/berita.html"
+                            class="btn btn-outline"
+                        >
+                            Lihat Berita
+                        </a>
+
                     </div>
 
+                </div>
+
+
+                <!-- HERO IMAGE SLOT -->
+                <div class="hero-image">
+
                     <img
-                        src="image/kepalasekolah.jpg"
-                        alt="Hj. Enung Nuripah, S.Pd., M.Pd."
+                        src="image/sekolah.jpg"
+                        alt="Gedung SMAN 5 Bogor"
+                        onerror="this.parentElement.classList.add('image-placeholder'); this.style.display='none';"
                     >
 
-                </div>
+                    <div class="placeholder-content">
+                        <strong>Foto Sekolah</strong>
+                        <span>image/sekolah.jpg</span>
+                    </div>
 
-
-                <div class="principal-label">
-
-                    <span>
-                        KEPALA SMA NEGERI 5 KOTA BOGOR
-                    </span>
-
-                    <h3>
-                        Hj. Enung Nuripah, S.Pd., M.Pd.
-                    </h3>
-
-                    <p>
-                        Menjabat sejak 29 Oktober 2025.
-                    </p>
+                    <div class="hero-badge">
+                        <strong>SMANLI</strong>
+                        <span>Luar Biasa</span>
+                    </div>
 
                 </div>
 
             </div>
 
-
-            <!-- TEXT -->
-
-            <div class="principal-info">
-
-                <span class="small-label">
-                    SAMBUTAN
-                </span>
-
-                <h2>
-                    Membangun lingkungan belajar
-                    yang kondusif, inovatif,
-                    dan inspiratif.
-                </h2>
-
-                <p>
-                    SMAN 5 Bogor terus menjadi ruang bagi
-                    peserta didik untuk mengembangkan kemampuan
-                    akademik, keterampilan, karakter, dan
-                    potensi mereka.
-                </p>
-
-                <p>
-                    Website ini dirancang sebagai pusat informasi
-                    digital yang membantu siswa, orang tua,
-                    guru, alumni, dan masyarakat menemukan
-                    informasi sekolah secara lebih terstruktur.
-                </p>
+        </section>
 
 
-                <a
-                    href="isi/kepalasekolah.html"
-                    class="text-link"
-                >
-                    Lihat profil kepala sekolah
-                    <span>→</span>
-                </a>
+        <!-- =====================================================
+             QUICK ACCESS
+        ====================================================== -->
+        <section class="quick-access">
 
-            </div>
+            <div class="container">
 
-        </div>
+                <div class="section-heading center">
 
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     SCHOOL GALLERY
-===================================================== -->
-
-<section class="school-gallery">
-
-    <div class="container">
-
-
-        <div class="section-heading center">
-
-            <span>
-                SEKILAS SEKOLAH
-            </span>
-
-            <h2>
-                Tempat untuk berkembang.
-            </h2>
-
-            <p>
-                Akademik, kegiatan, fasilitas, dan prestasi
-                menjadi bagian dari perjalanan siswa.
-            </p>
-
-        </div>
-
-
-        <div class="gallery-grid">
-
-
-            <a
-                href="isi/fasilitas.html"
-                class="gallery-card gallery-large"
-            >
-
-                <img
-                    src="image/sekolah.jpg"
-                    alt="Fasilitas SMAN 5 Bogor"
-                >
-
-                <div class="gallery-overlay">
-
-                    <span>
-                        FASILITAS
+                    <span class="section-label">
+                        INFORMASI SEKOLAH
                     </span>
 
-                    <h3>
-                        Lingkungan Sekolah
-                    </h3>
+                    <h2>
+                        Akses Cepat
+                    </h2>
 
                     <p>
-                        Lihat fasilitas →
+                        Temukan berbagai informasi SMAN 5 Bogor
+                        dengan lebih mudah.
                     </p>
 
                 </div>
 
-            </a>
+
+                <div class="quick-grid">
+
+                    <a
+                        href="isi/profil.html"
+                        class="quick-card"
+                    >
+                        <div class="quick-icon">
+                            🏫
+                        </div>
+
+                        <h3>
+                            Profil Sekolah
+                        </h3>
+
+                        <p>
+                            Mengenal lebih dekat SMAN 5 Bogor.
+                        </p>
+                    </a>
 
 
-            <a
-                href="isi/prestasi.html"
-                class="gallery-card"
-            >
+                    <a
+                        href="isi/prestasi.html"
+                        class="quick-card"
+                    >
+                        <div class="quick-icon">
+                            🏆
+                        </div>
 
-                <img
-                    src="image/prestasi.jpg"
-                    alt="Prestasi SMAN 5 Bogor"
-                >
+                        <h3>
+                            Prestasi
+                        </h3>
 
-                <div class="gallery-overlay">
+                        <p>
+                            Lihat berbagai prestasi siswa dan sekolah.
+                        </p>
+                    </a>
+
+
+                    <a
+                        href="isi/perpustakaan.html"
+                        class="quick-card"
+                    >
+                        <div class="quick-icon">
+                            📚
+                        </div>
+
+                        <h3>
+                            E-Library
+                        </h3>
+
+                        <p>
+                            Akses layanan perpustakaan digital.
+                        </p>
+                    </a>
+
+
+                    <a
+                        href="isi/ppdb.html"
+                        class="quick-card"
+                    >
+                        <div class="quick-icon">
+                            📝
+                        </div>
+
+                        <h3>
+                            PPDB
+                        </h3>
+
+                        <p>
+                            Informasi penerimaan peserta didik baru.
+                        </p>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PRINCIPAL
+        ====================================================== -->
+        <section class="principal-section">
+
+            <div class="container">
+
+                <div class="principal-card">
+
+                    <div class="principal-image">
+
+                        <img
+                            src="image/kepala-sekolah.jpg"
+                            alt="Kepala SMAN 5 Bogor"
+                            onerror="this.parentElement.classList.add('image-placeholder'); this.style.display='none';"
+                        >
+
+                        <div class="placeholder-content">
+
+                            <strong>
+                                Foto Kepala Sekolah
+                            </strong>
+
+                            <span>
+                                image/kepala-sekolah.jpg
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="principal-content">
+
+                        <span class="section-label">
+                            KEPALA SEKOLAH
+                        </span>
+
+                        <h2>
+                            Hj. Enung Nuripah, S.Pd., M.Pd.
+                        </h2>
+
+                        <p class="principal-position">
+                            Kepala SMA Negeri 5 Kota Bogor
+                        </p>
+
+                        <p>
+                            Kepemimpinan sekolah menjadi bagian
+                            penting dalam membangun lingkungan
+                            pendidikan yang berprestasi,
+                            berkarakter, dan terus berkembang.
+                        </p>
+
+                        <a
+                            href="isi/kepala-sekolah.html"
+                            class="text-link"
+                        >
+                            Selengkapnya →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ABOUT
+        ====================================================== -->
+        <section class="about-section">
+
+            <div class="container about-grid">
+
+                <div class="about-image">
+
+                    <img
+                        src="image/sekolah-2.jpg"
+                        alt="Lingkungan SMAN 5 Bogor"
+                        onerror="this.parentElement.classList.add('image-placeholder'); this.style.display='none';"
+                    >
+
+                    <div class="placeholder-content">
+
+                        <strong>
+                            Foto Lingkungan Sekolah
+                        </strong>
+
+                        <span>
+                            image/sekolah-2.jpg
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="about-content">
+
+                    <span class="section-label">
+                        TENTANG KAMI
+                    </span>
+
+                    <h2>
+                        Tempat Bertumbuh,
+                        Tempat Berprestasi
+                    </h2>
+
+                    <p>
+                        SMA Negeri 5 Kota Bogor merupakan salah
+                        satu satuan pendidikan yang menjadi bagian
+                        dari perjalanan pendidikan di Kota Bogor.
+                    </p>
+
+                    <p>
+                        Melalui pembelajaran, kegiatan siswa,
+                        prestasi, serta pengembangan karakter,
+                        sekolah terus berupaya menciptakan
+                        lingkungan yang mendukung perkembangan
+                        peserta didik.
+                    </p>
+
+                    <div class="about-buttons">
+
+                        <a
+                            href="isi/profil.html"
+                            class="btn btn-primary"
+                        >
+                            Profil Lengkap
+                        </a>
+
+                        <a
+                            href="isi/sejarah.html"
+                            class="text-link"
+                        >
+                            Sejarah Sekolah →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             STATISTICS
+        ====================================================== -->
+        <section class="stats-section">
+
+            <div class="container stats-grid">
+
+                <div class="stat-card">
+
+                    <strong>
+                        1981
+                    </strong>
 
                     <span>
+                        Tahun Berdiri
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <strong>
+                        5
+                    </strong>
+
+                    <span>
+                        Identitas Sekolah
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <strong>
+                        ⭐
+                    </strong>
+
+                    <span>
+                        Prestasi Siswa
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <strong>
+                        📚
+                    </strong>
+
+                    <span>
+                        Pembelajaran
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ACHIEVEMENTS
+        ====================================================== -->
+        <section class="achievement-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
                         PRESTASI
                     </span>
 
-                    <h3>
-                        Karya & Pencapaian
-                    </h3>
+                    <h2>
+                        Jejak Prestasi
+                    </h2>
 
                     <p>
-                        Lihat prestasi →
+                        Dokumentasi berbagai pencapaian
+                        yang diraih oleh warga sekolah.
                     </p>
 
                 </div>
 
-            </a>
+
+                <div class="achievement-grid">
+
+                    <article class="achievement-card">
+
+                        <div class="achievement-icon">
+                            🏆
+                        </div>
+
+                        <h3>
+                            Prestasi Akademik
+                        </h3>
+
+                        <p>
+                            Berbagai pencapaian siswa dalam
+                            bidang akademik.
+                        </p>
+
+                        <a
+                            href="isi/prestasi.html"
+                            class="text-link"
+                        >
+                            Lihat prestasi →
+                        </a>
+
+                    </article>
 
 
-            <a
-                href="isi/berita.html"
-                class="gallery-card"
-            >
+                    <article class="achievement-card">
 
-                <img
-                    src="image/berita.jpg"
-                    alt="Kegiatan SMAN 5 Bogor"
-                >
+                        <div class="achievement-icon">
+                            🎨
+                        </div>
 
-                <div class="gallery-overlay">
+                        <h3>
+                            Prestasi Nonakademik
+                        </h3>
 
-                    <span>
-                        KEGIATAN
+                        <p>
+                            Pencapaian siswa melalui berbagai
+                            bidang dan kompetisi.
+                        </p>
+
+                        <a
+                            href="isi/prestasi.html"
+                            class="text-link"
+                        >
+                            Lihat prestasi →
+                        </a>
+
+                    </article>
+
+
+                    <article class="achievement-card">
+
+                        <div class="achievement-icon">
+                            🌱
+                        </div>
+
+                        <h3>
+                            Sekolah Berprestasi
+                        </h3>
+
+                        <p>
+                            Berbagai penghargaan dan program
+                            pengembangan lingkungan sekolah.
+                        </p>
+
+                        <a
+                            href="isi/prestasi.html"
+                            class="text-link"
+                        >
+                            Selengkapnya →
+                        </a>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             NEWS
+        ====================================================== -->
+        <section class="news-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        INFORMASI TERBARU
                     </span>
 
-                    <h3>
-                        Aktivitas Siswa
-                    </h3>
+                    <h2>
+                        Berita Sekolah
+                    </h2>
 
                     <p>
-                        Lihat berita →
+                        Informasi dan kegiatan terbaru
+                        SMAN 5 Bogor.
                     </p>
 
                 </div>
 
-            </a>
 
-        </div>
+                <div class="news-grid">
 
-    </div>
+                    <article class="news-card">
 
-</section>
+                        <div class="news-image">
 
+                            <img
+                                src="image/berita-1.jpg"
+                                alt="Berita sekolah"
+                                onerror="this.parentElement.classList.add('image-placeholder'); this.style.display='none';"
+                            >
 
-<!-- =====================================================
-     FACT / STATISTICS
-===================================================== -->
+                            <div class="placeholder-content">
+                                <span>berita-1.jpg</span>
+                            </div>
 
-<section class="stats-section">
+                        </div>
 
-    <div class="stats-decoration"></div>
+                        <div class="news-content">
 
-    <div class="container">
+                            <span class="news-category">
+                                BERITA
+                            </span>
 
-        <div class="stats-header">
+                            <h3>
+                                Informasi Terbaru
+                                SMAN 5 Bogor
+                            </h3>
 
-            <div>
+                            <p>
+                                Informasi kegiatan dan kabar
+                                terbaru sekolah.
+                            </p>
 
-                <span>
-                    SMANLI LUAR BIASA
-                </span>
+                            <a
+                                href="isi/berita.html"
+                                class="text-link"
+                            >
+                                Baca selengkapnya →
+                            </a>
 
-                <h2>
-                    Sebuah perjalanan
-                    yang terus berkembang.
-                </h2>
+                        </div>
 
-            </div>
+                    </article>
 
-            <p>
-                Informasi dasar sekolah yang dapat
-                dikembangkan lebih lanjut berdasarkan
-                data resmi dan terverifikasi.
-            </p>
 
-        </div>
+                    <article class="news-card">
 
+                        <div class="news-image">
 
-        <div class="stats-grid">
+                            <img
+                                src="image/berita-2.jpg"
+                                alt="Kegiatan SMAN 5 Bogor"
+                                onerror="this.parentElement.classList.add('image-placeholder'); this.style.display='none';"
+                            >
 
+                            <div class="placeholder-content">
+                                <span>berita-2.jpg</span>
+                            </div>
 
-            <div class="stat-item">
+                        </div>
 
-                <strong>
-                    1981
-                </strong>
+                        <div class="news-content">
 
-                <span>
-                    Tahun Berdiri
-                </span>
+                            <span class="news-category">
+                                KEGIATAN
+                            </span>
 
-            </div>
+                            <h3>
+                                Kegiatan Warga Sekolah
+                            </h3>
 
+                            <p>
+                                Dokumentasi kegiatan dan aktivitas
+                                warga sekolah.
+                            </p>
 
-            <div class="stat-item">
+                            <a
+                                href="isi/berita.html"
+                                class="text-link"
+                            >
+                                Baca selengkapnya →
+                            </a>
 
-                <strong>
-                    5
-                </strong>
+                        </div>
 
-                <span>
-                    Identitas SMAN 5
-                </span>
+                    </article>
 
-            </div>
 
+                    <article class="news-card">
 
-            <div class="stat-item">
+                        <div class="news-image">
 
-                <strong>
-                    2026
-                </strong>
+                            <img
+                                src="image/berita-3.jpg"
+                                alt="Prestasi sekolah"
+                                onerror="this.parentElement.classList.add('image-placeholder'); this.style.display='none';"
+                            >
 
-                <span>
-                    Dokumentasi Prestasi Terbaru
-                </span>
+                            <div class="placeholder-content">
+                                <span>berita-3.jpg</span>
+                            </div>
 
-            </div>
+                        </div>
 
+                        <div class="news-content">
 
-            <div class="stat-item">
+                            <span class="news-category">
+                                PRESTASI
+                            </span>
 
-                <strong>
-                    ∞
-                </strong>
+                            <h3>
+                                Kabar Prestasi Siswa
+                            </h3>
 
-                <span>
-                    Potensi Siswa
-                </span>
+                            <p>
+                                Informasi mengenai pencapaian
+                                siswa dan sekolah.
+                            </p>
 
-            </div>
+                            <a
+                                href="isi/prestasi.html"
+                                class="text-link"
+                            >
+                                Lihat prestasi →
+                            </a>
 
-        </div>
+                        </div>
 
-    </div>
+                    </article>
 
-</section>
-
-
-<!-- =====================================================
-     VIDEO
-===================================================== -->
-
-<section
-    class="video-section"
-    id="video"
->
-
-    <div class="video-glow video-glow-one"></div>
-    <div class="video-glow video-glow-two"></div>
-
-    <div class="container">
-
-
-        <div class="section-heading center">
-
-            <span>
-                VIDEO
-            </span>
-
-            <h2>
-                Kenali SMAN 5 Bogor.
-            </h2>
-
-            <p>
-                Tampilkan video profil, dokumentasi kegiatan,
-                atau video resmi sekolah di sini.
-            </p>
-
-        </div>
-
-
-        <div class="video-container">
-
-            <!--
-                GANTI VIDEO_ID DENGAN ID VIDEO YOUTUBE.
-
-                Contoh:
-                https://www.youtube.com/watch?v=ABC123
-
-                menjadi:
-                https://www.youtube.com/embed/ABC123
-            -->
-
-            <iframe
-                src="https://www.youtube.com/embed/VIDEO_ID"
-                title="Video SMAN 5 Bogor"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-            </iframe>
-
-        </div>
-
-
-        <div class="video-bottom">
-
-            <span>
-                VIDEO PROFIL / DOKUMENTASI SEKOLAH
-            </span>
-
-            <a
-                href="https://www.youtube.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="video-link"
-            >
-                Kunjungi YouTube →
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     ACHIEVEMENTS
-===================================================== -->
-
-<section class="achievement-section">
-
-    <div class="achievement-circle circle-one"></div>
-    <div class="achievement-circle circle-two"></div>
-
-    <div class="container">
-
-
-        <div class="section-heading achievement-heading">
-
-            <span>
-                PRESTASI
-            </span>
-
-            <h2>
-                Berkarya. Berkompetisi.
-                Berprestasi.
-            </h2>
-
-            <p>
-                SMAN 5 Bogor mendokumentasikan berbagai
-                capaian peserta didik dalam bidang akademik
-                dan nonakademik.
-            </p>
-
-        </div>
-
-
-        <div class="achievement-grid">
-
-
-            <div class="achievement-card">
-
-                <div class="achievement-number">
-                    01
                 </div>
 
-                <div>
 
-                    <h3>
-                        Akademik
-                    </h3>
+                <div class="center-button">
+
+                    <a
+                        href="isi/berita.html"
+                        class="btn btn-primary"
+                    >
+                        Lihat Semua Berita
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             YOUTUBE VIDEO
+        ====================================================== -->
+        <section class="video-section">
+
+            <div class="container">
+
+                <div class="section-heading center">
+
+                    <span class="section-label">
+                        VIDEO
+                    </span>
+
+                    <h2>
+                        Mengenal SMAN 5 Bogor
+                    </h2>
 
                     <p>
-                        Pencapaian siswa dalam bidang akademik
-                        dan keilmuan.
+                        Saksikan video SMAN 5 Bogor melalui
+                        YouTube.
                     </p>
 
                 </div>
 
-            </div>
+
+                <div class="video-wrapper">
+
+                    <div class="video-container">
+
+                        <iframe
+                            src="https://www.youtube.com/embed/lND6c2H7UxI"
+                            title="Video SMAN 5 Bogor"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+
+                    </div>
 
 
-            <div class="achievement-card">
+                    <div class="video-footer">
 
-                <div class="achievement-number">
-                    02
+                        <p>
+                            Video SMAN 5 Bogor
+                        </p>
+
+                        <a
+                            href="https://youtu.be/lND6c2H7UxI"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn btn-primary"
+                        >
+                            Buka di YouTube
+                        </a>
+
+                    </div>
+
                 </div>
 
-                <div>
+            </div>
 
-                    <h3>
-                        Nonakademik
-                    </h3>
+        </section>
+
+
+        <!-- =====================================================
+             SERVICES
+        ====================================================== -->
+        <section class="service-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        LAYANAN DIGITAL
+                    </span>
+
+                    <h2>
+                        Semua Lebih Mudah
+                    </h2>
 
                     <p>
-                        Prestasi dalam olahraga, seni,
-                        organisasi, dan berbagai bidang lainnya.
+                        Akses layanan sekolah dari satu tempat.
                     </p>
 
                 </div>
 
-            </div>
 
+                <div class="service-grid">
 
-            <div class="achievement-card">
-
-                <div class="achievement-number">
-                    03
-                </div>
-
-                <div>
-
-                    <h3>
-                        Prestasi Sekolah
-                    </h3>
-
-                    <p>
-                        Dokumentasi pencapaian dan penghargaan
-                        yang diraih oleh sekolah.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="center-button">
-
-            <a
-                href="isi/prestasi.html"
-                class="btn btn-white"
-            >
-                Lihat Semua Prestasi
-                <span>→</span>
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     NEWS
-===================================================== -->
-
-<section class="news-section">
-
-    <div class="container">
-
-
-        <div class="section-heading news-heading">
-
-            <div>
-
-                <span>
-                    BERITA & INFORMASI
-                </span>
-
-                <h2>
-                    Kabar terbaru sekolah.
-                </h2>
-
-            </div>
-
-
-            <a
-                href="isi/berita.html"
-                class="all-news"
-            >
-                Semua berita →
-            </a>
-
-        </div>
-
-
-        <div class="news-grid">
-
-
-            <!-- NEWS 1 -->
-
-            <article class="news-card">
-
-                <div class="news-image">
-
-                    <img
-                        src="image/berita.jpg"
-                        alt="Pengumuman kelulusan"
+                    <a
+                        href="isi/perpustakaan.html"
+                        class="service-card"
                     >
 
-                    <span class="news-date">
-                        04 MEI 2026
-                    </span>
+                        <span class="service-icon">
+                            📚
+                        </span>
 
-                </div>
+                        <div>
+                            <h3>
+                                E-Library
+                            </h3>
+
+                            <p>
+                                Perpustakaan digital sekolah.
+                            </p>
+                        </div>
+
+                        <span class="service-arrow">
+                            →
+                        </span>
+
+                    </a>
 
 
-                <div class="news-content">
+                    <a
+                        href="isi/ppdb.html"
+                        class="service-card"
+                    >
 
-                    <span class="news-category">
-                        PENGUMUMAN
-                    </span>
+                        <span class="service-icon">
+                            📝
+                        </span>
 
-                    <h3>
-                        Pengumuman Kelulusan Kelas XII
-                        Tahun Pelajaran 2025/2026
-                    </h3>
+                        <div>
+                            <h3>
+                                PPDB
+                            </h3>
 
-                    <p>
-                        Informasi resmi mengenai pengumuman
-                        kelulusan peserta didik kelas XII.
-                    </p>
+                            <p>
+                                Informasi penerimaan siswa baru.
+                            </p>
+                        </div>
 
-                    <a href="isi/berita.html">
-                        Baca selengkapnya →
+                        <span class="service-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="isi/ekstrakurikuler.html"
+                        class="service-card"
+                    >
+
+                        <span class="service-icon">
+                            🎯
+                        </span>
+
+                        <div>
+                            <h3>
+                                Ekstrakurikuler
+                            </h3>
+
+                            <p>
+                                Temukan kegiatan sesuai minat.
+                            </p>
+                        </div>
+
+                        <span class="service-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="isi/fasilitas.html"
+                        class="service-card"
+                    >
+
+                        <span class="service-icon">
+                            🏫
+                        </span>
+
+                        <div>
+                            <h3>
+                                Fasilitas
+                            </h3>
+
+                            <p>
+                                Jelajahi fasilitas sekolah.
+                            </p>
+                        </div>
+
+                        <span class="service-arrow">
+                            →
+                        </span>
+
                     </a>
 
                 </div>
 
-            </article>
+            </div>
+
+        </section>
 
 
-            <!-- NEWS 2 -->
+        <!-- =====================================================
+             CTA
+        ====================================================== -->
+        <section class="cta-section">
 
-            <article class="news-card">
+            <div class="container">
 
-                <div class="news-image placeholder">
+                <div class="cta-content">
 
-                    <span>
-                        SLOT GAMBAR
-                    </span>
+                    <div>
 
-                    <span class="news-date">
-                        19 JAN 2026
-                    </span>
+                        <span class="section-label">
+                            SMAN 5 BOGOR
+                        </span>
 
-                </div>
+                        <h2>
+                            Juara, Jaya, Bermartabat
+                        </h2>
+
+                        <p>
+                            Bersama membangun generasi
+                            yang unggul dan berkarakter.
+                        </p>
+
+                    </div>
 
 
-                <div class="news-content">
-
-                    <span class="news-category">
-                        PRESTASI
-                    </span>
-
-                    <h3>
-                        Prestasi bidang akademik dan
-                        nonakademik guru dan murid
-                    </h3>
-
-                    <p>
-                        Dokumentasi capaian yang diraih
-                        warga SMAN 5 Bogor.
-                    </p>
-
-                    <a href="isi/berita.html">
-                        Baca selengkapnya →
+                    <a
+                        href="isi/kontak.html"
+                        class="btn btn-yellow"
+                    >
+                        Hubungi Kami
                     </a>
 
                 </div>
 
-            </article>
+            </div>
 
+        </section>
 
-            <!-- NEWS 3 -->
+    </main>
 
-            <article class="news-card">
 
-                <div class="news-image placeholder">
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+    <footer class="footer">
 
-                    <span>
-                        SLOT GAMBAR
-                    </span>
+        <div class="container footer-grid">
 
-                    <span class="news-date">
-                        09 JAN 2026
-                    </span>
-
-                </div>
-
-
-                <div class="news-content">
-
-                    <span class="news-category">
-                        KEGIATAN
-                    </span>
-
-                    <h3>
-                        Pemanfaatan Kecerdasan Artifisial
-                        dalam Pembelajaran
-                    </h3>
-
-                    <p>
-                        Dokumentasi workshop pemanfaatan AI
-                        dalam pembelajaran.
-                    </p>
-
-                    <a href="isi/berita.html">
-                        Baca selengkapnya →
-                    </a>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     SERVICES
-===================================================== -->
-
-<section class="services-section">
-
-    <div class="container">
-
-
-        <div class="section-heading center">
-
-            <span>
-                LAYANAN
-            </span>
-
-            <h2>
-                Semua yang kamu perlukan.
-            </h2>
-
-            <p>
-                Struktur layanan dibuat agar informasi sekolah
-                dapat ditemukan dengan lebih mudah.
-            </p>
-
-        </div>
-
-
-        <div class="services-grid">
-
-
-            <a
-                href="isi/akademik.html"
-                class="service-card"
-            >
-
-                <span class="service-icon">
-                    🎓
-                </span>
-
-                <h3>
-                    Akademik
-                </h3>
-
-                <p>
-                    Kurikulum dan informasi pembelajaran.
-                </p>
-
-                <span class="service-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <a
-                href="isi/kesiswaan.html"
-                class="service-card"
-            >
-
-                <span class="service-icon">
-                    👥
-                </span>
-
-                <h3>
-                    Kesiswaan
-                </h3>
-
-                <p>
-                    Informasi siswa dan kegiatan sekolah.
-                </p>
-
-                <span class="service-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <a
-                href="isi/fasilitas.html"
-                class="service-card"
-            >
-
-                <span class="service-icon">
-                    🏫
-                </span>
-
-                <h3>
-                    Fasilitas
-                </h3>
-
-                <p>
-                    Sarana dan prasarana sekolah.
-                </p>
-
-                <span class="service-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <a
-                href="isi/perpustakaan.html"
-                class="service-card"
-            >
-
-                <span class="service-icon">
-                    📖
-                </span>
-
-                <h3>
-                    Perpustakaan
-                </h3>
-
-                <p>
-                    Informasi dan layanan perpustakaan.
-                </p>
-
-                <span class="service-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <a
-                href="isi/ekstrakurikuler.html"
-                class="service-card"
-            >
-
-                <span class="service-icon">
-                    ⚽
-                </span>
-
-                <h3>
-                    Ekstrakurikuler
-                </h3>
-
-                <p>
-                    Kegiatan minat dan bakat peserta didik.
-                </p>
-
-                <span class="service-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <a
-                href="isi/kontak.html"
-                class="service-card"
-            >
-
-                <span class="service-icon">
-                    📍
-                </span>
-
-                <h3>
-                    Kontak
-                </h3>
-
-                <p>
-                    Alamat dan informasi kontak sekolah.
-                </p>
-
-                <span class="service-arrow">
-                    →
-                </span>
-
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     CTA
-===================================================== -->
-
-<section class="cta">
-
-    <div class="cta-shape cta-shape-one"></div>
-    <div class="cta-shape cta-shape-two"></div>
-
-    <div class="container cta-content">
-
-        <div>
-
-            <span>
-                SMAN 5 BOGOR
-            </span>
-
-            <h2>
-                Mari mengenal sekolah
-                lebih dekat.
-            </h2>
-
-            <p>
-                Jelajahi profil, prestasi, kegiatan,
-                fasilitas, dan berbagai informasi sekolah.
-            </p>
-
-        </div>
-
-
-        <a
-            href="isi/profil.html"
-            class="btn btn-white"
-        >
-            Mulai Menjelajah
-            <span>→</span>
-        </a>
-
-    </div>
-
-</section>
-
-
-</main>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer class="footer">
-
-    <div class="container footer-grid">
-
-
-        <!-- BRAND -->
-
-        <div class="footer-brand">
-
-            <div class="footer-logo">
+            <div class="footer-brand">
 
                 <img
                     src="image/logoSMAN5.png"
                     alt="Logo SMAN 5 Bogor"
                 >
 
+                <div>
+
+                    <h3>
+                        SMAN 5 BOGOR
+                    </h3>
+
+                    <p>
+                        Juara, Jaya, Bermartabat
+                    </p>
+
+                </div>
+
             </div>
 
 
-            <h3>
-                SMAN 5 BOGOR
-            </h3>
+            <div class="footer-column">
 
-            <p>
-                Juara, Jaya, Bermartabat
-            </p>
+                <h4>
+                    Navigasi
+                </h4>
 
-            <p class="footer-description">
-                SMA Negeri 5 Kota Bogor.
-            </p>
+                <a href="isi/profil.html">
+                    Profil
+                </a>
 
-        </div>
+                <a href="isi/prestasi.html">
+                    Prestasi
+                </a>
 
+                <a href="isi/fasilitas.html">
+                    Fasilitas
+                </a>
 
-        <!-- NAV -->
+                <a href="isi/berita.html">
+                    Berita
+                </a>
 
-        <div class="footer-column">
-
-            <h4>
-                Navigasi
-            </h4>
-
-            <a href="isi/profil.html">
-                Profil
-            </a>
-
-            <a href="isi/akademik.html">
-                Akademik
-            </a>
-
-            <a href="isi/prestasi.html">
-                Prestasi
-            </a>
-
-            <a href="isi/kesiswaan.html">
-                Kesiswaan
-            </a>
-
-        </div>
+            </div>
 
 
-        <!-- SERVICES -->
+            <div class="footer-column">
 
-        <div class="footer-column">
+                <h4>
+                    Layanan
+                </h4>
 
-            <h4>
-                Layanan
-            </h4>
+                <a href="isi/perpustakaan.html">
+                    E-Library
+                </a>
 
-            <a href="isi/ppdb.html">
-                PPDB
-            </a>
+                <a href="isi/ppdb.html">
+                    PPDB
+                </a>
 
-            <a href="isi/perpustakaan.html">
-                E-Library
-            </a>
+                <a href="isi/ekstrakurikuler.html">
+                    Ekstrakurikuler
+                </a>
 
-            <a href="isi/ekstrakurikuler.html">
-                Ekstrakurikuler
-            </a>
-
-            <a href="isi/kontak.html">
-                Kontak
-            </a>
-
-        </div>
+            </div>
 
 
-        <!-- CONTACT -->
+            <div class="footer-column">
 
-        <div class="footer-column footer-contact">
+                <h4>
+                    Kontak
+                </h4>
 
-            <h4>
-                Kontak
-            </h4>
+                <p>
+                    Jl. Manunggal 22
+                    <br>
+                    Kota Bogor
+                </p>
 
-            <p>
-                📍 Kota Bogor, Jawa Barat
-            </p>
+                <p>
+                    0251-8325688
+                </p>
 
-            <p>
-                ☎ 0251-8325688
-            </p>
+                <p>
+                    sman5@sman5kotabogor.sch.id
+                </p>
 
-            <p>
-                ✉ sman5@sman5kotabogor.sch.id
-            </p>
-
-            <a
-                href="https://www.youtube.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                ▶ YouTube
-            </a>
+            </div>
 
         </div>
 
-    </div>
 
+        <div class="footer-bottom">
 
-    <div class="footer-bottom">
+            <div class="container">
 
-        <div class="container footer-bottom-content">
+                <p>
+                    © 2026 SMAN 5 Bogor.
+                    Semua hak cipta dilindungi.
+                </p>
 
-            <p>
-                © <span id="year"></span>
-                SMAN 5 Bogor
-            </p>
-
-            <p>
-                Juara • Jaya • Bermartabat
-            </p>
+            </div>
 
         </div>
 
-    </div>
-
-</footer>
+    </footer>
 
 
-<script src="script.js"></script>
+    <!-- =====================================================
+         FLOATING BUTTONS
+    ====================================================== -->
+
+    <button
+        id="scrollTop"
+        class="scroll-top"
+        aria-label="Kembali ke atas"
+    >
+        ↑
+    </button>
+
+
+    <button
+        id="chatbotButton"
+        class="chatbot-button"
+        aria-label="Buka chatbot"
+    >
+        💬
+    </button>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+    <script src="script.js"></script>
 
 </body>
 </html>
