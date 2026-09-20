@@ -3,1635 +3,871 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulasi TKA SD - Bazar Sekolah</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 15px;
-        }
-        .container {
-            background: white;
-            padding: 25px;
-            border-radius: 20px;
-            width: 480px;
-            max-width: 100%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        h2 {
-            margin-bottom: 15px;
-            text-align: center;
-            color: #333;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-            font-size: 14px;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #4facfe;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-            font-size: 15px;
-            transition: 0.3s;
-        }
-        button:hover {
-            background: #3a8be0;
-        }
-        button:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-        }
-        .error {
-            color: #f44336;
-            font-size: 13px;
-            text-align: left;
-            margin-bottom: 5px;
-        }
-        #form, #soal {
-            display: none;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .timer {
-            background: #ff4d4d;
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 18px;
-            transition: background 0.3s;
-        }
-        .timer.warning {
-            background: #ff9800;
-        }
-        .timer.danger {
-            background: #f44336;
-        }
-        
-        /* Cerita Box - dengan variasi warna */
-        .cerita-box {
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            border-left: 4px solid;
-            font-size: 13px;
-            line-height: 1.6;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        .cerita-box.bazar {
-            background: #fff8e1;
-            border-left-color: #ff9800;
-        }
-        .cerita-box.bazar strong {
-            color: #e65100;
-        }
-        .cerita-box.perjalanan {
-            background: #e3f2fd;
-            border-left-color: #2196F3;
-        }
-        .cerita-box.perjalanan strong {
-            color: #1565c0;
-        }
-        .cerita-box.toko {
-            background: #e8f5e9;
-            border-left-color: #4caf50;
-        }
-        .cerita-box.toko strong {
-            color: #2e7d32;
-        }
-        .cerita-box.kebun {
-            background: #fce4ec;
-            border-left-color: #e91e63;
-        }
-        .cerita-box.kebun strong {
-            color: #c2185b;
-        }
-        .cerita-box.umum {
-            background: #f3e5f5;
-            border-left-color: #9c27b0;
-        }
-        .cerita-box.umum strong {
-            color: #6a1b9a;
-        }
-        
-        .highlight {
-            background: rgba(0,0,0,0.08);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-        
-        /* Gambar Ilustrasi */
-        .gambar-ilustrasi {
-            text-align: center;
-            margin: 15px 0;
-            padding: 15px;
-            background: #e3f2fd;
-            border-radius: 12px;
-        }
-        .gambar-ilustrasi img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            display: block;
-            margin: 0 auto;
-        }
-        .gambar-caption {
-            font-size: 12px;
-            color: #666;
-            margin-top: 8px;
-        }
-        
-        .gambar-placeholder {
-            background: linear-gradient(145deg, #bbdefb, #90caf9);
-            padding: 15px;
-            border-radius: 10px;
-        }
-        
-        .question {
-            font-size: 16px;
-            line-height: 1.6;
-            font-weight: 500;
-            text-align: left;
-            margin: 15px 0;
-            padding: 15px;
-            background: #f5f5f5;
-            border-radius: 10px;
-            border-left: 4px solid #4facfe;
-        }
-        .soal-nomor {
-            display: inline-block;
-            background: #4facfe;
-            color: white;
-            padding: 3px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
-        .soal-type-badge {
-            display: inline-block;
-            background: #ff9800;
-            color: white;
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            margin-left: 8px;
-        }
-        .soal-type-badge.kompleks {
-            background: #9c27b0;
-        }
-        .cerita-badge {
-            display: inline-block;
-            background: #4caf50;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 20px;
-            font-size: 10px;
-            margin-left: 5px;
-        }
-        
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        .option {
-            background: #f0f0f0;
-            padding: 14px 16px;
-            border-radius: 10px;
-            cursor: pointer;
-            text-align: left;
-            transition: 0.3s;
-            border: 2px solid transparent;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .option:hover {
-            background: #e0e0e0;
-        }
-        .option.selected {
-            background: #4facfe;
-            color: white;
-            border-color: #2196F3;
-        }
-        
-        .option input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            margin: 0;
-            cursor: pointer;
-            accent-color: #9c27b0;
-            flex-shrink: 0;
-        }
-        .option.kompleks {
-            cursor: pointer;
-        }
-        .option.kompleks.selected {
-            background: #9c27b0;
-            border-color: #7b1fa2;
-        }
-        .option.kompleks label {
-            flex: 1;
-            cursor: pointer;
-        }
-        
-        .navigation {
-            display: flex;
-            gap: 10px;
-            margin: 15px 0;
-        }
-        .nav-btn {
-            flex: 1;
-            padding: 10px;
-            background: #2196F3;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            margin: 0;
-        }
-        .nav-btn:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-        }
-        .nav-btn:hover:not(:disabled) {
-            background: #1976D2;
-        }
-        
-        .soal-indicator {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin: 15px 0;
-            flex-wrap: wrap;
-        }
-        .soal-badge {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 13px;
-            transition: 0.3s;
-            border: 2px solid #ddd;
-        }
-        .soal-badge:hover {
-            background: #e0e0e0;
-        }
-        .soal-badge.active {
-            background: #4facfe;
-            color: white;
-            border-color: #2196F3;
-        }
-        .soal-badge.answered {
-            background: #4caf50;
-            color: white;
-            border-color: #2e7d32;
-        }
-        .soal-badge.kompleks-badge {
-            border-color: #9c27b0;
-        }
-        
-        .warning {
-            color: #e65100;
-            font-size: 13px;
-            text-align: center;
-            margin-top: 10px;
-            padding: 10px;
-            background: #fff3e0;
-            border-radius: 10px;
-        }
-        .warning.success {
-            color: #2e7d32;
-            background: #e8f5e9;
-        }
-        .soal-counter {
-            font-size: 14px;
-            color: #666;
-            font-weight: 500;
-        }
-        
-        .ringkasan-paket {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin: 10px 0;
-        }
-        .paket-card {
-            background: white;
-            padding: 8px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .paket-nama {
-            font-weight: bold;
-            color: #4facfe;
-        }
-        .paket-isi {
-            font-size: 12px;
-        }
-        
-        .info-ujian {
-            font-size: 12px;
-            color: #999;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-    </style>
+
+    <title>SMAN 5 Bogor | Juara, Jaya, Bermartabat</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div class="container">
-    <!-- Login Section -->
-    <div id="login">
-        <h2>🔐 Login TKA</h2>
-        <input type="text" id="user" placeholder="Username" autocomplete="off" value="P00398432">
-        <input type="password" id="pass" placeholder="Password" value="4322*">
-        <div class="error" id="loginErr"></div>
-        <button onclick="login()">Masuk</button>
-        <p style="font-size:12px; color:#999; text-align:center; margin-top:15px;">
-            Gunakan: P00398432 / 4322*<br>atau P00408433 / 8999*
-        </p>
+
+    <!-- =========================
+         TOP BAR
+    ========================== -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <span>SMAN 5 BOGOR</span>
+            <span>Juara, Jaya, Bermartabat</span>
+        </div>
     </div>
 
-    <!-- Form Data Peserta -->
-    <div id="form">
-        <h2>📝 Data Peserta</h2>
-        <input type="text" id="nama" placeholder="Nama Lengkap" autocomplete="off">
-        <div class="error" id="errNama"></div>
 
-        <input type="text" id="sekolah" placeholder="Asal Sekolah" autocomplete="off">
-        <div class="error" id="errSekolah"></div>
+    <!-- =========================
+         HEADER / LOGO
+    ========================== -->
+    <header class="header">
 
-        <label style="font-size:14px; color:#666;">Tanggal Lahir:</label>
-        <div style="display: flex; gap: 5px;">
-            <select id="tanggal" style="width: 33%;"></select>
-            <select id="bulan" style="width: 33%;"></select>
-            <select id="tahun" style="width: 34%;"></select>
-        </div>
-        <div class="error" id="errTanggal"></div>
+        <div class="school-brand">
 
-        <button onclick="mulai()">Mulai Ujian</button>
-    </div>
-
-    <!-- Soal Ujian -->
-    <div id="soal">
-        <div class="header">
-            <span class="soal-counter" id="soalCounter">📋 Soal 1 dari 5</span>
-            <span class="timer" id="timer">75:00</span>
-        </div>
-        
-        <div class="info-ujian" id="infoUjian">
-            ⏱️ Waktu: 75 menit | 📝 Total: <span id="totalSoalDisplay">5</span> soal
-        </div>
-        
-        <!-- Cerita Box -->
-        <div class="cerita-box" id="ceritaBox"></div>
-        
-        <!-- Gambar Ilustrasi -->
-        <div class="gambar-ilustrasi" id="gambarContainer"></div>
-        
-        <!-- Soal -->
-        <div class="question" id="soalText"></div>
-        
-        <!-- Petunjuk untuk soal kompleks -->
-        <div id="petunjukKompleks" style="display:none; font-size:13px; color:#9c27b0; margin-bottom:10px; padding:8px; background:#f3e5f5; border-radius:8px;">
-            📌 <strong>Pilihan Kompleks:</strong> Bisa memilih lebih dari satu jawaban. Centang semua pernyataan yang BENAR!
-        </div>
-        
-        <!-- Opsi Jawaban -->
-        <div class="options" id="optionsContainer"></div>
-
-        <!-- Indikator Soal -->
-        <div class="soal-indicator" id="soalIndicator"></div>
-
-        <!-- Navigasi -->
-        <div class="navigation">
-            <button class="nav-btn" id="btnPrev" onclick="prevSoal()" disabled>← Sebelumnya</button>
-            <button class="nav-btn" id="btnNext" onclick="nextSoal()">Selanjutnya →</button>
-        </div>
-
-        <div class="warning" id="warningMsg"></div>
-        <button id="btnSelesai" onclick="selesai()">✅ Selesai Ujian</button>
-    </div>
-</div>
-
-<script>
-    // ========== KONFIGURASI UJIAN ==========
-    const WAKTU_UJIAN_MENIT = 75;
-    
-    // ========== KUMPULAN CERITA ==========
-    const CERITA = {
-        bazar: {
-            judul: "📖 CERITA BAKSOS (BAZAR KREASI OSIS)",
-            class: "bazar",
-            konten: `
-                Di sebuah sekolah, diadakan kegiatan bazar. Panitia menyediakan 3 jenis paket makanan:<br>
-                <div class="ringkasan-paket">
-                    <div class="paket-card">
-                        <span class="paket-nama">📦 Paket A</span><br>
-                        <span class="paket-isi">½ kue + 2 roti</span>
-                    </div>
-                    <div class="paket-card">
-                        <span class="paket-nama">📦 Paket B</span><br>
-                        <span class="paket-isi">¾ kue + 1 roti</span>
-                    </div>
-                    <div class="paket-card">
-                        <span class="paket-nama">📦 Paket C</span><br>
-                        <span class="paket-isi">1 kue + 4 roti</span>
-                    </div>
-                </div>
-                Pada hari itu, panitia membuat:<br>
-                <span class="highlight">8 paket A</span> &nbsp;|&nbsp; 
-                <span class="highlight">4 paket B</span> &nbsp;|&nbsp; 
-                <span class="highlight">2 paket C</span><br>
-                <span style="font-size:12px; display:block; margin-top:5px;">
-                📌 Setiap 1 kue utuh dipotong menjadi 4 bagian sama besar.<br>
-                💰 Harga 1 roti = Rp2.000
-                </span>
-            `
-        },
-        perjalanan: {
-            judul: "🚗 CERITA PERJALANAN LIBURAN",
-            class: "perjalanan",
-            konten: `
-                Keluarga Pak Budi pergi berlibur ke pantai.<br>
-                <div style="background:white; padding:10px; border-radius:8px; margin:10px 0;">
-                    <span class="highlight">📍 Jarak rumah ke pantai = 120 km</span><br>
-                    <span class="highlight">🏃 Kecepatan rata-rata = 60 km/jam</span><br>
-                    <span class="highlight">🕐 Berangkat pukul 06:30 WIB</span><br>
-                    <span class="highlight">☕ Istirahat 30 menit di tengah jalan</span>
-                </div>
-                <span style="font-size:12px;">Gunakan informasi di atas untuk menjawab soal!</span>
-            `
-        },
-        toko: {
-            judul: "Kebun Sayuran",
-            class: "kebun",
-            konten: `
-                Di sebuah desa, terdapat sebuah kebun berbentuk persegi panjang dengan panjang 20 meter dan lebar 10 meter.
-Kebun tersebut akan dibagi menjadi beberapa bagian sama besar untuk ditanami sayuran.
-Setiap bagian berbentuk persegi dengan sisi 2 meter.
-Selain itu, pemilik kebun ingin membuat pagar di sekeliling kebun.
-Biaya pembuatan pagar adalah Rp50.000 per meter.:<br>
-            `
-        },
-        kebun: {
-            judul: "🌳 CERITA KEBUN BINATANG",
-            class: "kebun",
-            konten: `
-                SD Ceria mengadakan karyawisata ke kebun binatang.<br>
-                <div style="background:white; padding:10px; border-radius:8px; margin:10px 0;">
-                    👥 Jumlah siswa = 120 anak<br>
-                    🚌 1 bus muat 30 anak<br>
-                    🎫 Tiket masuk = Rp15.000/anak<br>
-                    🍱 Biaya makan = Rp20.000/anak
-                </div>
-            `
-        },
-        umum: {
-            judul: "📚 INFORMASI SOAL",
-            class: "umum",
-            konten: `
-                Bacalah soal dengan teliti dan pilih jawaban yang paling tepat!
-            `
-        }, 
-kebun: {
-    judul: "🌱 CERITA KEBUN SAYUR",
-    class: "kebun",
-    konten: `
-        Di sebuah desa, terdapat sebuah kebun berbentuk persegi panjang dengan panjang 20 meter dan lebar 10 meter.<br>
-        Kebun tersebut akan dibagi menjadi beberapa bagian sama besar untuk ditanami sayuran.<br>
-        Setiap bagian berbentuk persegi dengan sisi 2 meter.<br>
-        Selain itu, pemilik kebun ingin membuat pagar di sekeliling kebun.<br>
-        <span class="highlight">Biaya pembuatan pagar adalah Rp50.000 per meter.</span>
-    `
-}
-    };
-
-// ========== DATA SOAL (30 SOAL LENGKAP) ==========
-const soalList = [
-    // ======================================================
-    // SOAL 1-3 : CERITA BAZAR
-    // ======================================================
-    {
-        nomor: 1,
-        tipe: "cerita",
-        cerita: "bazar",
-        gambar: "sl1.png",
-        pertanyaan: "Total kue yang digunakan dalam bazar tersebut adalah…",
-        options: ["A. 6 kue", "B. 7 kue", "C. 8 kue", "D. 9 kue"],
-        correct: "D. 9 kue",
-        pembahasan: `<strong>Pembahasan:</strong><br>• Paket A: 8 × ½ = 4 kue<br>• Paket B: 4 × ¾ = 3 kue<br>• Paket C: 2 × 1 = 2 kue<br><strong>Total = 4 + 3 + 2 = 9 kue</strong>`
-    },
-    {
-        nomor: 2,
-        tipe: "cerita",
-        cerita: "bazar",
-        gambar: "sl1.png",
-        pertanyaan: "Jika setiap 1 roti dijual Rp2.000, maka total uang yang diperoleh dari penjualan semua roti adalah…",
-        options: ["A. Rp52.000", "B. Rp44.000", "C. Rp48.000", "D. Rp56.000"],
-        correct: "D. Rp56.000",
-        pembahasan: `<strong>Pembahasan:</strong><br>• Paket A: 8 × 2 = 16 roti<br>• Paket B: 4 × 1 = 4 roti<br>• Paket C: 2 × 4 = 8 roti<br><strong>Total roti = 28 roti</strong><br>• Uang = 28 × Rp2.000 = Rp56.000`
-    },
-    {
-        nomor: 3,
-        tipe: "cerita",
-        cerita: "bazar",
-        gambar: "sl1.png",
-        pertanyaan: "Berapa selisih jumlah roti antara Paket A dan Paket C yang dibuat panitia?",
-        options: ["A. 4 roti", "B. 6 roti", "C. 8 roti", "D. 10 roti"],
-        correct: "C. 8 roti",
-        pembahasan: `<strong>Pembahasan:</strong><br>• Roti Paket A: 8 × 2 = 16 roti<br>• Roti Paket C: 2 × 4 = 8 roti<br><strong>Selisih = 16 - 8 = 8 roti</strong>`
-    },
-
-    // ======================================================
-    // SOAL 4 : TABUNG
-    // ======================================================
-    {
-        nomor: 4,
-        tipe: "bangun-ruang",
-        cerita: null,
-        gambar: "tabung1.png",
-        pertanyaan: "Perhatikan gambar tabung di atas! Sebuah tabung memiliki jari-jari alas 7 cm dan tinggi 10 cm. Volume tabung tersebut adalah… (π = 22/7)",
-        options: ["A. 1.440 cm³", "B. 1.540 cm³", "C. 1.640 cm³", "D. 1.740 cm³"],
-        correct: "B. 1.540 cm³",
-        pembahasan: `<strong>Pembahasan:</strong><br>• r = 7 cm, t = 10 cm, π = 22/7<br>• Volume = π × r² × t = 22/7 × 7 × 7 × 10 = 22 × 7 × 10 = <strong>1.540 cm³</strong>`
-    },
-
-    // ======================================================
-    // SOAL 5 : LINGKARAN (KOMPLEKS)
-    // ======================================================
-    {
-        nomor: 5,
-        tipe: "kompleks",
-        cerita: null,
-        gambar: "Lingkaran1.png",
-        pertanyaan: "Perhatikan gambar lingkaran di atas! Sebuah lingkaran memiliki Diameter 28 cm. Pernyataan yang BENAR berdasarkan informasi tersebut adalah... (π = 22/7)",
-        options: ["A. Luas lingkaran = 616 cm²", "B. Keliling lingkaran = 88 cm", "C. Luas lingkaran = 618 cm²", "D. Keliling lingkaran = 86 cm"],
-        correct: ["A. Luas lingkaran = 616 cm²", "B. Keliling lingkaran = 88 cm"],
-        pembahasan: `<strong>Pembahasan:</strong><br>• D = 28 cm → r = 14 cm<br>• Luas = π × r² = 22/7 × 14 × 14 = 616 cm² (A BENAR)<br>• Keliling = 2 × π × r = 2 × 22/7 × 14 = 88 cm (B BENAR)<br>✗ C dan D SALAH (menjebak)`
-    },
-
-    // ======================================================
-    // SOAL 6 : KEBUN - BAGIAN PERSEGI
-    // ======================================================
-    {
-        nomor: 6,
-        tipe: "cerita",
-        cerita: "kebun",
-        gambar: "sl7.png",
-        pertanyaan: "Banyak bagian persegi kecil yang dapat dibuat dari kebun tersebut adalah…",
-        options: ["A. 40", "B. 50", "C. 60", "D. 100"],
-        correct: "B. 50",
-        pembahasan: `<strong>Pembahasan:</strong><br>• Luas kebun = 20 × 10 = 200 m²<br>• Luas persegi kecil = 2 × 2 = 4 m²<br>• Banyak bagian = 200 ÷ 4 = <strong>50 bagian</strong>`
-    },
-
-    // ======================================================
-    // SOAL 7 : KEBUN - BIAYA PAGAR
-    // ======================================================
-    {
-        nomor: 7,
-        tipe: "cerita",
-        cerita: "kebun",
-        gambar: "sl7.png",
-        pertanyaan: "Biaya yang diperlukan untuk membuat pagar di sekeliling kebun adalah…",
-        options: ["A. Rp2.000.000", "B. Rp3.000.000", "C. Rp4.000.000", "D. Rp5.000.000"],
-        correct: "B. Rp3.000.000",
-        pembahasan: `<strong>Pembahasan:</strong><br>• Keliling = 2 × (20 + 10) = 60 meter<br>• Biaya = 60 × Rp50.000 = <strong>Rp3.000.000</strong>`
-    },
-
-    // ======================================================
-    // SOAL 8 : KEBUN - KOMPLEKS
-    // ======================================================
-    {
-        nomor: 8,
-        tipe: "kompleks",
-        cerita: "kebun",
-        gambar: "sl7.png",
-        pertanyaan: "Pilih semua pernyataan yang benar!",
-        options: ["A. Luas kebun adalah 200 m²", "B. Keliling kebun adalah 60 meter", "C. Jumlah bagian persegi kecil adalah 100", "D. Jika sisi persegi kecil diperbesar, jumlah bagian akan bertambah"],
-        correct: ["A. Luas kebun adalah 200 m²", "B. Keliling kebun adalah 60 meter"],
-        pembahasan: `<strong>Pembahasan:</strong><br>✓ A. Luas = 20×10 = 200 m² (BENAR)<br>✓ B. Keliling = 2×(20+10) = 60 m (BENAR)<br>✗ C. Jumlah = 50, bukan 100 (SALAH)<br>✗ D. Sisi diperbesar → jumlah BERKURANG (SALAH)`
-    },
-
-    // ======================================================
-    // SOAL 9 : PERBANDINGAN TINGGI (KOMPLEKS)
-    // ======================================================
-    {
-        nomor: 9,
-        tipe: "kompleks",
-        cerita: "umum",
-        gambar: "tembok.png",
-        pertanyaan: "Budi mengamati tinggi tembok berbanding 5 : 1 terhadap tinggi tubuhnya. Jika tinggi Budi 171 cm, pernyataan yang BENAR adalah…",
-        options: ["A. Tinggi tembok = 855 cm", "B. Tinggi tembok = 8,55 m", "C. Jika Budi 170 cm, tembok = 850 cm", "D. Perbandingan Budi : Tembok = 1 : 5", "E. Tinggi tembok < 8 meter"],
-        correct: ["A. Tinggi tembok = 855 cm", "B. Tinggi tembok = 8,55 m", "C. Jika Budi 170 cm, tembok = 850 cm", "D. Perbandingan Budi : Tembok = 1 : 5"],
-        pembahasan: `<strong>Pembahasan:</strong><br>• Tembok = 5 × 171 = 855 cm (A BENAR)<br>• 855 cm = 8,55 m (B BENAR)<br>• 5 × 170 = 850 cm (C BENAR)<br>• Budi : Tembok = 1 : 5 (D BENAR)<br>✗ E. 8,55 m > 8 m (SALAH)`
-    },
-
-    // ======================================================
-    // SOAL 10 : VOLUME GABUNGAN (KUBUS & BALOK)
-    // ======================================================
-    {
-        nomor: 10,
-        tipe: "bangun-ruang",
-        cerita: null,
-        gambar: "gabungan.png",
-        pertanyaan: "Bangun gabungan terdiri dari kubus (s=5 cm) dan balok (p=10, l=5, t=5 cm). Volume totalnya adalah…",
-        options: ["A. 275 cm³", "B. 325 cm³", "C. 375 cm³", "D. 425 cm³"],
-        correct: "C. 375 cm³",
-        pembahasan: `<strong>Pembahasan:</strong><br>• V kubus = 5³ = 125 cm³<br>• V balok = 10×5×5 = 250 cm³<br>• Total = 125 + 250 = <strong>375 cm³</strong>`
-    },
-
-    // ======================================================
-    // SOAL 11 : PECAHAN CAMPURAN
-    // ======================================================
-    {
-        nomor: 11,
-        tipe: "bangun-ruang",
-        cerita: null,
-        gambar: "pecahan.png",
-        pertanyaan: "Ibu memiliki 2½ kg tepung, membeli 1¾ kg, lalu menggunakan 3⅓ kg. Sisa tepung Ibu adalah…",
-        options: ["A. 11/12 kg", "B. 1 kg", "C. 1 1/12 kg", "D. 1 1/6 kg"],
-        correct: "A. 11/12 kg",
-        pembahasan: `<strong>Pembahasan:</strong><br>• Total = 2½ + 1¾ = 5/2 + 7/4 = 10/4 + 7/4 = 17/4 kg<br>• Digunakan = 3⅓ = 10/3 kg<br>• Sisa = 17/4 - 10/3 = 51/12 - 40/12 = <strong>11/12 kg</strong>`
-    },
-
-    // ======================================================
-    // SOAL 12 : KPK
-    // ======================================================
-    {
-        nomor: 12,
-        tipe: "bangun-ruang",
-        cerita: null,
-        gambar: "kpk.png",
-        pertanyaan: "Lampu A menyala tiap 8 detik, B tiap 12 detik, C tiap 15 detik. Jika menyala bersama pukul 10:00, kapan menyala bersama lagi?",
-        options: ["A. 10:01", "B. 10:02", "C. 10:03", "D. 10:04"],
-        correct: "B. 10:02",
-        pembahasan: `<strong>Pembahasan:</strong><br>• KPK 8, 12, 15:<br>8=2³, 12=2²×3, 15=3×5<br>• KPK = 2³×3×5 = 120 detik = 2 menit<br>• Menyala bersama lagi <strong>10:02</strong>`
-    },
-
-    // ======================================================
-    // SOAL 13 : FPB
-    // ======================================================
-    {
-        nomor: 13,
-        tipe: "bangun-ruang",
-        cerita: null,
-        gambar: "fpb.png",
-        pertanyaan: "Ibu memiliki 24 apel, 36 jeruk, 60 mangga. Banyak keranjang maksimal dengan isi sama adalah…",
-        options: ["A. 6", "B. 8", "C. 10", "D. 12"],
-        correct: "D. 12",
-        pembahasan: `<strong>Pembahasan:</strong><br>• FPB 24, 36, 60:<br>24=2³×3, 36=2²×3², 60=2²×3×5<br>• FPB = 2²×3 = 12 keranjang`
-    },
-
-    // ======================================================
-    // SOAL 14 : SKALA PETA
-    // ======================================================
-    {
-        nomor: 14,
-        tipe: "bangun-ruang",
-        cerita: null,
-        gambar: "peta.png",
-        pertanyaan: "Jarak pada peta 5 cm, skala 1 : 2.000.000. Jarak sebenarnya adalah…",
-        options: ["A. 10 km", "B. 50 km", "C. 100 km", "D. 200 km"],
-        correct: "C. 100 km",
-        pembahasan: `<strong>Pembahasan:</strong><br>• Jarak sebenarnya = 5 cm × 2.000.000 = 10.000.000 cm<br>• 10.000.000 cm = 100.000 m = <strong>100 km</strong>`
-    },
-
-    // ======================================================
-    // SOAL 15 : KECEPATAN (KOMPLEKS)
-    // ======================================================
-    {
-        nomor: 15,
-        tipe: "kompleks",
-        cerita: null,
-        gambar: "mobil.png",
-        pertanyaan: "Mobil menempuh 180 km dalam 3 jam. Pernyataan yang BENAR adalah…",
-        options: ["A. Kecepatan = 60 km/jam", "B. Waktu 300 km = 5 jam", "C. Jarak 2 jam = 120 km", "D. Kecepatan = 50 km/jam"],
-        correct: ["A. Kecepatan = 60 km/jam", "B. Waktu 300 km = 5 jam", "C. Jarak 2 jam = 120 km"],
-        pembahasan: `<strong>Pembahasan:</strong><br>• K = 180÷3 = 60 km/jam (A BENAR)<br>• W = 300÷60 = 5 jam (B BENAR)<br>• J = 60×2 = 120 km (C BENAR)<br>✗ D SALAH`
-    },
-
-    // ======================================================
-    // SOAL 16 : SATUAN PANJANG
-    // ======================================================
-    {
-        nomor: 16,
-        tipe: "bangun-ruang",
-        cerita: null,
-        gambar: "penggaris.png",
-        pertanyaan: "2,5 km + 350 m + 4.500 cm = … meter",
-        options: ["A. 2.895 m", "B. 2.985 m", "C. 3.195 m", "D. 3.295 m"],
-        correct: "A. 2.895 m",
-        pembahasan: `<strong>Pembahasan:</strong><br>• 2,5 km = 2.500 m<br>• 350 m = 350 m<br>• 4.500 cm = 45 m<br>• Total = 2.500 + 350 + 45 = <strong>2.895 m</strong>`
-    },
-
-    // ======================================================
-    // SOAL 17 : SATUAN BERAT
-    // ======================================================
-    {
-        nomor: 17,
-        tipe: "bangun-ruang",
-        cerita: null,
-        gambar: "timbangan.png",
-        pertanyaan: "2,5 ton + 3,5 kuintal + 750 kg = … kg",
-        options: ["A. 3.500 kg", "B. 3.600 kg", "C. 3.700 kg", "D. 3.750 kg"],
-        correct: "B. 3.600 kg",
-        pembahasan: `<strong>Pembahasan:</strong><br>• 2,5 ton = 2.500 kg<br>• 3,5 kuintal = 350 kg<br>• 750 kg = 750 kg<br>• Total = 2.500 + 350 + 750 = <strong>3.600 kg</strong>`
-    },
-
-    // ======================================================
-    // SOAL 18 : DEBIT AIR
-    // ======================================================
-    {
-        nomor: 18,
-        tipe: "bangun-ruang",
-        cerita: null,
-        gambar: "keran.png",
-        pertanyaan: "Keran mengalirkan air 2 liter/detik. Volume air selama 2,5 menit adalah…",
-        options: ["A. 150 liter", "B. 200 liter", "C. 250 liter", "D. 300 liter"],
-        correct: "D. 300 liter",
-        pembahasan: `<strong>Pembahasan:</strong><br>• Waktu = 2,5 menit = 150 detik<br>• Volume = 2 × 150 = <strong>300 liter</strong>`
-    },
-
-    // ======================================================
-    // SOAL 19 : LUAS GABUNGAN BANGUN DATAR
-    // ======================================================
-    {
-        nomor: 19,
-        tipe: "bangun-ruang",
-        cerita: null,
-        gambar: "gabungan_datar.png",
-        pertanyaan: "Bangun terdiri dari persegi panjang (12×8 cm) dan segitiga (a=12, t=6 cm). Luas totalnya…",
-        options: ["A. 96 cm²", "B. 120 cm²", "C. 132 cm²", "D. 144 cm²"],
-        correct: "C. 132 cm²",
-        pembahasan: `<strong>Pembahasan:</strong><br>• L persegi = 12×8 = 96 cm²<br>• L segitiga = ½×12×6 = 36 cm²<br>• Total = 96 + 36 = <strong>132 cm²</strong>`
-    },
-
-    // ======================================================
-    // SOAL 20 : PERBANDINGAN UANG (KOMPLEKS)
-    // ======================================================
-    {
-        nomor: 20,
-        tipe: "kompleks",
-        cerita: null,
-        gambar: "uang.png",
-        pertanyaan: "Uang Andi : Budi : Caca = 3 : 5 : 7. Selisih Caca dan Andi Rp80.000. Pernyataan BENAR…",
-        options: ["A. Uang Andi = Rp60.000", "B. Uang Budi = Rp100.000", "C. Total = Rp300.000", "D. Selisih Budi-Andi = Rp40.000"],
-        correct: ["A. Uang Andi = Rp60.000", "B. Uang Budi = Rp100.000", "C. Total = Rp300.000", "D. Selisih Budi-Andi = Rp40.000"],
-        pembahasan: `<strong>Pembahasan:</strong><br>• Selisih = 7-3 = 4 bagian = 80.000 → 1 bagian = 20.000<br>• Andi = 3×20k = 60k (A BENAR)<br>• Budi = 5×20k = 100k (B BENAR)<br>• Total = 15×20k = 300k (C BENAR)<br>• Selisih = 2×20k = 40k (D BENAR)<br><strong>Semua BENAR!</strong>`
-    },
-
-    // ======================================================
-    // SOAL 21 : VOLUME PRISMA
-    // ======================================================
-    {
-        nomor: 21,
-        tipe: "bangun-ruang",
-        cerita: null,
-        gambar: "prisma.png",
-        pertanyaan: "Prisma segitiga dengan luas alas 24 cm² dan tinggi 15 cm. Volumenya adalah…",
-        options: ["A. 180 cm³", "B. 240 cm³", "C. 300 cm³", "D. 360 cm³"],
-        correct: "D. 360 cm³",
-        pembahasan: `<strong>Pembahasan:</strong><br>• V prisma = Luas alas × tinggi<br>• V = 24 × 15 = <strong>360 cm³</strong>`
-    },
-
-    // ======================================================
-    // SOAL 22 : VOLUME KERUCUT
-    // ======================================================
-    {
-        nomor: 22,
-        tipe: "bangun-ruang",
-        cerita: null,
-        gambar: "kerucut.png",
-        pertanyaan: "Kerucut dengan r=7 cm, t=12 cm. Volumenya adalah… (π=22/7)",
-        options: ["A. 516 cm³", "B. 616 cm³", "C. 716 cm³", "D. 816 cm³"],
-        correct: "B. 616 cm³",
-        pembahasan: `<strong>Pembahasan:</strong><br>• V = ⅓ × π × r² × t<br>• V = ⅓ × 22/7 × 7 × 7 × 12<br>• V = 22 × 7 × 4 = <strong>616 cm³</strong>`
-    },
-
-    // ======================================================
-    // SOAL 23 : PANGKAT & AKAR
-    // ======================================================
-    {
-        nomor: 23,
-        tipe: "bangun-ruang",
-        cerita: null,
-        gambar: "pangkat.png",
-        pertanyaan: "Hasil dari 12² + √625 - 5² adalah…",
-        options: ["A. 134", "B. 144", "C. 154", "D. 164"],
-        correct: "B. 144",
-        pembahasan: `<strong>Pembahasan:</strong><br>• 12² = 144<br>• √625 = 25<br>• 5² = 25<br>• Hasil = 144 + 25 - 25 = <strong>144</strong>`
-    },
-
-    // ======================================================
-    // SOAL 24 : DIAGRAM LINGKARAN (KOMPLEKS)
-    // ======================================================
-    {
-        nomor: 24,
-        tipe: "kompleks",
-        cerita: null,
-        gambar: "diagram.png",
-        pertanyaan: "Dari 40 siswa: 25% suka MTK, 35% IPA, 20% BHS, sisanya IPS. Pernyataan BENAR…",
-        options: ["A. Suka MTK = 10 anak", "B. Suka IPA = 14 anak", "C. Suka BHS = 8 anak", "D. Suka IPS = 8 anak"],
-        correct: ["A. Suka MTK = 10 anak", "B. Suka IPA = 14 anak", "C. Suka BHS = 8 anak", "D. Suka IPS = 8 anak"],
-        pembahasan: `<strong>Pembahasan:</strong><br>• MTK = 25%×40 = 10 (A BENAR)<br>• IPA = 35%×40 = 14 (B BENAR)<br>• BHS = 20%×40 = 8 (C BENAR)<br>• IPS = 20%×40 = 8 (D BENAR)<br><strong>Semua BENAR!</strong>`
-    },
-
-    // ======================================================
-    // SOAL 25 : JARAK, WAKTU, KECEPATAN
-    // ======================================================
-    {
-        nomor: 25,
-        tipe: "bangun-ruang",
-        cerita: null,
-        gambar: "bus.png",
-        pertanyaan: "Bus berangkat 07:30, kecepatan 60 km/jam, jarak 150 km. Tiba pukul…",
-        options: ["A. 09:30", "B. 09:45", "C. 10:00", "D. 10:15"],
-        correct: "C. 10:00",
-        pembahasan: `<strong>Pembahasan:</strong><br>• Waktu = 150 ÷ 60 = 2,5 jam = 2 jam 30 menit<br>• Tiba = 07:30 + 2:30 = <strong>10:00</strong>`
-    },
-
-    // ======================================================
-    // SOAL 26 : RATA-RATA (MEAN)
-    // ======================================================
-    {
-        nomor: 26,
-        tipe: "bangun-ruang",
-        cerita: null,
-        gambar: "nilai.png",
-        pertanyaan: "Nilai: 85, 90, 75, 80, 95. Rata-ratanya adalah…",
-        options: ["A. 83", "B. 84", "C. 85", "D. 86"],
-        correct: "C. 85",
-        pembahasan: `<strong>Pembahasan:</strong><br>• Jumlah = 85+90+75+80+95 = 425<br>• Rata-rata = 425 ÷ 5 = <strong>85</strong>`
-    },
-
-    // ======================================================
-    // SOAL 27 : MEDIAN
-    // ======================================================
-    {
-        nomor: 27,
-        tipe: "bangun-ruang",
-        cerita: null,
-        gambar: "data.png",
-        pertanyaan: "Tinggi badan: 145, 150, 148, 152, 149, 147. Mediannya adalah…",
-        options: ["A. 147 cm", "B. 148 cm", "C. 148,5 cm", "D. 149 cm"],
-        correct: "C. 148,5 cm",
-        pembahasan: `<strong>Pembahasan:</strong><br>• Urut: 145, 147, 148, 149, 150, 152<br>• Median = (148+149)÷2 = <strong>148,5 cm</strong>`
-    },
-
-    // ======================================================
-    // SOAL 28 : MODUS
-    // ======================================================
-    {
-        nomor: 28,
-        tipe: "bangun-ruang",
-        cerita: null,
-        gambar: "modus.png",
-        pertanyaan: "Nilai: 7, 8, 9, 7, 8, 10, 9, 7, 8, 9. Modusnya adalah…",
-        options: ["A. 7 dan 8", "B. 7 dan 9", "C. 8 dan 9", "D. 7, 8, dan 9"],
-        correct: "D. 7, 8, dan 9",
-        pembahasan: `<strong>Pembahasan:</strong><br>• 7 muncul 3×, 8 muncul 3×, 9 muncul 3×, 10 muncul 1×<br>• Modus = <strong>7, 8, dan 9</strong>`
-    },
-
-    // ======================================================
-    // SOAL 29 : LUAS PERMUKAAN BOLA
-    // ======================================================
-    {
-        nomor: 29,
-        tipe: "bangun-ruang",
-        cerita: null,
-        gambar: "bola.png",
-        pertanyaan: "Bola dengan jari-jari 7 cm. Luas permukaannya adalah… (π=22/7)",
-        options: ["A. 308 cm²", "B. 462 cm²", "C. 616 cm²", "D. 770 cm²"],
-        correct: "C. 616 cm²",
-        pembahasan: `<strong>Pembahasan:</strong><br>• L = 4 × π × r²<br>• L = 4 × 22/7 × 7 × 7<br>• L = 4 × 22 × 7 = <strong>616 cm²</strong>`
-    },
-
-    // ======================================================
-    // SOAL 30 : SKALA DENAH (KOMPLEKS)
-    // ======================================================
-    {
-        nomor: 30,
-        tipe: "kompleks",
-        cerita: null,
-        gambar: "denah.png",
-        pertanyaan: "Denah skala 1:200, panjang denah 6 cm, lebar 4 cm. Pernyataan BENAR…",
-        options: ["A. Panjang sebenarnya = 12 m", "B. Lebar sebenarnya = 8 m", "C. Luas sebenarnya = 96 m²", "D. Keliling sebenarnya = 40 m"],
-        correct: ["A. Panjang sebenarnya = 12 m", "B. Lebar sebenarnya = 8 m", "C. Luas sebenarnya = 96 m²", "D. Keliling sebenarnya = 40 m"],
-        pembahasan: `<strong>Pembahasan:</strong><br>• P = 6×200 = 1200 cm = 12 m (A BENAR)<br>• L = 4×200 = 800 cm = 8 m (B BENAR)<br>• Luas = 12×8 = 96 m² (C BENAR)<br>• Keliling = 2×(12+8) = 40 m (D BENAR)<br><strong>Semua BENAR!</strong>`
-    }
-];
-
-    // ========== FUNGSI RENDER GAMBAR ==========
-    function renderGambar(soal) {
-        const namaGambar = soal.gambar;
-        const isCerita = soal.tipe === "cerita";
-        const isTabung = soal.gambar && soal.gambar.includes("tabung");
-        const isLingkaran = soal.gambar && soal.gambar.includes("Lingkaran");
-        
-        let placeholderContent = '';
-        
-        if (isCerita) {
-            placeholderContent = `
-                <div style="display:flex; align-items:center; justify-content:center; gap:10px; padding:10px;">
-                    <span style="font-size:40px;">🏫🎪</span>
-                    <span style="font-size:30px;">🍰🍞📦</span>
-                </div>
-                <div style="font-size:12px;">Paket A (½ kue) | Paket B (¾ kue) | Paket C (1 kue)</div>
-                <div style="font-size:13px; margin-top:5px;"><strong>8 paket A &nbsp; 4 paket B &nbsp; 2 paket C</strong></div>
-            `;
-        } else if (isTabung) {
-            placeholderContent = `
-                <div style="padding:10px;">
-                    <div style="font-size:45px;">🥫🧴</div>
-                    <div style="font-size:13px; margin-top:5px;">
-                        <strong>TABUNG</strong><br>
-                        r = 7 cm | t = 10 cm
-                    </div>
-                </div>
-            `;
-        } else if (isLingkaran) {
-            placeholderContent = `
-                <div style="padding:10px;">
-                    <div style="font-size:45px;">⚪🔵</div>
-                    <div style="font-size:13px; margin-top:5px;">
-                        <strong>LINGKARAN</strong><br>
-                        D = 28 cm | r = 14 cm | π = 22/7
-                    </div>
-                </div>
-            `;
-        } else {
-            placeholderContent = `
-                <div style="padding:10px;">
-                    <div style="font-size:45px;">📐📏</div>
-                    <div style="font-size:13px; margin-top:5px;">
-                        <strong>GAMBAR SOAL</strong>
-                    </div>
-                </div>
-            `;
-        }
-        
-        return `
-            <div class="gambar-placeholder">
-                <img src="${namaGambar}" alt="Gambar Soal ${soal.nomor}" 
-                     style="max-width:100%; border-radius:8px;"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <div style="display:none;">
-                    ${placeholderContent}
-                </div>
-                <div class="gambar-caption">📸 Gambar: ${namaGambar}</div>
+            <div class="logo-wrapper">
+                <img
+                    src="image/logoSMAN5.png"
+                    alt="Logo SMAN 5 Bogor"
+                    class="school-logo"
+                >
             </div>
-        `;
-    }
 
-    // ========== VARIABEL GLOBAL ==========
-    let currentSoal = 0;
-    let jawabanUser = [];
-    let timerInterval = null;
-    let ujianSelesai = false;
-    let waktuHabis = false;
+            <h1>SMAN 5 BOGOR</h1>
 
-    // ========== INISIALISASI DROPDOWN TANGGAL ==========
-    let tgl = document.getElementById("tanggal");
-    tgl.innerHTML = "<option value=''>Tanggal</option>";
-    for(let i = 1; i <= 31; i++) {
-        tgl.innerHTML += `<option value='${i}'>${i}</option>`;
-    }
+            <p class="motto">
+                JUARA • JAYA • BERMARTABAT
+            </p>
 
-    let bln = document.getElementById("bulan");
-    let bulanArr = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
-    bln.innerHTML = "<option value=''>Bulan</option>";
-    bulanArr.forEach(b => {
-        bln.innerHTML += `<option value='${b}'>${b}</option>`;
-    });
+            <p class="welcome">
+                Wilujeng Sumping di SMA Negeri 5 Kota Bogor
+            </p>
 
-    let thn = document.getElementById("tahun");
-    thn.innerHTML = "<option value=''>Tahun</option>";
-    for(let i = 2008; i <= 2020; i++) {
-        thn.innerHTML += `<option value='${i}'>${i}</option>`;
-    }
+        </div>
 
-    // ========== FUNGSI LOGIN ==========
-    function login() {
-        const u = document.getElementById("user").value.trim();
-        const p = document.getElementById("pass").value.trim();
-        const err = document.getElementById("loginErr");
+    </header>
 
-        err.innerText = "";
 
-        if((u === "P00398432" && p === "4322*") || (u === "P00408433" && p === "8999*")) {
-            document.getElementById("login").style.display = "none";
-            document.getElementById("form").style.display = "block";
-        } else {
-            err.innerText = "❌ Username atau Password salah";
-        }
-    }
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+    <nav class="navbar">
 
-    // ========== FUNGSI MULAI UJIAN ==========
-    function mulai() {
-        const nama = document.getElementById("nama");
-        const sekolah = document.getElementById("sekolah");
-        const tanggal = document.getElementById("tanggal");
-        const bulan = document.getElementById("bulan");
-        const tahun = document.getElementById("tahun");
+        <div class="container nav-container">
 
-        const errNama = document.getElementById("errNama");
-        const errSekolah = document.getElementById("errSekolah");
-        const errTanggal = document.getElementById("errTanggal");
+            <a href="index.html" class="nav-logo">
+                SMAN 5
+            </a>
 
-        let valid = true;
+            <button class="menu-toggle" id="menuToggle">
+                ☰
+            </button>
 
-        if(nama.value.trim() === "") {
-            errNama.innerText = "⚠️ Nama lengkap wajib diisi";
-            valid = false;
-        } else {
-            errNama.innerText = "";
-        }
+            <div class="nav-menu" id="navMenu">
 
-        if(sekolah.value.trim() === "") {
-            errSekolah.innerText = "⚠️ Asal sekolah wajib diisi";
-            valid = false;
-        } else {
-            errSekolah.innerText = "";
-        }
+                <a href="index.html" class="active">
+                    Beranda
+                </a>
 
-        if(tanggal.value === "" || bulan.value === "" || tahun.value === "") {
-            errTanggal.innerText = "⚠️ Tanggal lahir lengkap wajib diisi";
-            valid = false;
-        } else {
-            errTanggal.innerText = "";
-        }
+                <a href="isi/profil.html">
+                    Profil
+                </a>
 
-        if(!valid) return;
+                <a href="isi/akademik.html">
+                    Akademik
+                </a>
 
-        // Reset state
-        currentSoal = 0;
-        ujianSelesai = false;
-        waktuHabis = false;
-        jawabanUser = new Array(soalList.length).fill(null);
+                <a href="isi/prestasi.html">
+                    Prestasi
+                </a>
 
-        document.getElementById("totalSoalDisplay").textContent = soalList.length;
-        document.getElementById("form").style.display = "none";
-        document.getElementById("soal").style.display = "block";
+                <a href="isi/kesiswaan.html">
+                    Kesiswaan
+                </a>
 
-        initSoalIndicator();
-        loadSoal(0);
-        startTimer(WAKTU_UJIAN_MENIT * 60);
-    }
+                <a href="isi/fasilitas.html">
+                    Fasilitas
+                </a>
 
-    // ========== INISIALISASI INDIKATOR SOAL ==========
-    function initSoalIndicator() {
-        const indicator = document.getElementById("soalIndicator");
-        indicator.innerHTML = "";
+                <a href="isi/berita.html">
+                    Berita
+                </a>
 
-        for(let i = 0; i < soalList.length; i++) {
-            const badge = document.createElement("div");
-            badge.className = "soal-badge";
-            if(soalList[i].tipe === "kompleks") {
-                badge.classList.add("kompleks-badge");
-            }
-            if(i === currentSoal) badge.classList.add("active");
-            badge.innerText = i + 1;
-            badge.onclick = () => goToSoal(i);
-            badge.title = `Soal ${i + 1}${soalList[i].tipe === "kompleks" ? " (Pilihan Kompleks)" : ""}`;
-            indicator.appendChild(badge);
-        }
-    }
+                <a href="isi/kontak.html">
+                    Kontak
+                </a>
 
-    // ========== UPDATE INDIKATOR SOAL ==========
-    function updateSoalIndicator() {
-        const badges = document.querySelectorAll(".soal-badge");
-        badges.forEach((badge, index) => {
-            badge.classList.remove("active", "answered");
-            if(index === currentSoal) {
-                badge.classList.add("active");
-            }
-            
-            const jawaban = jawabanUser[index];
-            if(jawaban !== null) {
-                if(Array.isArray(jawaban) && jawaban.length > 0) {
-                    badge.classList.add("answered");
-                } else if(!Array.isArray(jawaban)) {
-                    badge.classList.add("answered");
-                }
-            }
-        });
-    }
-
-    // ========== LOAD SOAL ==========
-    function loadSoal(index) {
-        if (ujianSelesai) return;
-        
-        const soal = soalList[index];
-        
-        // ========== TAMPILKAN CERITA ==========
-        const ceritaBox = document.getElementById("ceritaBox");
-        const jenisCerita = soal.cerita;
-        
-        if (jenisCerita && CERITA[jenisCerita]) {
-            const dataCerita = CERITA[jenisCerita];
-            ceritaBox.style.display = "block";
-            ceritaBox.className = `cerita-box ${dataCerita.class}`;
-            ceritaBox.innerHTML = `
-                <strong>${dataCerita.judul}</strong><br>
-                ${dataCerita.konten}
-            `;
-        } else {
-            ceritaBox.style.display = "none";
-        }
-        
-        // Render gambar
-        document.getElementById("gambarContainer").innerHTML = renderGambar(soal);
-        
-        // Tampilkan teks soal dengan badge
-        let tipeBadge = '';
-        let ceritaBadge = '';
-        
-        if (soal.tipe === "kompleks") {
-            tipeBadge = '<span class="soal-type-badge kompleks">PILIHAN KOMPLEKS</span>';
-        } else if (soal.tipe === "bangun-ruang") {
-            tipeBadge = '<span class="soal-type-badge">BANGUN RUANG</span>';
-        }
-        
-        if (soal.cerita) {
-            const namaCerita = CERITA[soal.cerita]?.judul.replace(/[^a-zA-Z]/g, '').substring(0, 10) || soal.cerita;
-            ceritaBadge = `<span class="cerita-badge">📖 ${soal.cerita}</span>`;
-        }
-        
-        document.getElementById("soalText").innerHTML = `
-            <span class="soal-nomor">🧪 SOAL ${soal.nomor}</span>${tipeBadge}${ceritaBadge}<br>
-            <strong>${soal.pertanyaan}</strong>
-        `;
-        
-        document.getElementById("soalCounter").innerText = `📋 Soal ${index + 1} dari ${soalList.length}`;
-        
-        // Tampilkan/sembunyikan petunjuk kompleks
-        const petunjuk = document.getElementById("petunjukKompleks");
-        petunjuk.style.display = soal.tipe === "kompleks" ? "block" : "none";
-
-        // Generate options
-        const optionsContainer = document.getElementById("optionsContainer");
-        optionsContainer.innerHTML = "";
-        
-        const isKompleks = soal.tipe === "kompleks";
-        const jawabanSaatIni = jawabanUser[index];
-
-        soal.options.forEach(opt => {
-            const div = document.createElement("div");
-            div.className = "option";
-            if (isKompleks) {
-                div.classList.add("kompleks");
-            }
-            
-            if (isKompleks) {
-                const checkbox = document.createElement("input");
-                checkbox.type = "checkbox";
-                checkbox.value = opt;
-                
-                if (Array.isArray(jawabanSaatIni) && jawabanSaatIni.includes(opt)) {
-                    checkbox.checked = true;
-                    div.classList.add("selected");
-                }
-                
-                const label = document.createElement("label");
-                label.innerText = opt;
-                label.style.flex = "1";
-                label.style.cursor = "pointer";
-                
-                div.appendChild(checkbox);
-                div.appendChild(label);
-                
-                div.onclick = (e) => {
-                    if (e.target.type !== "checkbox") {
-                        const cb = div.querySelector('input[type="checkbox"]');
-                        cb.checked = !cb.checked;
-                    }
-                    pilihJawabanKompleks();
-                };
-            } else {
-                div.setAttribute("data-value", opt);
-                div.innerText = opt;
-                div.onclick = (function(value) {
-                    return function() { pilihJawabanBiasa(value); };
-                })(opt);
-                
-                if(jawabanSaatIni === opt) {
-                    div.classList.add("selected");
-                }
-            }
-            
-            optionsContainer.appendChild(div);
-        });
-
-        updateNavigation();
-        updateSoalIndicator();
-        cekSemuaTerjawab();
-    }
-
-    // ========== PILIH JAWABAN BIASA ==========
-    function pilihJawabanBiasa(value) {
-        if (ujianSelesai) return;
-        
-        jawabanUser[currentSoal] = value;
-
-        const options = document.querySelectorAll('.option');
-        options.forEach(opt => {
-            if(opt.getAttribute('data-value') === value) {
-                opt.classList.add('selected');
-            } else {
-                opt.classList.remove('selected');
-            }
-        });
-
-        updateSoalIndicator();
-        cekSemuaTerjawab();
-    }
-
-    // ========== PILIH JAWABAN KOMPLEKS ==========
-    function pilihJawabanKompleks() {
-        if (ujianSelesai) return;
-        
-        const options = document.querySelectorAll('.option.kompleks');
-        const selectedValues = [];
-        
-        options.forEach(opt => {
-            const checkbox = opt.querySelector('input[type="checkbox"]');
-            if (checkbox && checkbox.checked) {
-                selectedValues.push(checkbox.value);
-                opt.classList.add("selected");
-            } else {
-                opt.classList.remove("selected");
-            }
-        });
-        
-        jawabanUser[currentSoal] = selectedValues;
-        updateSoalIndicator();
-        cekSemuaTerjawab();
-    }
-
-    // ========== UPDATE NAVIGASI ==========
-    function updateNavigation() {
-        const btnPrev = document.getElementById("btnPrev");
-        const btnNext = document.getElementById("btnNext");
-
-        btnPrev.disabled = (currentSoal === 0);
-
-        if(currentSoal === soalList.length - 1) {
-            btnNext.innerText = "✅ Selesai";
-            btnNext.style.background = "#4caf50";
-        } else {
-            btnNext.innerText = "Selanjutnya →";
-            btnNext.style.background = "#2196F3";
-        }
-    }
-
-    // ========== NAVIGASI SOAL ==========
-    function nextSoal() {
-        if (ujianSelesai) return;
-        
-        if(currentSoal < soalList.length - 1) {
-            currentSoal++;
-            loadSoal(currentSoal);
-        } else {
-            selesai();
-        }
-    }
-
-    function prevSoal() {
-        if (ujianSelesai) return;
-        
-        if(currentSoal > 0) {
-            currentSoal--;
-            loadSoal(currentSoal);
-        }
-    }
-
-    function goToSoal(index) {
-        if (ujianSelesai) return;
-        
-        if(index >= 0 && index < soalList.length) {
-            currentSoal = index;
-            loadSoal(currentSoal);
-        }
-    }
-
-    // ========== CEK SEMUA SOAL SUDAH DIJAWAB ==========
-    function cekSemuaTerjawab() {
-        const semuaTerjawab = jawabanUser.every(jawab => {
-            if (jawab === null) return false;
-            if (Array.isArray(jawab) && jawab.length === 0) return false;
-            return true;
-        });
-        
-        const btnSelesai = document.getElementById("btnSelesai");
-        const warningMsg = document.getElementById("warningMsg");
-
-        if(semuaTerjawab) {
-            btnSelesai.style.background = "#4caf50";
-            warningMsg.innerHTML = "✅ Semua soal sudah terjawab! Klik Selesai Ujian.";
-            warningMsg.style.color = "#2e7d32";
-            warningMsg.style.background = "#e8f5e9";
-            warningMsg.classList.add("success");
-        } else {
-            btnSelesai.style.background = "#4facfe";
-            const terjawab = jawabanUser.filter(j => {
-                if (j === null) return false;
-                if (Array.isArray(j) && j.length === 0) return false;
-                return true;
-            }).length;
-            const belumTerjawab = soalList.length - terjawab;
-            warningMsg.innerHTML = `📊 Progress: ${terjawab}/${soalList.length} soal terjawab (${belumTerjawab} belum)`;
-            warningMsg.style.color = "#e65100";
-            warningMsg.style.background = "#fff3e0";
-            warningMsg.classList.remove("success");
-        }
-    }
-
-    // ========== HITUNG SKOR ==========
-    function hitungSkor() {
-        let benar = 0;
-        let salah = 0;
-        let tidakDijawab = 0;
-        
-        for(let i = 0; i < soalList.length; i++) {
-            const jawaban = jawabanUser[i];
-            const kunci = soalList[i].correct;
-            
-            if(jawaban === null || (Array.isArray(jawaban) && jawaban.length === 0)) {
-                tidakDijawab++;
-            } else if(Array.isArray(kunci)) {
-                const sortedJawaban = [...jawaban].sort();
-                const sortedKunci = [...kunci].sort();
-                if(JSON.stringify(sortedJawaban) === JSON.stringify(sortedKunci)) {
-                    benar++;
-                } else {
-                    salah++;
-                }
-            } else {
-                if(jawaban === kunci) {
-                    benar++;
-                } else {
-                    salah++;
-                }
-            }
-        }
-        
-        return { benar, salah, tidakDijawab };
-    }
-
-    // ========== TAMPILKAN MODAL HASIL ==========
-    function tampilkanModalHasil(alasanSelesai = 'selesai') {
-        const skor = hitungSkor();
-        const totalSoal = soalList.length;
-        const nilai = Math.round((skor.benar / totalSoal) * 100);
-        const nama = document.getElementById("nama").value;
-        const sekolah = document.getElementById("sekolah").value;
-
-        const modal = document.createElement('div');
-        modal.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        `;
-
-        const modalContent = document.createElement('div');
-        modalContent.style.cssText = `
-            background: white;
-            padding: 25px;
-            border-radius: 20px;
-            width: 420px;
-            max-width: 90%;
-            max-height: 85%;
-            overflow-y: auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        `;
-
-        let alasanText = '';
-        if (alasanSelesai === 'waktu_habis') {
-            alasanText = '<p style="color:#f44336; font-weight:bold; text-align:center;">⏰ WAKTU HABIS! Ujian dikumpulkan otomatis.</p>';
-        } else {
-            alasanText = '<p style="color:#4caf50; font-weight:bold; text-align:center;">✅ Ujian selesai dikerjakan.</p>';
-        }
-
-        let hasilHTML = `
-            <h2 style="color: #4facfe; margin-top:0; text-align:center;">🎉 Ujian Selesai!</h2>
-            ${alasanText}
-            <div style="background: #f5f5f5; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
-                <p style="margin:5px 0;"><strong>👤 Nama:</strong> ${nama}</p>
-                <p style="margin:5px 0;"><strong>🏫 Sekolah:</strong> ${sekolah}</p>
-                <hr>
-                <p style="margin:5px 0; font-size:16px;"><strong>📊 Ringkasan:</strong></p>
-                <p style="margin:5px 0;">✅ Benar: <strong>${skor.benar}</strong></p>
-                <p style="margin:5px 0;">❌ Salah: <strong>${skor.salah}</strong></p>
-                <p style="margin:5px 0;">⚠️ Tidak dijawab: <strong>${skor.tidakDijawab}</strong></p>
-                <p style="margin:10px 0 5px; font-size:22px; color: ${nilai >= 70 ? '#4caf50' : '#ff9800'};">
-                    <strong>Nilai Akhir: ${nilai}</strong>
-                </p>
             </div>
-            
-            <div style="margin-bottom: 15px;">
-                <h3 style="font-size:16px; margin-bottom:10px;">📝 Detail Jawaban:</h3>
-        `;
 
-        soalList.forEach((soal, idx) => {
-            const jawaban = jawabanUser[idx];
-            const kunci = soal.correct;
-            let isCorrect = false;
-            let jawabanText = '';
-            
-            if(jawaban === null || (Array.isArray(jawaban) && jawaban.length === 0)) {
-                jawabanText = '<span style="color:#999;">(Tidak dijawab)</span>';
-            } else if(Array.isArray(kunci)) {
-                const sortedJawaban = [...jawaban].sort();
-                const sortedKunci = [...kunci].sort();
-                isCorrect = JSON.stringify(sortedJawaban) === JSON.stringify(sortedKunci);
-                jawabanText = jawaban.join(', ');
-            } else {
-                isCorrect = jawaban === kunci;
-                jawabanText = jawaban;
-            }
-            
-            const bgColor = (jawaban === null || (Array.isArray(jawaban) && jawaban.length === 0)) ? '#fff3e0' : (isCorrect ? '#e8f5e9' : '#ffebee');
-            const icon = (jawaban === null || (Array.isArray(jawaban) && jawaban.length === 0)) ? '⚠️' : (isCorrect ? '✅' : '❌');
-            
-            hasilHTML += `
-                <div style="background: ${bgColor}; padding: 12px; border-radius: 8px; margin-bottom: 10px; font-size:13px;">
-                    <strong>🧪 SOAL ${soal.nomor}:</strong> ${soal.pertanyaan.substring(0, 60)}...<br>
-                    <span style="display:block; margin-top:8px;">
-                        ${icon} Jawaban: ${jawabanText}
-                        ${!isCorrect ? `<br><span style="color:#4caf50;">✓ Kunci: ${Array.isArray(kunci) ? kunci.join(', ') : kunci}</span>` : ''}
+        </div>
+
+    </nav>
+
+
+    <main>
+
+
+        <!-- =========================
+             HERO
+        ========================== -->
+        <section class="hero">
+
+            <div class="container hero-content">
+
+                <div class="hero-text">
+
+                    <span class="hero-label">
+                        SMA NEGERI 5 KOTA BOGOR
                     </span>
-                    <div style="margin-top:8px; padding:8px; background:white; border-radius:6px; font-size:12px;">
-                        ${soal.pembahasan}
+
+                    <h2>
+                        Tempat Tumbuhnya
+                        <span>Generasi Berprestasi</span>
+                    </h2>
+
+                    <p>
+                        Mengenal lebih dekat SMAN 5 Bogor,
+                        lingkungan pendidikan, prestasi,
+                        kegiatan siswa, fasilitas, dan berbagai
+                        informasi sekolah.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="isi/profil.html" class="btn btn-primary">
+                            Jelajahi Sekolah
+                        </a>
+
+                        <a href="#video" class="btn btn-outline">
+                            ▶ Video Profil
+                        </a>
+
                     </div>
+
                 </div>
-            `;
-        });
 
-        hasilHTML += `
+
+                <!-- Slot foto sekolah -->
+                <div class="hero-image">
+
+                    <img
+                        src="image/sekolah.jpg"
+                        alt="Foto SMAN 5 Bogor"
+                    >
+
+                    <div class="image-caption">
+                        <strong>SMAN 5 Bogor</strong>
+                        <span>Lingkungan belajar dan berkembang</span>
+                    </div>
+
+                </div>
+
             </div>
-            <button onclick="tutupModal(this)" style="
-                width: 100%;
-                padding: 12px;
-                background: #4facfe;
-                color: white;
-                border: none;
-                border-radius: 10px;
-                font-weight: bold;
-                cursor: pointer;
-                font-size: 16px;
-            ">🏠 Kembali ke Login</button>
-        `;
 
-        modalContent.innerHTML = hasilHTML;
-        modal.appendChild(modalContent);
-        document.body.appendChild(modal);
-    }
+        </section>
 
-    function tutupModal(btn) {
-        const modal = btn.parentElement.parentElement;
-        modal.remove();
-        resetKeLogin();
-    }
 
-    // ========== FUNGSI SELESAI ==========
-    function selesai() {
-        if (ujianSelesai) return;
-        
-        const terjawab = jawabanUser.filter(j => {
-            if (j === null) return false;
-            if (Array.isArray(j) && j.length === 0) return false;
-            return true;
-        }).length;
-        
-        const semuaTerjawab = terjawab === soalList.length;
+        <!-- =========================
+             QUICK ACCESS
+        ========================== -->
+        <section class="quick-access">
 
-        let konfirmasi = true;
-        if(!semuaTerjawab) {
-            konfirmasi = confirm(
-                `⚠️ Perhatian!\n\n` +
-                `Anda baru menjawab ${terjawab} dari ${soalList.length} soal.\n` +
-                `${soalList.length - terjawab} soal belum dijawab.\n\n` +
-                `Soal yang tidak dijawab akan dianggap SALAH.\n` +
-                `Apakah Anda yakin ingin mengakhiri ujian?`
-            );
-        } else {
-            konfirmasi = confirm("Apakah Anda yakin ingin mengakhiri ujian?\n\nJawaban akan dikumpulkan dan tidak dapat diubah.");
-        }
+            <div class="container">
 
-        if(konfirmasi) {
-            ujianSelesai = true;
-            if(timerInterval) {
-                clearInterval(timerInterval);
-                timerInterval = null;
-            }
-            tampilkanModalHasil(waktuHabis ? 'waktu_habis' : 'selesai');
-        }
-    }
+                <div class="section-heading center">
 
-    // ========== RESET KE LOGIN ==========
-    function resetKeLogin() {
-        document.getElementById("soal").style.display = "none";
-        document.getElementById("login").style.display = "block";
-        document.getElementById("form").style.display = "none";
+                    <span>AKSES CEPAT</span>
 
-        document.getElementById("user").value = "";
-        document.getElementById("pass").value = "";
-        document.getElementById("nama").value = "";
-        document.getElementById("sekolah").value = "";
-        document.getElementById("tanggal").value = "";
-        document.getElementById("bulan").value = "";
-        document.getElementById("tahun").value = "";
+                    <h2>
+                        Informasi Sekolah
+                    </h2>
 
-        jawabanUser = [];
-        currentSoal = 0;
-        ujianSelesai = false;
-        waktuHabis = false;
-        
-        const timerDisplay = document.getElementById("timer");
-        timerDisplay.textContent = `${WAKTU_UJIAN_MENIT}:00`;
-        timerDisplay.style.background = "#ff4d4d";
-        timerDisplay.classList.remove("warning", "danger");
-    }
+                    <p>
+                        Temukan informasi yang kamu butuhkan
+                        dengan lebih cepat.
+                    </p>
 
-    // ========== TIMER ==========
-    function startTimer(durasi) {
-        let time = durasi;
-        const display = document.getElementById("timer");
-        
-        if(timerInterval) clearInterval(timerInterval);
-        
-        timerInterval = setInterval(() => {
-            if (ujianSelesai) {
-                clearInterval(timerInterval);
-                return;
-            }
-            
-            let m = Math.floor(time / 60);
-            let s = time % 60;
-            
-            display.textContent = `${m}:${s < 10 ? '0' + s : s}`;
-            
-            if(time === 300) {
-                display.classList.add("warning");
-                alert("⏰ PERHATIAN! Waktu tinggal 5 menit lagi!");
-            }
-            
-            if(time === 60) {
-                display.classList.remove("warning");
-                display.classList.add("danger");
-            }
+                </div>
 
-            if(time <= 0) {
-                clearInterval(timerInterval);
-                timerInterval = null;
-                waktuHabis = true;
-                ujianSelesai = true;
-                
-                alert("⏰ WAKTU HABIS!\n\nUjian akan dikumpulkan secara otomatis.\nSoal yang tidak dijawab akan dianggap SALAH.");
-                tampilkanModalHasil('waktu_habis');
-            }
-            time--;
-        }, 1000);
-    }
-</script>
+
+                <div class="quick-grid">
+
+                    <a href="isi/ppdb.html" class="quick-card">
+
+                        <div class="quick-icon">
+                            📝
+                        </div>
+
+                        <h3>PPDB</h3>
+
+                        <p>
+                            Informasi penerimaan peserta didik baru.
+                        </p>
+
+                        <span class="arrow">→</span>
+
+                    </a>
+
+
+                    <a href="isi/prestasi.html" class="quick-card">
+
+                        <div class="quick-icon">
+                            🏆
+                        </div>
+
+                        <h3>Prestasi</h3>
+
+                        <p>
+                            Pencapaian siswa dan sekolah.
+                        </p>
+
+                        <span class="arrow">→</span>
+
+                    </a>
+
+
+                    <a href="isi/ekstrakurikuler.html" class="quick-card">
+
+                        <div class="quick-icon">
+                            ⚡
+                        </div>
+
+                        <h3>Ekstrakurikuler</h3>
+
+                        <p>
+                            Berbagai kegiatan pengembangan minat siswa.
+                        </p>
+
+                        <span class="arrow">→</span>
+
+                    </a>
+
+
+                    <a href="isi/perpustakaan.html" class="quick-card">
+
+                        <div class="quick-icon">
+                            📚
+                        </div>
+
+                        <h3>E-Library</h3>
+
+                        <p>
+                            Akses informasi dan layanan perpustakaan.
+                        </p>
+
+                        <span class="arrow">→</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PROFIL / KEPALA SEKOLAH
+        ========================== -->
+        <section class="principal-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span>PROFIL SEKOLAH</span>
+
+                    <h2>
+                        Mengenal SMAN 5 Bogor
+                    </h2>
+
+                    <p>
+                        Kenali lebih dekat lingkungan dan
+                        sosok yang berada di balik perjalanan sekolah.
+                    </p>
+
+                </div>
+
+
+                <div class="principal-layout">
+
+
+                    <!-- SLOT KEPALA SEKOLAH -->
+                    <div class="principal-photo">
+
+                        <div class="photo-placeholder">
+
+                            <img
+                                src="image/kepalasekolah.jpg"
+                                alt="Kepala SMAN 5 Bogor"
+                            >
+
+                        </div>
+
+                        <div class="principal-label">
+
+                            <span>
+                                KEPALA SEKOLAH
+                            </span>
+
+                            <h3>
+                                Nama Kepala Sekolah
+                            </h3>
+
+                            <p>
+                                Informasi kepala sekolah dapat
+                                diperbarui sesuai data resmi.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DESKRIPSI -->
+                    <div class="principal-info">
+
+                        <span class="small-label">
+                            TENTANG KAMI
+                        </span>
+
+                        <h2>
+                            Pendidikan untuk
+                            prestasi dan karakter.
+                        </h2>
+
+                        <p>
+                            SMAN 5 Bogor merupakan satuan pendidikan
+                            tingkat SMA di Kota Bogor yang terus
+                            mengembangkan potensi akademik maupun
+                            nonakademik peserta didik.
+                        </p>
+
+                        <p>
+                            Website ini dirancang sebagai pusat
+                            informasi sekolah yang lebih terstruktur,
+                            mudah digunakan, dan dapat diakses oleh
+                            siswa, orang tua, guru, alumni, serta
+                            masyarakat.
+                        </p>
+
+
+                        <a href="isi/profil.html" class="text-link">
+                            Selengkapnya tentang sekolah →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SLOT INFORMASI SEKOLAH
+        ========================== -->
+        <section class="school-gallery">
+
+            <div class="container">
+
+                <div class="section-heading center">
+
+                    <span>SEKILAS SEKOLAH</span>
+
+                    <h2>
+                        Ruang untuk Berkembang
+                    </h2>
+
+                </div>
+
+
+                <div class="gallery-grid">
+
+
+                    <a href="isi/fasilitas.html" class="gallery-card large">
+
+                        <img
+                            src="image/sekolah.jpg"
+                            alt="Fasilitas sekolah"
+                        >
+
+                        <div class="gallery-overlay">
+
+                            <span>FASILITAS</span>
+
+                            <h3>
+                                Lingkungan Sekolah
+                            </h3>
+
+                        </div>
+
+                    </a>
+
+
+                    <a href="isi/prestasi.html" class="gallery-card">
+
+                        <img
+                            src="image/prestasi.jpg"
+                            alt="Prestasi sekolah"
+                        >
+
+                        <div class="gallery-overlay">
+
+                            <span>PRESTASI</span>
+
+                            <h3>
+                                Karya dan Pencapaian
+                            </h3>
+
+                        </div>
+
+                    </a>
+
+
+                    <a href="isi/berita.html" class="gallery-card">
+
+                        <img
+                            src="image/berita.jpg"
+                            alt="Kegiatan sekolah"
+                        >
+
+                        <div class="gallery-overlay">
+
+                            <span>KEGIATAN</span>
+
+                            <h3>
+                                Aktivitas Siswa
+                            </h3>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             VIDEO YOUTUBE
+        ========================== -->
+        <section class="video-section" id="video">
+
+            <div class="container">
+
+                <div class="section-heading center">
+
+                    <span>VIDEO</span>
+
+                    <h2>
+                        Kenali SMAN 5 Bogor
+                    </h2>
+
+                    <p>
+                        Saksikan video profil dan dokumentasi
+                        kegiatan sekolah.
+                    </p>
+
+                </div>
+
+
+                <div class="video-wrapper">
+
+                    <!-- GANTI VIDEO_ID DENGAN ID VIDEO YOUTUBE -->
+                    <iframe
+                        src="https://www.youtube.com/embed/VIDEO_ID"
+                        title="Video SMAN 5 Bogor"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
+
+                <div class="video-button">
+
+                    <!-- GANTI LINK INI DENGAN CHANNEL/VIDEO RESMI -->
+                    <a
+                        href="https://www.youtube.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-primary"
+                    >
+                        ▶ Kunjungi YouTube
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PRESTASI
+        ========================== -->
+        <section class="achievement-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span>PRESTASI</span>
+
+                    <h2>
+                        Pencapaian SMAN 5 Bogor
+                    </h2>
+
+                    <p>
+                        Dokumentasi pencapaian akademik dan
+                        nonakademik sekolah serta peserta didik.
+                    </p>
+
+                </div>
+
+
+                <div class="achievement-grid">
+
+
+                    <div class="achievement-card">
+
+                        <div class="achievement-number">
+                            01
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Prestasi Akademik
+                            </h3>
+
+                            <p>
+                                Pencapaian siswa dalam bidang
+                                akademik dan keilmuan.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="achievement-card">
+
+                        <div class="achievement-number">
+                            02
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Prestasi Nonakademik
+                            </h3>
+
+                            <p>
+                                Pencapaian dalam olahraga,
+                                seni, organisasi, dan bidang lainnya.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="achievement-card">
+
+                        <div class="achievement-number">
+                            03
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Prestasi Sekolah
+                            </h3>
+
+                            <p>
+                                Berbagai pencapaian dan penghargaan
+                                yang diraih sekolah.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="center-button">
+
+                    <a href="isi/prestasi.html" class="btn btn-outline">
+                        Lihat Semua Prestasi
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             BERITA
+        ========================== -->
+        <section class="news-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span>INFORMASI TERKINI</span>
+
+                    <h2>
+                        Berita & Pengumuman
+                    </h2>
+
+                </div>
+
+
+                <div class="news-grid">
+
+
+                    <article class="news-card">
+
+                        <div class="news-image">
+
+                            <img
+                                src="image/berita.jpg"
+                                alt="Berita sekolah"
+                            >
+
+                        </div>
+
+                        <div class="news-content">
+
+                            <span class="news-category">
+                                BERITA
+                            </span>
+
+                            <h3>
+                                Informasi dan kegiatan terbaru sekolah
+                            </h3>
+
+                            <p>
+                                Tempat untuk menampilkan berita
+                                terbaru SMAN 5 Bogor.
+                            </p>
+
+                            <a href="isi/berita.html">
+                                Baca selengkapnya →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="news-card">
+
+                        <div class="news-image placeholder">
+                            <span>GAMBAR BERITA</span>
+                        </div>
+
+                        <div class="news-content">
+
+                            <span class="news-category">
+                                PENGUMUMAN
+                            </span>
+
+                            <h3>
+                                Informasi penting untuk warga sekolah
+                            </h3>
+
+                            <p>
+                                Pengumuman dapat ditampilkan
+                                secara terstruktur.
+                            </p>
+
+                            <a href="isi/berita.html">
+                                Baca selengkapnya →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="news-card">
+
+                        <div class="news-image placeholder">
+                            <span>GAMBAR BERITA</span>
+                        </div>
+
+                        <div class="news-content">
+
+                            <span class="news-category">
+                                KEGIATAN
+                            </span>
+
+                            <h3>
+                                Dokumentasi kegiatan peserta didik
+                            </h3>
+
+                            <p>
+                                Dokumentasi kegiatan sekolah
+                                dapat ditampilkan di halaman berita.
+                            </p>
+
+                            <a href="isi/berita.html">
+                                Baca selengkapnya →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CTA
+        ========================== -->
+        <section class="cta">
+
+            <div class="container cta-content">
+
+                <div>
+
+                    <span>
+                        INFORMASI SEKOLAH
+                    </span>
+
+                    <h2>
+                        Temukan informasi yang kamu cari.
+                    </h2>
+
+                    <p>
+                        Jelajahi profil, akademik, prestasi,
+                        kegiatan, fasilitas, dan layanan sekolah.
+                    </p>
+
+                </div>
+
+                <a href="isi/profil.html" class="btn btn-white">
+                    Mulai Menjelajah →
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer class="footer">
+
+        <div class="container footer-grid">
+
+
+            <div class="footer-brand">
+
+                <img
+                    src="image/logoSMAN5.png"
+                    alt="Logo SMAN 5 Bogor"
+                >
+
+                <div>
+
+                    <h3>
+                        SMAN 5 BOGOR
+                    </h3>
+
+                    <p>
+                        Juara, Jaya, Bermartabat
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Navigasi
+                </h4>
+
+                <a href="isi/profil.html">Profil</a>
+                <a href="isi/prestasi.html">Prestasi</a>
+                <a href="isi/fasilitas.html">Fasilitas</a>
+                <a href="isi/berita.html">Berita</a>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Layanan
+                </h4>
+
+                <a href="isi/ppdb.html">PPDB</a>
+                <a href="isi/perpustakaan.html">E-Library</a>
+                <a href="isi/kontak.html">Kontak</a>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Sekolah
+                </h4>
+
+                <p>
+                    SMA Negeri 5 Bogor
+                </p>
+
+                <p>
+                    Kota Bogor, Jawa Barat
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <div class="container">
+
+                <p>
+                    © <span id="year"></span>
+                    SMAN 5 Bogor. Semua hak cipta dilindungi.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
 </body>
 </html>
