@@ -1,46 +1,94 @@
-const panel = document.getElementById("slidePanel");
-const panelText = document.getElementById("panelText");
+/* =====================================
+   MOBILE MENU
+===================================== */
 
-function openPanel(type) {
-    panel.classList.add("active");
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
 
-    if (type === "hero") {
-        panelText.innerHTML = `
-            <h2>Daftar Hero & Counter</h2>
-            <p>
-                Di sini kamu bisa menampilkan daftar hero Honor of Kings,
-                counter terbaik, dan tips cara bermainnya.
-            </p>
-        `;
-    }
 
-    if (type === "about") {
-        panelText.innerHTML = `
-            <h2>Tentang Website</h2>
-            <p>
-                HOKCounterPick dibuat untuk membantu pemain memahami
-                strategi counter pick agar lebih mudah menang.
-            </p>
-        `;
-    }
+menuToggle.addEventListener("click", function () {
 
-    if (type === "policy") {
-        panelText.innerHTML = `
-            <h2>Syarat & Ketentuan</h2>
-            <p>
-                Website ini hanya untuk tujuan edukasi dan informasi game.
-                Seluruh konten bukan milik resmi developer Honor of Kings.
-            </p>
+    navMenu.classList.toggle("show");
 
-            <h2>Kebijakan Privasi</h2>
-            <p>
-                Kami tidak mengumpulkan data pribadi pengguna.
-                Website ini aman digunakan tanpa login atau pendaftaran.
-            </p>
-        `;
-    }
+});
+
+
+/* =====================================
+   CLOSE MENU AFTER CLICK
+===================================== */
+
+const navLinks = document.querySelectorAll(".nav-menu a");
+
+
+navLinks.forEach(function (link) {
+
+    link.addEventListener("click", function () {
+
+        navMenu.classList.remove("show");
+
+    });
+
+});
+
+
+/* =====================================
+   CURRENT YEAR
+===================================== */
+
+const yearElement = document.getElementById("year");
+
+if (yearElement) {
+
+    yearElement.textContent =
+        new Date().getFullYear();
+
 }
 
-function closePanel() {
-    panel.classList.remove("active");
-}
+
+/* =====================================
+   NAVBAR SHADOW WHEN SCROLLING
+===================================== */
+
+const navbar = document.querySelector(".navbar");
+
+
+window.addEventListener("scroll", function () {
+
+    if (window.scrollY > 20) {
+
+        navbar.style.boxShadow =
+            "0 5px 20px rgba(15, 23, 42, 0.08)";
+
+    } else {
+
+        navbar.style.boxShadow = "none";
+
+    }
+
+});
+
+
+/* =====================================
+   SIMPLE IMAGE FALLBACK
+===================================== */
+
+const images = document.querySelectorAll("img");
+
+
+images.forEach(function (image) {
+
+    image.addEventListener("error", function () {
+
+        image.style.display = "none";
+
+        if (image.parentElement) {
+
+            image.parentElement.classList.add(
+                "image-missing"
+            );
+
+        }
+
+    });
+
+});
